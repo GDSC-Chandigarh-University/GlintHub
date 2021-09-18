@@ -1,31 +1,31 @@
-section.glint-frontend{
+section.glinthub-frontend{
     display: flex;
     height: calc(100vh - 80px);
     background: linear-gradient(286.61deg, #D9FCF8 3.98%, #F9FFFF 50.34%);
     align-items: center;
     position: relative;
 }
-section.glint-frontend .info{
+section.glinthub-frontend .info{
     width: 40%;
     margin: 2.5rem;
 }
-section.glint-frontend .img{
+section.glinthub-frontend .img{
    width: 60%;
    display: flex;
 }
-section.glint-frontend .info h2{
+section.glinthub-frontend .info h2{
     font-family: sans-serif;
     font-weight: 700;
     font-size: 96px;
     line-height: 122.1px;
 }
-section.glint-frontend .info p{
+section.glinthub-frontend .info p{
     font-family: sans-serif;
     font-weight: 400;
     font-size: 28px;
     line-height: 35.62px;
 }
-section.glint-frontend .info button{
+section.glinthub-frontend .info button{
     margin-top: 1.5rem;
     font-family: sans-serif;
     font-weight: 500;
@@ -35,7 +35,7 @@ section.glint-frontend .info button{
     border-radius: 25px;
     padding: 20px 42px;
 }
-section.glint-frontend .img img{
+section.glinthub-frontend .img img{
     width: 600px;
     margin: 0 auto;
 }
@@ -46,19 +46,19 @@ section.glint-frontend .img img{
     left: 50%;
     transform: translateX(-50%);
 }
-section.glint-frontend-mid{
+section.glinthub-frontend-mid{
     display: flex;
     height: calc(100vh - 80px);
     background: #F9FFFF;
     align-items: center;
     position: relative;
 }
-section.glint-frontend-mid .img div{
+section.glinthub-frontend-mid .img div{
     background-color: red;
     width: 200px;
     height: 200px;
 }
-section.glint-frontend-mid .img{
+section.glinthub-frontend-mid .img{
     width: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
