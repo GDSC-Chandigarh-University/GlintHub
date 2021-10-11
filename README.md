@@ -1,4 +1,4 @@
-# How to run CUUnion on to your local
+# How to run GlintHub on to your local
 
 First fork this repo and then clonne the forked repo to your local machine. 
 Open the repo in VSCode or any other editor you are using and inside terminal run the following commands:
@@ -6,3 +6,5 @@ Open the repo in VSCode or any other editor you are using and inside terminal ru
 2. npm build
 3. npm dev-server (In another terminal)
 4. Go to the localhost mention in the output of dev-server command
+5. npm run start
+6. GlintHub is now live on port 9000 (http://localhost:9000/)
