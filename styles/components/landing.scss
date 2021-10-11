@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.hero_content {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: flex-start;
+  text-align: center;
+}
+
+.hero_content > h1 {
+  font-size: 60px;
+  color: #333333;
+}
+
+.hero_content > p {
+  font-size: 18px;
+  color: #757575;
+  margin: 0 0 1rem;
+}
+
+.btn {
+  text-decoration: none;
+  color: #195f34;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0.8rem 2rem;
+  border-radius: 12px;
+  background: #85cd66;
+  width: 10rem;
+  text-align: center;
+  align-self: center;
+}
+
+.btn:hover {
+  color: #248046;
+  background: #89d469;
+}
+
+.hero_img {
+  width: 100%;
+  margin: 0;
+}
+
+#hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(286.61deg, #d9fcf8 3.98%, #f9ffff 50.34%);
+}
+
+@media screen and (min-width: 768px) {
+  #hero {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+  }
+
+  .hero_content {
+    align-self: center;
+    text-align: left;
+    order: -1;
+    /* justify-self: flex-end; "remove comment if you need to move content close to img"*/
+  }
+
+  .hero_content > h1 {
+    font-size: 70px;
+  }
+
+  .hero_content > p {
+    font-size: 20px;
+  }
+
+  .btn {
+    align-self: flex-start;
+    width: 12rem;
+    padding: 0.8rem 2.5rem;
+    font-size: 18px;
+  }
+
+  /* .container {
+    margin-left: 300px;
+  }  "remove the comment for left margin"5*/
+}
