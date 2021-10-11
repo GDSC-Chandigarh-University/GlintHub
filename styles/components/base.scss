@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+a{
+  text-decoration: none;
+}
+
+:root{
+  --header-bg: rgb(244,244,244,0.45);
+  --sidebar-bg: rgb(133,205,102,0.4);
+} 
+
+
+#root-1{
+  width: 100%;
+}
+
+#root{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.upper-div{
+  background-color: white;
+  margin-top: 68px;
+}
