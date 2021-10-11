@@ -1,9 +1,7 @@
 import React from "react";
-import Sidebar from "./sidebar";
-import Header from "./header";
+import Sidebar from "../dashboard/sidebar";
 
-
-export default class Reviews extends React.Component {
+export default class Error extends React.Component {
     render() {
         return (
             <div id="root">
@@ -11,7 +9,7 @@ export default class Reviews extends React.Component {
                 <div id="root-1">
                     <Header></Header>
                     <div className="upper-div">
-                        <h1>Reviews</h1>
+
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/header";
+import Header from "../header/header"
 
 export default class LandingTop extends React.Component {
     render(){

@@ -8,3 +8,7 @@ Open the repo in VSCode or any other editor you are using and inside terminal ru
 4. Go to the localhost mention in the output of dev-server command
 5. npm run start
 6. GlintHub is now live on port 9000 (http://localhost:9000/)
+
+# Imp Links
+1. Figma Link: (https://www.figma.com/file/sIpIQmLou2GhQxJR2oQ6Un/Glinthub)
+2. Guidelines: (https://github.com/GDSC-Chandigarh-University/Contributing-Guide/blob/master/CONVENTION.md)
