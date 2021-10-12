@@ -64,7 +64,7 @@
         }
 
         .number {
-            margin-left: 53px;
+            margin-left: 52px;
         }
 
         .text {
@@ -76,6 +76,14 @@
 
 #tile-1 {
     background-color: #e6f4e0;
+
+    img {
+        float: right;
+    }
+
+    .text-box {
+        margin-top: 140px;
+    }
 }
 
 #tile-2 {

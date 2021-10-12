@@ -17,7 +17,7 @@ export default class GlintHubLandingSteps extends React.Component {
                     </div>
                     <div id="card-container" className="container col-lg-5 col-md-3 col-sm-4 col-xs-6">
                         <section className="row">
-                            <div className="col-lg-5 col-md-3 col-sm-4 col-xs-6">
+                        <div className="col-lg-5 col-md-3 col-sm-4 col-xs-6">
                                 <div className="mid-tile" id="tile-1">
                                     <div className="img-box">
                                         <img src="images/Icon_folder.png"/>
