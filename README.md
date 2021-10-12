@@ -7,7 +7,7 @@ Open the repo in VSCode or any other editor you are using and inside terminal ru
 3. `npm run dev-server` (In another terminal)
 4. Go to the localhost mention in the output of dev-server command
 5. `npm run start` (In another terminal)
-6. GlintHub is now live on port 9000 (http://localhost:9000/)
+6. GlintHub is now live on `port 9000` (http://localhost:9000/)
 7. Refresh the page to see the changes
 
 # Directory Structure
