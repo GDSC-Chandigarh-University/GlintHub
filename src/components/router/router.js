@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import React from "react";
-import Dashboard from "../glintHub-dashboard/dashboard";
+import Dashboard from "../glintHub-dashboard/glintHub-dashboard";
 import GlintHubLanding from "../glintHub-landing/glintHub-landing";
-import AddApp from "../glintHub-dashboard/add-app";
-import DraftedApp from "../glintHub-dashboard/drafted-app";
-import PublishedApp from "../glintHub-dashboard/published-app";
-import Reviews from "../glintHub-dashboard/reviews";
+import AddApp from "../glintHub-dashboard/glintHub-dashboard-add-app";
+import DraftedApp from "../glintHub-dashboard/glintHub-dashboard-drafted-app";
+import PublishedApp from "../glintHub-dashboard/glintHub-dashboard-published-app";
+import Reviews from "../glintHub-dashboard/glintHub-dashboard-reviews";
 
 const Router = (props) => {
     console.log(props);

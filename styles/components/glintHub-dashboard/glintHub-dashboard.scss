@@ -1,5 +1,11 @@
+@import './glintHub-dashboard-add-app.scss';
+@import './glintHub-dashboard-drafted-app.scss';
+@import './glintHub-dashboard-published-app.scss';
+@import './glintHub-dashboard-reviews.scss';
+@import './glintHub-dashboard-sidebar.scss';
+
 #dashboard-appbar{   
-    font-family: $Raleway-Font !important;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif !important;
     display: flex !important;
     height: 20%;
     align-items: center;
@@ -9,7 +15,7 @@
     margin: 38px 41px 0px 41px;
 }
 #dashboard-appbar h2{ 
-    font-family: $Raleway-Font !important;  
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif !important;  
     font-size: 40px;
 }
 #dashboard-appbar-left{
