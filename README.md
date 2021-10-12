@@ -14,6 +14,7 @@ Open the repo in VSCode or any other editor you are using and inside terminal ru
 | Page | Component | Styles |
 | --- | --------- | ------------------ |
 | GlintHub Landing Page | src/components/glintHub-landing/ | styles/components/glintHub-landing |
+| GlintHub Dashboard Page | src/components/glintHub-dashboard/ | styles/components/glintHub-dashboard |
 
 
 # Imp Links
