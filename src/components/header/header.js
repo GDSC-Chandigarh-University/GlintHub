@@ -29,7 +29,7 @@ export default class Header extends React.Component {
                             <a className="header_link" href="/#glinthub-landing-steps">Process</a>
                         </li>
                         <li>
-                            <a className="header_link" href="/glinthub">GlintHub</a>
+                            <Link className="header_link" to="/glinthub">GlintHub</Link>
                         </li>
                         <li>
                             <a className="header_link" href="">Our Team</a>
