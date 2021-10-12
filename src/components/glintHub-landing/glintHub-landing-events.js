@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default class GlintHubLandingSteps extends React.Component {
     render() {
@@ -11,7 +12,7 @@ export default class GlintHubLandingSteps extends React.Component {
                         </div>
                         <div id="get-started-box">
                             <p>Four easy steps to publish your applications to the storefronts.</p>
-                            <a href="#">Get Started</a>
+                            <Link to="/glinthub">Get Started</Link>
                         </div>
                     </div>
                     <div id="card-container" className="container col-lg-5 col-md-3 col-sm-4 col-xs-6">
