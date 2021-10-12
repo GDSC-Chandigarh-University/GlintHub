@@ -20,7 +20,7 @@ export default class DraftedApp extends React.Component {
                                 <div id="draft-container" className="container">
                                     <section className="row">
                                         <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                            <div className="draft-tile" id="tile-1">
+                                            <div className="draft-tile" id="draft-tile-1">
                                                 <div className="img-box">
                                                     <img className="icon" src="../images/Rectangle 32.png" />
                                                     <a href="#"><img className="edit" src="../images/Group 4.png" /></a>
