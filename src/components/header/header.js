@@ -1,38 +1,41 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default class Header extends React.Component {
     render() {
         return (
             <div id="header">
-                <div class="header_pos">
-                    <div class="logo">
+                <div className="header_pos">
+                    <Link to="/">
+                    <div className="logo">
                         <img src="./logo.png" alt="logo" />
-                        <a href="/">
-                            <p class="logo_heading">Google Developer Student Clubs</p>
-                            <p class="logo_content">Chandigarh University</p>
-                        </a>
+                        <Link to="/">
+                            <p className="logo_heading">Google Developer Student Clubs</p>
+                            <p className="logo_content">Chandigarh University</p>
+                        </Link>
                     </div>
-                    <ul class="header_options">
+                    </Link>
+                    <ul className="header_options">
                         <li>
-                            <a class="header_link" target="_blank" href="">About GDSC</a>
+                            <a className="header_link" target="_blank" href="">About GDSC</a>
                         </li>
                         <li>
-                            <a class="header_link" target="_blank" href="">Projects</a>
+                            <a className="header_link" target="_blank" href="">Projects</a>
                         </li>
                         <li>
-                            <a class="header_link" target="_blank" href="">Events</a>
+                            <a className="header_link" target="_blank" href="">Events</a>
                         </li>
                         <li>
-                            <a class="header_link" target="_blank" href="/glinthub">GlintHub</a>
+                            <a className="header_link" target="_blank" href="/glinthub">GlintHub</a>
                         </li>
                         <li>
-                            <a class="header_link" target="_blank" href="">Our Team</a>
+                            <a className="header_link" target="_blank" href="">Our Team</a>
                         </li>
                         <li>
-                            <a class="header_link" target="_blank" href="">Join US</a>
+                            <a className="header_link" target="_blank" href="">Join US</a>
                         </li>
                         <li>
-                            <a class="header_link" target="_blank" href=""><img class="profile_img" src="./profile_img.jpg"
+                            <a className="header_link" target="_blank" href=""><img className="profile_img" src="./profile_img.jpg"
                                 alt="" /></a>
                         </li>
                     </ul>
