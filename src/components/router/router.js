@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import React from "react";
 import Dashboard from "../glintHub-dashboard/dashboard";
-import Landing from "../glintHub-landing/landing"
+import GlintHubLanding from "../glintHub-landing/glintHub-landing";
 import AddApp from "../glintHub-dashboard/add-app";
 import DraftedApp from "../glintHub-dashboard/drafted-app";
 import PublishedApp from "../glintHub-dashboard/published-app";
@@ -11,7 +11,7 @@ const Router = (props) => {
     console.log(props);
     return (
         <BrowserRouter>
-            <Route path="/" component={Landing} exact="true">
+            <Route path="/" component={GlintHubLanding} exact="true">
             </Route>
             <Route path="/glinthub" component={Dashboard}>
             </Route>

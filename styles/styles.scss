@@ -1,34 +1,3 @@
-@import './components/glintHub-dashboard/sidebar.scss';
-// @import './components/appbar.scss';
 @import './components/base/base.scss';
-// @import './components/profile.scss';
-// @import './components/appbar2.scss';
-// @import './components/Card.scss';
-// @import './components/Clubs.scss';
-// @import './components/dashboard.scss';
-@import './components/glintHub-landing/landing.scss';
-// @import './landing/clubstojoin.scss';
-// @import './landing/event-organised.scss';
-// @import './components/explore-events.scss';
-// @import './components/club.scss';
-// @import './landing/landingfooter.scss';
 @import './components/header/header.scss';
-
-
-#task-img{
-    width: 100%;
-    padding-bottom: 1rem;
-}
-
-.upper-div{
-    height: 91.5vh; 
-    overflow: auto;
-}
-
-.bg-color{
-    background-color: #f6f7f9;
-}
-
-.width100{
-    width: 100%;
-}
+@import './components/glintHub-landing/glintHub-landing.scss';
