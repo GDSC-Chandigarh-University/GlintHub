@@ -198,3 +198,89 @@ p.small{
     font-size: 14px;
     color: #0058ff;
 }
+
+// CSS start dashBoard
+*{
+    margin: 7px;
+    padding: 0px;
+}
+
+.dash-container-1{
+    display: flex;
+}
+
+#board{
+    margin-left: 1rem;
+    font-size: 3rem;
+    color: rgba(82, 82, 82, 1);
+}
+
+.bx-1{
+    background-color: rgba(133, 205, 102, 0.8);
+    width: 216px;
+    height: 126px;
+    border-radius: 16px;
+    margin-right: 18px;
+}
+
+.bx-clr-2{
+    background-color: rgba(216, 239, 206, 1);
+}
+
+.bx-clr-3{
+    background-color: rgba(235, 247, 230, 1);
+}
+
+.up-bx{
+    padding: 13px 0 0 7px;
+    font-size: 21px;
+    font-weight: 600;
+    color: rgba(25, 95, 52, 1);
+}
+
+.dash-num{
+    margin: 13px 0 0 13px;
+    font-size: 50px;
+    color: rgba(82, 82, 82, 1);
+}
+
+.dash-container-2{
+    width: 60vw;
+}
+
+.dashUp-1{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: -12px;
+}
+#pr{
+    color: rgba(117, 117, 117, 1);
+}
+
+#pr, #vie{
+    width: 109px;
+    height: 38px;
+    font-size: 25px;
+        font-weight: 600;
+}
+
+#vie{
+    cursor: pointer;
+    color: rgb(38 109 58 / 61%);
+}
+
+.img-icn{
+    width: 163px;
+    height: 162px;
+    margin-right: 14px;
+}
+.img-icn-plus{
+    background-color: rgba(133, 205, 102, 0.8);
+    margin: 4rem;
+    border-radius: 9px;
+}
+
+.bx-2{
+    display: flex;
+    margin-left: -8px;
+}
