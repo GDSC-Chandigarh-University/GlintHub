@@ -17,25 +17,28 @@ export default class Header extends React.Component {
                     </Link>
                     <ul className="header_options">
                         <li>
-                            <a className="header_link" target="_blank" href="">About GDSC</a>
+                            <a className="header_link" href="">About GDSC</a>
                         </li>
                         <li>
-                            <a className="header_link" target="_blank" href="">Projects</a>
+                            <a className="header_link" href="">Projects</a>
                         </li>
                         <li>
-                            <a className="header_link" target="_blank" href="">Events</a>
+                            <a className="header_link" href="">Events</a>
                         </li>
                         <li>
-                            <a className="header_link" target="_blank" href="/glinthub">GlintHub</a>
+                            <a className="header_link" href="/#glinthub-landing-steps">Process</a>
                         </li>
                         <li>
-                            <a className="header_link" target="_blank" href="">Our Team</a>
+                            <a className="header_link" href="/glinthub">GlintHub</a>
                         </li>
                         <li>
-                            <a className="header_link" target="_blank" href="">Join US</a>
+                            <a className="header_link" href="">Our Team</a>
                         </li>
                         <li>
-                            <a className="header_link" target="_blank" href=""><img className="profile_img" src="./profile_img.jpg"
+                            <a className="header_link" href="">Join US</a>
+                        </li>
+                        <li>
+                            <a className="header_link" href=""><img className="profile_img" src="./profile_img.jpg"
                                 alt="" /></a>
                         </li>
                     </ul>
