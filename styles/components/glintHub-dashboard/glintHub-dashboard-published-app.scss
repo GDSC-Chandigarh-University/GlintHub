@@ -1,0 +1,65 @@
+#glinthub-dashboard-published-app {
+    .upper-h1 {
+        margin-top: 30px;
+        margin-left: 40px;
+        font-weight: 700;
+        // margin: 0;
+        color: #525252;
+    }
+}
+
+.apps-wrapper {
+    // padding: 23px;
+    margin-left: 40px;
+    width: 58%;
+    margin-top: 30px;
+
+    .line{
+        display: flex;
+        margin-bottom: 30px;
+        justify-content: space-between;
+    }
+}
+
+.app-card{
+    width: 378px;
+    height: 236px;
+    background-color: #EBF7E7;
+    border-radius: 17px;
+    display: flex;
+    padding: 12px;
+    align-items: center;
+    // justify-content: space-between;
+
+
+    .left-side{
+        img{
+            width: 160px;
+            height: 160px;
+        }
+        p{
+            font-size: 28px;
+            line-height: 38px;
+            color: #757575;
+            text-align: center;
+        }
+    }
+
+    .right-side{
+        margin-left: 20px;
+        p{
+            font-size: 18px;
+            line-height: 25px;
+            color: #A4A4A4;
+        }
+
+        .type-android{
+            font-style: normal;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 25px;
+            color: #195F34;
+            text-align: right;
+        }
+    }
+}
