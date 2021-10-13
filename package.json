@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack",
     "dev-server": "webpack-dev-server",
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "build-local": "webpack --watch",
+    "start-local": "nodemon server/server.js"
   },
   "dependencies": {
     "express": "^4.17.1",
