@@ -1,27 +1,20 @@
 #glinthub-dashboard-drafted-app{
 
     #draft-title {
-        margin-top: 30px;
-        margin-left: 40px;
-        color: #525252;
+        margin-top: 10px;
+    color: #525252;
     
         h1 {
             font-weight: 700;
+            font-size: 3rem;
         }
     }
     
-    #draft-line {
-        margin-left: 40px;
-        width: 847px;
-        height: 9px;
-        border-radius: 10px;
-        background-color: #85CD66;
-        opacity: 80%;
-    }
     
     #draft-container {
         width: 847px;
-        margin-left: 40px;
+    margin-left: 5px;
+    padding-left: 0px !important;
     }
     
     .draft-tile {
@@ -57,7 +50,7 @@
             font-weight: 500;
             font-size: 18px;
             position: relative;
-            top: -10px;
+            top: -17px !important;
         }
     }
     
@@ -76,7 +69,15 @@
     
         .text-box {
             position: relative;
-            top: -15px;
+            top: -21px !important;
         }
     }
+}
+#draft-line {
+    width: 847px;
+    height: 9px;
+    border-radius: 10px;
+    background-color: #85CD66;
+    opacity: 80%;
+    margin-bottom: 0px;
 }

@@ -1,12 +1,14 @@
 #glinthub-landing-steps{
     #outer-box {
         margin-top: 60px;
+        margin-bottom: 90px;
         display: flex;
     }
     
     #process-outer-box {
-        padding-left: 125px;
+        padding-left: 115px;
         padding-top: 50px;
+        align-self: center;
     }
     
     #title-box {
@@ -20,7 +22,7 @@
     }
 
     #width700{
-        width: 600px;
+        width: 400px;
     }
     
     #get-started-box {
@@ -46,6 +48,7 @@
         width: 700px;
         height: 500px;
         margin-right: 0px;
+        margin-left: 210px;
     }
     
     .mid-tile {
@@ -100,5 +103,15 @@
     
     #tile-4 {
         background-color: #9dd785;
+    }
+
+    #process-outer-box{
+        h1{
+            font-size: 53px !important;
+        }
+        p{
+            font-size: 28px !important;
+            padding-bottom: 20px !important;
+        }
     }
 }

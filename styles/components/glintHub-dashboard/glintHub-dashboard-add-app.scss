@@ -1,8 +1,10 @@
 .heading {
-  font-size: 2.4rem;
-  font-weight: bold;
-  margin-left: 5rem;
+  font-size: 3rem;
+  font-weight: 700;
+  /* margin-left: 5rem; */
+  margin-top: 10px;
   width: 20rem;
+  color: #525252;
 }
 .line {
   margin-left: 5rem;
@@ -13,7 +15,6 @@
 .text_card {
   background-color: #ebf7e7;
   border-radius: 15px;
-  margin-left: 5rem;
 }
 .card_radius {
   width: 30rem;
@@ -26,8 +27,8 @@
   position: absolute;
   width: 40rem;
   text-align: center;
-  margin-left: 27rem;
-  bottom: 23.2rem;
+  margin-left: 33rem;
+  top: 215px;
 }
 .bg_color {
   background-color: #dae6da;
@@ -64,7 +65,6 @@ textarea.form-control {
   height: 9.7rem;
 }
 .drop-zone {
-  max-width: 35rem;
   height: 14.2rem;
   display: flex;
   align-items: center;
@@ -118,7 +118,6 @@ textarea.form-control {
 
 .add_button {
   margin-top: 8rem;
-  margin-left: 6rem;
   font-size: 1.3rem;
   background-color: #135200;
   border-radius: 8%;
@@ -129,4 +128,7 @@ textarea.form-control {
   position: absolute;
   text-align: center;
   margin-top: 3rem;
+}
+#glinthub-dashboard-add-app #draft-line{
+  margin-bottom: 30px;
 }

@@ -13,7 +13,6 @@ export default class GlintHubLanding extends React.Component {
                 <GlintHubLandingHero/>
                 <GlintHubLandingSteps/>
                 <GlintHubLandingProjects/>
-                <GlintHubLandingFooter/>
             </div>
         );
     }

@@ -16,9 +16,10 @@
     text-decoration: none;
     padding: 15px 0 15px 60px;
     width: 100%;
+    color: #327642;
 }
 .sidebar-mid-option a:active{
-    color: black !important;
+    color: #327642 !important;
 }
 #sidebar-top{
     display: flex;
@@ -30,14 +31,8 @@
     margin-top: 1.5rem;
 }
 
-header{
-    background-color: red;
-    height: 20px;
-}
-
 .is-active{
     background-color: rgb(133, 205, 102,0.8);
-    padding: 15px 0 15px 56px !important;
 }
 .sidebar-icon {
     position: absolute;
@@ -45,15 +40,4 @@ header{
 }
 #sidebar-icon{
     width: 150px;
-}
-.is-active-icon{
-    position: absolute;
-    left: 125px;
-    display: block;
-}
-.sidebar-last-icon{
-    transform: rotate(270deg);
-    margin-bottom: 0.1rem;
-    margin-left: 1rem;
-    width: 15px;
 }

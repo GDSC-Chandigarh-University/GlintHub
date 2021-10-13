@@ -15,7 +15,7 @@ export default class AddApp extends React.Component {
                 <div id="app-upload-section">
                   <div className="container-1">
                     <h1 className=" heading">Add App</h1>
-                    <hr className="line" />
+                    <hr id="draft-line" />
 
                     <div className="form-group card_radius">
                       <div className="card-body text_card">

@@ -8,10 +8,10 @@
     
 .dash-container-1{
     display: flex;
+    margin-bottom: 25px;
 }
 
 #board{
-    margin-left: 1rem;
     font-size: 3rem;
     color: rgba(82, 82, 82, 1);
 }
@@ -33,14 +33,14 @@
 }
 
 .up-bx{
-    padding: 13px 0 0 7px;
+    padding: 15px 0 0 19px;
     font-size: 21px;
-    font-weight: 600;
+    font-weight: 700;
     color: rgba(25, 95, 52, 1);
 }
 
 .dash-num{
-    margin: 13px 0 0 13px;
+    margin: 1px 0 19px 19px;
     font-size: 50px;
     color: rgba(82, 82, 82, 1);
 }
@@ -59,10 +59,9 @@
 }
 
 #pr, #vie{
-    width: 109px;
-    height: 38px;
-    font-size: 25px;
-        font-weight: 600;
+    font-size: 22px;
+    font-weight: 600;
+    margin-right: 60px;
 }
 
 #vie{
@@ -76,13 +75,21 @@
     margin-right: 14px;
 }
 .img-icn-plus{
-    background-color: rgba(133, 205, 102, 0.8);
-    margin: 4rem;
+    background-color: rgba(133,205,102,.8);
+    margin: 3rem;
+    padding: 15px;
     border-radius: 9px;
 }
 
 .bx-2{
     display: flex;
-    margin-left: -8px;
+    margin-top: 35px;
 }
+}
+.glinthub-dashboard-bold{
+    font-weight: 700 !important;
+}
+.glinthub-dashboard-h1{
+    margin-bottom: 15px !important;
+    font-size: 3rem !important;
 }
