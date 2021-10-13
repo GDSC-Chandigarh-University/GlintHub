@@ -1,12 +1,12 @@
 #glinthub-landing-steps{
     #outer-box {
-        margin-top: 10px;
+        margin-top: 60px;
         display: flex;
     }
     
     #process-outer-box {
-        padding: 100px;
-        padding-left: 150px;
+        padding-left: 125px;
+        padding-top: 50px;
     }
     
     #title-box {
@@ -18,11 +18,14 @@
             opacity: 80%;
         }
     }
+
+    #width700{
+        width: 600px;
+    }
     
     #get-started-box {
         p {
-            font-size: 25px;
-            opacity: 70%;
+            font-weight: 600;
         }
     
         a {
@@ -83,7 +86,7 @@
         }
     
         .text-box {
-            margin-top: 140px;
+            margin-top: 120px;
         }
     }
     

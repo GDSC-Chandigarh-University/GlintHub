@@ -6,8 +6,8 @@ export default class GlintHubLandingSteps extends React.Component {
         return (
             <div id="glinthub-landing-steps">
                 <div id="outer-box">
-                    <div id="process-outer-box" className="col-lg-5 col-md-3 col-sm-4 col-xs-8">
-                        <div id="title-box">
+                    <div id="process-outer-box" className="col-lg-5 col-md-3 col-sm-4 col-xs-8 hero_content">
+                        <div id="width700">
                             <h1>Four Steps Process</h1>
                         </div>
                         <div id="get-started-box">
