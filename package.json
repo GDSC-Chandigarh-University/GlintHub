@@ -4,7 +4,7 @@
   "description": "",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --watch",
+    "build": "webpack",
     "dev-server": "webpack-dev-server",
     "start": "nodemon server/server.js"
   },
