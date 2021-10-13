@@ -1,12 +1,14 @@
 #glinthub-landing-steps{
     #outer-box {
-        margin-top: 10px;
+        margin-top: 60px;
+        margin-bottom: 90px;
         display: flex;
     }
     
     #process-outer-box {
-        padding: 100px;
-        padding-left: 150px;
+        padding-left: 115px;
+        padding-top: 50px;
+        align-self: center;
     }
     
     #title-box {
@@ -18,11 +20,14 @@
             opacity: 80%;
         }
     }
+
+    #width700{
+        width: 400px;
+    }
     
     #get-started-box {
         p {
-            font-size: 25px;
-            opacity: 70%;
+            font-weight: 600;
         }
     
         a {
@@ -43,6 +48,7 @@
         width: 700px;
         height: 500px;
         margin-right: 0px;
+        margin-left: 210px;
     }
     
     .mid-tile {
@@ -83,7 +89,7 @@
         }
     
         .text-box {
-            margin-top: 140px;
+            margin-top: 120px;
         }
     }
     
@@ -97,5 +103,15 @@
     
     #tile-4 {
         background-color: #9dd785;
+    }
+
+    #process-outer-box{
+        h1{
+            font-size: 53px !important;
+        }
+        p{
+            font-size: 28px !important;
+            padding-bottom: 20px !important;
+        }
     }
 }

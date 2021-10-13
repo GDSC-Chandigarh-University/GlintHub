@@ -4,207 +4,14 @@
 @import './glintHub-dashboard-reviews.scss';
 @import './glintHub-dashboard-sidebar.scss';
 
-#dashboard-appbar{   
-    font-family: 'Open Sans', 'Helvetica Neue', sans-serif !important;
-    display: flex !important;
-    height: 20%;
-    align-items: center;
-    justify-content: space-between;
-}
-#dashboard{
-    margin: 38px 41px 0px 41px;
-}
-#dashboard-appbar h2{ 
-    font-family: 'Open Sans', 'Helvetica Neue', sans-serif !important;  
-    font-size: 40px;
-}
-#dashboard-appbar-left{
-    display: flex;
-    align-items: center;
-}
-.dashboard-space{
-    width: 560px;
-}
-#dashboard-appbar h3{
-    background-color: #fff;
-    padding: 9px 11px;
-    margin-left: 10px;
-    font-size: 13px;
-    border-radius: 4px;
-}
-
-.normal-flex{
-    display: flex;
-    background-color: #fff;
-    padding: 9px 11px;
-    margin-left: 10px;
-    font-size: 13px;
-    align-items: center;
-    gap: 8px;
-}
-
-#dashboard-box1{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 20px;
-    margin-top: 40px;
-}
-.inside-box1{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    height: 150px;
-}
-.inside-box1 p{
-    font-size: 16px;
-    color: #7e84a3;
-    margin-bottom: 20px;
-}
-.inside-box1 h2{
-    font-size: 28px;
-    margin-bottom: 6px;
-}
-.inside-box1 span.b{
-    font-size: 12px;
-    color: #7e84a3;
-    margin-left: 6px;
-}
-.inside-box1 span.a{
-    display: flex;
-    align-items: center;
-    color: #1fd286;
-    font-size: 16px;
-}
-p.small{
-    font-size: 13px; 
-    color: #7f8fa4;
-}
-.inside-box1 .up{
-    display: flex;
-    align-items: center;
-    border: none;
-    width: auto;
-    margin-top: 0;
-}
-.inside-box1 .graph{
-    width: 170px;
-    height: 80px;  
-}
-.inside-box1 .graph-yellow{
-    width: 170px;
-    height: 100px;  
-}
-#dashboard-box2{
-    background-color: white;
-    margin-top: 20px;
-    padding: 30px 30px 0 30px;
-}
-#inside-box2{
-    display: flex;
-    justify-content: space-between;
-}
-.dashboard-h2{
-    font-size: 18px;
-}
-#main-graph{
-    width: 100%;
-    margin-top: 20px;
-}
-#inside-box2 .b{
-    display: flex;
-}
-#inside-box2 .b p {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #5a607f;
-    font-size: 14px;
-}
-.export{
-    padding: 6px 12px 6px 8px;
-    border-radius: 4px;
-    border: solid 1px #d7dbec;
-}
-
-#RSVP{
-    display: flex;
-    justify-content: center;
-}
-#RSVP p{
-    color: #5a607f;
-    font-size: 14px;
-}
-#dashboard-box3{
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-
-#inside-box3{
-    padding: 31px;
-    width: 60%;
-    background-color: white;
-}
-#inside-box3 p{
-    color: #7e84a3 !important;
-    font-size: 12px;
-    margin-top: 20px;
-}
-#flex .grid{
-    display: grid;
-    margin-top: 0.7rem;
-    padding-top: 0.7rem;
-    grid-template-columns: 2fr 1fr 1fr;
-    align-items: center;
-    border-top: solid 1px rgba(0,0,0,0.1);
-}
-.grid .name{
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-.grid .date{
-    padding-top: 0rem;
-    margin: 0;
-}
-.grid h2{
-    font-size: 14px;
-}
-#category{
-    padding: 31px;
-    width: 40%;
-    background-color: white;
-}
-#inside-category{
-    margin-top: 30px;
-}
-#inside-category .grid{
-    display: grid;
-    grid-template-columns: 0.1fr 3fr 1fr;
-    margin-top: 15px;
-}
-#inside-category .grid h3{
-    font-size: 14px;
-} 
-#inside-category .grid h2{
-    font-size: 14px;
-}
-.insights{
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: #0058ff;
-}
-
+#glinthub-dashboard{
+    
 .dash-container-1{
     display: flex;
+    margin-bottom: 25px;
 }
 
 #board{
-    margin-left: 1rem;
     font-size: 3rem;
     color: rgba(82, 82, 82, 1);
 }
@@ -226,14 +33,14 @@ p.small{
 }
 
 .up-bx{
-    padding: 13px 0 0 7px;
+    padding: 15px 0 0 19px;
     font-size: 21px;
-    font-weight: 600;
+    font-weight: 700;
     color: rgba(25, 95, 52, 1);
 }
 
 .dash-num{
-    margin: 13px 0 0 13px;
+    margin: 1px 0 19px 19px;
     font-size: 50px;
     color: rgba(82, 82, 82, 1);
 }
@@ -252,10 +59,9 @@ p.small{
 }
 
 #pr, #vie{
-    width: 109px;
-    height: 38px;
-    font-size: 25px;
-        font-weight: 600;
+    font-size: 22px;
+    font-weight: 600;
+    margin-right: 60px;
 }
 
 #vie{
@@ -269,12 +75,21 @@ p.small{
     margin-right: 14px;
 }
 .img-icn-plus{
-    background-color: rgba(133, 205, 102, 0.8);
-    margin: 4rem;
+    background-color: rgba(133,205,102,.8);
+    margin: 3rem;
+    padding: 15px;
     border-radius: 9px;
 }
 
 .bx-2{
     display: flex;
-    margin-left: -8px;
+    margin-top: 35px;
+}
+}
+.glinthub-dashboard-bold{
+    font-weight: 700 !important;
+}
+.glinthub-dashboard-h1{
+    margin-bottom: 15px !important;
+    font-size: 3rem !important;
 }

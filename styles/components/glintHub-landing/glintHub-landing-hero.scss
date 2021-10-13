@@ -2,6 +2,7 @@
 
 #glinthub-landing-hero {
   font-family: "Poppins", sans-serif;
+  height: calc(100vh - 68px);
 }
 
 #glinthub-landing-hero .hero_content {
@@ -12,16 +13,15 @@
   text-align: center;
 }
 
-#glinthub-landing-hero .hero_content > h1 {
+.hero_content h1 {
   font-size: 75px;
   font-weight: 700;
   color: #333333;
 }
 
-#glinthub-landing-hero .hero_content > p {
+.hero_content p {
   font-size: 24px;
   color: #757575;
-  margin: 0 0 1rem;
 }
 
 #glinthub-landing-hero .btn {
@@ -45,27 +45,19 @@
 #glinthub-landing-hero .hero_img {
   width: 100%;
   margin: 0;
+  margin-top: -0.6rem;
 }
 
 #glinthub-landing-hero #hero {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 1fr);
   gap: 0.5rem;
-  align-items: center;
-  height: 100vh;
   background: linear-gradient(286.61deg, #d9fcf8 3.98%, #f9ffff 50.34%);
 }
 
 @media screen and (min-width: 768px) {
   #glinthub-landing-hero #hero {
-    grid-template-columns: repeat(2, 42% 58%);
-    gap: 0;
-    grid-template-rows: 1fr;
-  }
-
-  #glinthub-landing-hero .hero_img {
-    margin-bottom: 4.5rem;
+    grid-template-columns: 1fr 1.2fr;
+    height: 100%;
   }
 
   #glinthub-landing-hero .hero_content {
@@ -74,14 +66,13 @@
     order: -1;
     margin-bottom: 4rem;
     margin-right: 1rem;
-    justify-self: flex-end;
   }
 
-  #glinthub-landing-hero .hero_content > h1 {
+  .hero_content h1 {
     font-size: 97px;
   }
 
-  #glinthub-landing-hero .hero_content > p {
+  .hero_content p {
     font-size: 32px;
     padding-bottom: 2.5rem;
   }

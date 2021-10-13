@@ -13,9 +13,9 @@ export default class Dashboard extends React.Component {
                     <div id="root-1">
                         <div className="upper-div">
                             <div id="glinthub-dashboard">
-                            <div className="headingDash" id="board">Dashboard</div>
+                            <div className="headingDash glinthub-dashboard-bold glinthub-dashboard-h1" id="board">Dashboard</div>
                                 <main>
-                                    <div className="dash-container-1">
+                                    <div className="dash-container-1 glinthub-dashboard-bold">
                                          {/* upper boxes */}
                                         <div className="bx-1">
                                             <div className="up-bx">Published Apps</div>

@@ -20,12 +20,13 @@ a{
 
 #root-1{
   width: 100%;
+  padding: 20px 30px;
+  overflow: auto;
 }
 
 #root{
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 68px);
   overflow: hidden;
 }
 
