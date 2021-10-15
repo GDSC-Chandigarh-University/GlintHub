@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "firebase": "^9.1.2",
     "node-sass": "^6.0.1",
     "nodemon": "^2.0.13",
     "react": "^17.0.2",
