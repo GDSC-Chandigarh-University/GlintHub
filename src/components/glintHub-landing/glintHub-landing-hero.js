@@ -1,4 +1,5 @@
 import React from "react";
+import Signupwithgoogle from "../config/firebase";
 
 export default class GlintHubLandingHero extends React.Component {
   render() {
@@ -13,7 +14,7 @@ export default class GlintHubLandingHero extends React.Component {
           <div class="hero_content">
             <h1>Glinthub</h1>
             <p>Make your projects<br></br>published for FREE</p>
-            <a class="btn" href="">Get Started</a>
+            <button class="btn" onClick={Signupwithgoogle}>Get Started</button>
           </div>
         </div>
       </div>
