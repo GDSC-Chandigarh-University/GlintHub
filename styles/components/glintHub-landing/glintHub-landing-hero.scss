@@ -46,6 +46,7 @@
   width: 100%;
   margin: 0;
   margin-top: -0.6rem;
+  animation: float 3s ease-in-out infinite;
 }
 
 #glinthub-landing-hero #hero {
@@ -83,4 +84,16 @@
     padding: 0.8rem 2.5rem;
     font-size: 27px;
   }
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
 }
