@@ -57,3 +57,31 @@
     height: 100%;
   }
   
+a:hover{
+  cursor: pointer;
+}
+.header_link{
+  position: relative;
+}
+.header_dropdown{
+  padding: 47px 0 5px;
+  display: none;
+  position: absolute;
+  top: 21px;
+  text-align: right;
+  right: 40px;
+}
+.header_dropdown:hover{
+  display: block;
+  z-index: 1000
+}
+#header_profile:hover .header_dropdown{
+  display: block;
+}
+.header_dropdown li{
+  padding: 10px 20px;
+  background-color: #fafafa;
+}
+.header_dropdown li:hover{
+  background-color: #f3f3f3;
+}
