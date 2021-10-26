@@ -1,8 +1,14 @@
 import React from "react";
-import Signupwithgoogle from "../config/firebase";
+import { GoogleAuthLogin } from "../config/firebase";
 
-export default class GlintHubLandingHero extends React.Component {
-  render() {
+export default function GlintHubLandingHero() {
+   const handleGoogleAuthLogin = async () => {
+    try {
+      await GoogleAuthLogin()
+    } catch (error) {
+      console.log(error);
+    }
+  }
     return (
       <div id="glinthub-landing-hero">
         <div id="hero">
@@ -14,10 +20,9 @@ export default class GlintHubLandingHero extends React.Component {
           <div class="hero_content">
             <h1>Glinthub</h1>
             <p>Make your projects<br></br>published for FREE</p>
-            <button class="btn" onClick={Signupwithgoogle}>Get Started</button>
+            <button class="btn" onClick={handleGoogleAuthLogin}>Get Started</button>
           </div>
         </div>
       </div>
     );
   }
-}
