@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { GoogleAuthLogin, AuthState, GoogleAuthLogout } from "../config/firebase";
+import { GoogleAuthLogin, GoogleAuthLogout } from "../config/firebase";
+import { AuthState } from "../config/firebaseauth";
 
 export default function Header() {
-    const currentUser = AuthState()
-    console.log(currentUser)
+    const currentUser = AuthState().currentUser
     const handleGoogleAuthLogin = async () => {
         try {
           await GoogleAuthLogin()
@@ -55,7 +55,7 @@ export default function Header() {
                             <a>Profile</a>
                         </li>
                         <li>
-                            <a onClick={handleGoogleAuthLogout}>Log out</a>
+                            <a href="/glinthub" onClick={handleGoogleAuthLogout}>Log out</a>
                         </li>
                         </div></div> : <li>
                         <a className="header_link" onClick={handleGoogleAuthLogin}>Join US</a>
