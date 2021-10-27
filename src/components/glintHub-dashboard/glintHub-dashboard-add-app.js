@@ -1,9 +1,27 @@
 import React from "react";
 import Sidebar from "./glintHub-dashboard-sidebar";
 import Header from "../header/header";
+import { useRef, useEffect } from 'react';
+import { firestore } from "../config/firebase";
+import { addDoc, collection, collectionGroup, doc, serverTimestamp, setDoc, onSnapshot } from "@firebase/firestore";
+import { AuthState } from "../config/firebaseauth";
+import { Projectuid } from "../config/firebase";
 
-export default class AddApp extends React.Component {
-  render() {
+export default function AddApp() {
+  const titleref = useRef();
+  const descriptionref = useRef();
+  const technologyref = useRef();
+  const imageurlref = useRef();
+ const useruid = AuthState().uid;
+ console.log(useruid)
+ const projectuid = Projectuid().projectuid;
+ const docuid = Projectuid().projectuid + useruid; 
+ console.log(projectuid)
+ const handleAddProject = async () => {
+   const docref = doc(firestore,'projects',docuid)
+   await setDoc(docref,{useruid, title: titleref.current.value, description: descriptionref.current.value, timestamp: serverTimestamp(), technology: technologyref.current.value, imageurl: imageurlref.current.value, published: false, drafted: false, inreview: true, projectuid })
+ }
+
     return (
       <div>
         <Header></Header>
@@ -24,6 +42,7 @@ export default class AddApp extends React.Component {
                           type="text"
                           className="form-control"
                           placeholder="Project Title"
+                          ref={titleref}
                         />
                       </div>
                     </div>
@@ -35,6 +54,7 @@ export default class AddApp extends React.Component {
                           type="text"
                           className="form-control"
                           placeholder="Technologies used"
+                          ref={technologyref}
                         />
                       </div>
                     </div>
@@ -46,6 +66,7 @@ export default class AddApp extends React.Component {
                           type="text"
                           className="form-control"
                           placeholder="Project Description"
+                          ref={descriptionref}
                         ></textarea>
                       </div>
                     </div>
@@ -53,31 +74,23 @@ export default class AddApp extends React.Component {
                     <button
                       type="button"
                       className="btn btn-success add_button"
+                      onClick={handleAddProject}
                     >
                       Add
                     </button>
 
                     <div className="form-group upload_card">
+                    <div className="form-group card_radius">
                       <div className="card-body text_card">
-                        <h1>
-                          <b>Upload your Files</b>
-                        </h1>
-                        <h5>Files should be Zip</h5>
-                        <br />
-                        <div>
-                          <div className="drop-zone">
-                            <img src="./add-app.png" className="add-app" />
-                            <p className="drag-files">
-                              Drag & Drop files here.
-                            </p>
-                            <input
-                              type="file"
-                              name="myFile"
-                              className="drop-zone__input"
-                            />
-                          </div>
-                        </div>
+                        <input
+                          className="bg_color"
+                          type="text"
+                          className="form-control"
+                          placeholder="Image URL"
+                          ref={imageurlref}
+                        />
                       </div>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -88,4 +101,3 @@ export default class AddApp extends React.Component {
       </div>
     );
   }
-}

@@ -1,10 +1,17 @@
 import React from "react";
 import Sidebar from "./glintHub-dashboard-sidebar";
 import Header from "../header/header"
+import { Link } from "react-router-dom";
+import { UserProjectStatus } from "../config/firebase";
+import { collectionGroup, query, where, collection, getDocs } from "@firebase/firestore";
+import { AuthState } from "../config/firebase";
+import { firestore } from "../config/firebase";
 
 
-export default class Dashboard extends React.Component {
-    render() {
+
+export default function Dashboard() {
+    const collectionprojectref = collection(firestore, 'Users')
+    const totalprojects = UserProjectStatus().totalprojects
         return (
             <div>
                 <Header></Header>
@@ -19,17 +26,17 @@ export default class Dashboard extends React.Component {
                                          {/* upper boxes */}
                                         <div className="bx-1">
                                             <div className="up-bx">Published Apps</div>
-                                            <div className="dash-num">06</div>
+                                            <div className="dash-num">0</div>
                                         </div>
 
                                         <div className="bx-1 bx-clr-2">
                                             <div className="up-bx">Drafted Apps</div>
-                                            <div className="dash-num">02</div>
+                                            <div className="dash-num">0</div>
                                         </div>
 
                                         <div className="bx-1 bx-clr-3">
                                             <div className="up-bx">In-review Apps</div>
-                                            <div className="dash-num">01</div>
+                                            <div className="dash-num">{totalprojects}</div>
                                         </div>
 
                                     </div>
@@ -47,7 +54,7 @@ export default class Dashboard extends React.Component {
                                             <div className="img-icn"><img src="/main-dashboard/Rectangle 34.png" alt="Error"/></div>
                                             <div className="img-icn"><img src="/main-dashboard/Rectangle 35.png" alt="Error"/></div>
                                             <div className="img-icn"><img src="/main-dashboard/Rectangle 36.png" alt="Error"/></div>
-                                            <span className="img-icn-plus" ><img src="/main-dashboard/plus.png" width="33px" height="31px" alt="Error"/></span>
+                                            <Link to="/add-app" className="img-icn-plus" ><img src="/main-dashboard/plus.png" width="33px" height="31px" alt="Error"/></Link>
                                         </div>
                                     </div>
 
@@ -59,4 +66,3 @@ export default class Dashboard extends React.Component {
             </div>
         );
     }
-}
