@@ -8,19 +8,20 @@ import { AuthState } from "../config/firebaseauth";
 import { Projectuid } from "../config/firebase";
 
 export default function AddApp() {
-  const titleref = useRef();
-  const descriptionref = useRef();
-  const technologyref = useRef();
-  const imageurlref = useRef();
- const useruid = AuthState().uid;
- console.log(useruid)
- const projectuid = Projectuid().projectuid;
- const docuid = Projectuid().projectuid + useruid; 
- console.log(projectuid)
- const handleAddProject = async () => {
-   const docref = doc(firestore,'projects',docuid)
-   await setDoc(docref,{useruid, title: titleref.current.value, description: descriptionref.current.value, timestamp: serverTimestamp(), technology: technologyref.current.value, imageurl: imageurlref.current.value, published: false, drafted: false, inreview: true, projectuid })
- }
+  console.log(Projectuid)
+//   const titleref = useRef();
+//   const descriptionref = useRef();
+//   const technologyref = useRef();
+//   const imageurlref = useRef();
+//  const useruid = AuthState().uid;
+//  console.log(useruid)
+//  const projectuid = Projectuid().projectuid;
+//  const docuid = Projectuid().projectuid + useruid; 
+//  console.log(projectuid)
+//  const handleAddProject = async () => {
+//    const docref = doc(firestore,'projects',docuid)
+//    await setDoc(docref,{useruid, title: titleref.current.value, description: descriptionref.current.value, timestamp: serverTimestamp(), technology: technologyref.current.value, imageurl: imageurlref.current.value, published: false, drafted: false, inreview: true, projectuid })
+//  }
 
     return (
       <div>
