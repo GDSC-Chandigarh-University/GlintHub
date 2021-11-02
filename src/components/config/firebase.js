@@ -1,21 +1,12 @@
-import { initializeApp } from "firebase/app";
+import app from "./firebaseConfig"
 import { getFirestore, onSnapshot, collectionGroup, query, where, collection } from "firebase/firestore"
 import {GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, signOut} from "firebase/auth"
 import { useState, useEffect } from "react";
 import { AuthState } from "./firebaseauth";
+import { connect } from "react-redux";
+import authReducer from "../reducers/authReducer";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyC2s2ojO76wtSU8fo0QnHHN3wYk47pscKw",
-  authDomain: "gdsccu-decd0.firebaseapp.com",
-  projectId: "gdsccu-decd0",
-  storageBucket: "gdsccu-decd0.appspot.com",
-  messagingSenderId: "876586180057",
-  appId: "1:876586180057:web:791ef6f49e9eb476818dc8"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth()
+const auth = getAuth(app)
 
 export const firestore = getFirestore(app)
 
@@ -33,13 +24,12 @@ export async function GoogleAuthLogout() {
   });
 }
 
-function getprojectuid() { 
+function Getprojectuid(props) { 
   const [projects, setprojects] = useState([])
   const [projectuid, setprojectuid] = useState()
-  const useruid = AuthState().uid;
   useEffect(async () => {
-    
-    const q = query(collection(firestore,'projects'),where("useruid", "==", 'tePeul0YuihUemSEIfmsY6CUB1w2'))
+    console.log(props.uid)
+    const q = query(collection(firestore,'projects'),where("useruid", "==", props.uid))
     const unsub = onSnapshot(q,(snapshot)=>{
       setprojects(snapshot.docs.map((doc) => {
         return { ...doc.data(), id: doc.id }
@@ -52,7 +42,11 @@ function getprojectuid() {
   return {projects, projectuid}
 }
 
-export const Projectuid = getprojectuid
+export const Projectuid = connect((state) => {
+  return {
+  uid: state.authReducer.uid
+  }
+})(Getprojectuid)
 
 export function UserProjectStatus() {
   const [totalprojects, settotalprojects] = useState()
