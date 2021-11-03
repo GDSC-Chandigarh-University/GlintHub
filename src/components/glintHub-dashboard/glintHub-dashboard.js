@@ -2,7 +2,8 @@ import React from "react";
 import Sidebar from "./glintHub-dashboard-sidebar";
 import Header from "../header/header"
 import { Link } from "react-router-dom";
-import { UserProjectStatus } from "../config/firebase";
+// import { UserProjectStatus } from "../config/firebase";
+import { UserProjectStatus } from "../actions/authActions";
 import { collection } from "@firebase/firestore";
 import { firestore } from "../config/firebase";
 
