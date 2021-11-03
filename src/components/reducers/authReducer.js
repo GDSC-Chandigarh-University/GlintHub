@@ -9,6 +9,11 @@ export default (state = authReducerDefaultState, action) => {
                 picture: action.user.photoURL,
                 displayName: action.user.displayName
             }
+        case "PROJECTS":
+            return {
+                projects: action.projects,
+                projectuid: action.projectuid
+            }
         default:
             return state
     }

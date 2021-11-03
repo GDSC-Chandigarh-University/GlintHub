@@ -13,14 +13,14 @@ export default function GlintHubLandingHero() {
       <div id="glinthub-landing-hero">
         <div id="hero">
           <img
-            class="hero_img"
+            className="hero_img"
             src="./hero_img.png"
             alt="Vector image of a hut"
           />
-          <div class="hero_content">
+          <div className="hero_content">
             <h1>Glinthub</h1>
             <p>Make your projects<br></br>published for FREE</p>
-            <button class="btn" onClick={handleGoogleAuthLogin}>Get Started</button>
+            <button className="btn" onClick={handleGoogleAuthLogin}>Get Started</button>
           </div>
         </div>
       </div>

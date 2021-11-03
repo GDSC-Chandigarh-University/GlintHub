@@ -1,27 +1,22 @@
 import React from "react";
 import Sidebar from "./glintHub-dashboard-sidebar";
 import Header from "../header/header";
-import { useRef, useEffect } from 'react';
-import { firestore } from "../config/firebase";
-import { addDoc, collection, collectionGroup, doc, serverTimestamp, setDoc, onSnapshot } from "@firebase/firestore";
-import { AuthState } from "../config/firebaseauth";
-import { Projectuid } from "../config/firebase";
+import { useRef } from 'react';
 
 export default function AddApp() {
-  console.log(Projectuid)
-//   const titleref = useRef();
-//   const descriptionref = useRef();
-//   const technologyref = useRef();
-//   const imageurlref = useRef();
+  const titleref = useRef();
+  const descriptionref = useRef();
+  const technologyref = useRef();
+  const imageurlref = useRef();
 //  const useruid = AuthState().uid;
 //  console.log(useruid)
 //  const projectuid = Projectuid().projectuid;
 //  const docuid = Projectuid().projectuid + useruid; 
 //  console.log(projectuid)
-//  const handleAddProject = async () => {
-//    const docref = doc(firestore,'projects',docuid)
-//    await setDoc(docref,{useruid, title: titleref.current.value, description: descriptionref.current.value, timestamp: serverTimestamp(), technology: technologyref.current.value, imageurl: imageurlref.current.value, published: false, drafted: false, inreview: true, projectuid })
-//  }
+ const handleAddProject = async () => {
+  //  const docref = doc(firestore,'projects',docuid)
+  //  await setDoc(docref,{useruid, title: titleref.current.value, description: descriptionref.current.value, timestamp: serverTimestamp(), technology: technologyref.current.value, imageurl: imageurlref.current.value, published: false, drafted: false, inreview: true, projectuid })
+ }
 
     return (
       <div>

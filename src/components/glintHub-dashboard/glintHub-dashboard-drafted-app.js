@@ -11,7 +11,7 @@ export default class DraftedApp extends React.Component {
                 <div id="root">
                     <Sidebar></Sidebar>
                     <div id="root-1">
-                        <div classNameName="upper-div">
+                        <div className="upper-div">
                             <div id="glinthub-dashboard-drafted-app">
                                 <div id="draft-title">
                                     <h1 id="glinthub-dashboard-h1">Drafted Apps</h1>

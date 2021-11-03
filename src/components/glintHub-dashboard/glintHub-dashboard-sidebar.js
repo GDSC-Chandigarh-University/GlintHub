@@ -8,7 +8,7 @@ export default class Sidebar extends React.Component {
             <div id="sidebar-mid">
                 <div className="sidebar-mid-option">
                     <img className="sidebar-icon" src="./dashboard-svg.svg" />
-                    <NavLink to="/glinthub" exact="true" activeClassName="is-active">Dashboard</NavLink>
+                    <NavLink to="/glinthub" exact={true} activeClassName="is-active">Dashboard</NavLink>
                 </div>
                 <div className="sidebar-mid-option">
                     <img className="sidebar-icon" src="./add-svg.svg" />

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import React from "react";
 import Dashboard from "../glintHub-dashboard/glintHub-dashboard";
 import GlintHubLanding from "../glintHub-landing/glintHub-landing";
@@ -12,7 +12,7 @@ const Router = () => {
     const currentUser = AuthState().currentUser
     return (
         <BrowserRouter>
-        {!currentUser ? <Route path="/glinthub" component={GlintHubLanding} exact="true">
+        {!currentUser ? <Route path="/glinthub" component={GlintHubLanding} exact={true}>
             </Route> : <div><Route path="/glinthub" component={Dashboard}>
             </Route>
             <Route path="/add-app" component={AddApp}>

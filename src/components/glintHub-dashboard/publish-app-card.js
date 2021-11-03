@@ -11,7 +11,7 @@ export default class PublishCard extends React.Component {
                 <div className="right-side">
                     <p>{this.props.para1}</p>
 
-                    <p class="type-android">{this.props.para2}</p>
+                    <p className="type-android">{this.props.para2}</p>
                 </div>
             </div>
         )
