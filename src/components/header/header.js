@@ -25,10 +25,10 @@ export default function Header() {
                 <Link to="/">
                     <div className="logo">
                         <img src="./logo.png" alt="logo" />
-                        <Link to="/">
+                        <div>
                             <p className="logo_heading">Google Developer Student Clubs</p>
                             <p className="logo_content">Chandigarh University</p>
-                        </Link>
+                        </div>
                     </div>
                 </Link>
                 <ul className="header_options">
