@@ -10,6 +10,7 @@ import GlintHubReviews from "./glintHub-dashboard-reviews";
 
 export default function Dashboard() {
     let { path } = useRouteMatch();
+    console.log(path)
     return (
         <div>
             <Header></Header>

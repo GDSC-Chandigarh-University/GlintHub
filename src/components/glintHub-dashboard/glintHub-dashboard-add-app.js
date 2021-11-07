@@ -19,6 +19,7 @@ export default class GlintHubAddApp extends React.Component {
 
   }
   render() {
+    console.log('Add-app')
     const { title, technology, imageURL, description, githubURL } = this.state
     return (
       <div id="glinthub-dashboard-add-app">
