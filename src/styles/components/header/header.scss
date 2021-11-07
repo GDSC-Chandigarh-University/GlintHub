@@ -52,6 +52,7 @@
   .header_pos {
     background-color: var(--header-bg);
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 0.2rem 2rem;
     height: 100%;
