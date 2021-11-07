@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import Orbus from "../../assets/images/Orbus.png"
+import AddApp from "../../assets/images/plus.png"
 
-export default class GlintHubDashboard extends React.Component {
+class GlintHubDashboard extends React.Component {
     render() {
+        let { url } = this.props.match
+        console.log(url)
         return (
                 <div id="glinthub-dashboard">
                     <div className="headingDash glinthub-dashboard-bold glinthub-dashboard-h1" id="board">Dashboard</div>
@@ -33,15 +37,13 @@ export default class GlintHubDashboard extends React.Component {
                         </div>
 
                         <div className="bx-2">
-                            <div className="img-icn"><img src="./main-dashboard/Rectangle 32.png" alt="Error" /></div>
-                            <div className="img-icn"><img src="/main-dashboard/Rectangle 33.png" alt="Error" /></div>
-                            <div className="img-icn"><img src="/main-dashboard/Rectangle 34.png" alt="Error" /></div>
-                            <div className="img-icn"><img src="/main-dashboard/Rectangle 35.png" alt="Error" /></div>
-                            <div className="img-icn"><img src="/main-dashboard/Rectangle 36.png" alt="Error" /></div>
-                            <Link to="/add-app" className="img-icn-plus" ><img src="/main-dashboard/plus.png" width="33px" height="31px" alt="Error" /></Link>
+                            <div className="img-icn"><img src={Orbus} alt="Error" /></div>
+                            <Link to={`${url}/add-app`} className="img-icn-plus" ><img src={AddApp} width="33px" height="31px" alt="Error" /></Link>
                         </div>
                     </div>
                 </div>
         );
     }
 }
+
+export default  withRouter(GlintHubDashboard)

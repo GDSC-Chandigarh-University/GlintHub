@@ -5,7 +5,8 @@ export default class GlintHubAddApp extends React.Component {
     title: '',
     description: '',
     technology: '',
-    imageURL: ''
+    imageURL: '',
+    githubURL: ''
   }
   handleChange = (event) => {
     this.setState(() => {
@@ -18,7 +19,7 @@ export default class GlintHubAddApp extends React.Component {
 
   }
   render() {
-    const { title, technology, imageURL, description } = this.state
+    const { title, technology, imageURL, description, githubURL } = this.state
     return (
       <div id="glinthub-dashboard-add-app">
         <div id="app-upload-section">
@@ -85,6 +86,21 @@ export default class GlintHubAddApp extends React.Component {
                     placeholder="Image URL"
                     name="imageURL"
                     value={imageURL}
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="form-group upload_card githubURL">
+              <div className="form-group card_radius">
+                <div className="card-body text_card">
+                  <input
+                    className="bg_color"
+                    type="text"
+                    className="form-control"
+                    placeholder="GitHub URL"
+                    name="githubURL"
+                    value={githubURL}
                     onChange={this.handleChange}
                   />
                 </div>

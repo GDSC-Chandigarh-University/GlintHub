@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Projects from "../../assets/images/glinthub-landing-projects.png"
 
 export default class GlintHubLandingProjects extends React.Component {
   render() {
@@ -18,7 +19,7 @@ Google DSC Chandigarh University.</p>
             </div>
           </div>
           <div id="project-container">
-            <img src="./glinthub-landing-projects.png"/>
+            <img src={Projects}/>
           </div>
         </div>
       </div>

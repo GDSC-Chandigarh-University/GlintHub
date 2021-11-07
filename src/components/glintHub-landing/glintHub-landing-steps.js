@@ -1,5 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import chart from "../../assets/images/Icon_chart.png"
+import star from "../../assets/images/Icon_star.png"
+import folder from "../../assets/images/Icon_folder.png"
+import navigation from "../../assets/images/Icon_navigation.png"
 
 export default class GlintHubLandingSteps extends React.Component {
     render() {
@@ -20,7 +24,7 @@ export default class GlintHubLandingSteps extends React.Component {
                         <div className="col-lg-5 col-md-3 col-sm-4 col-xs-6">
                                 <div className="mid-tile" id="tile-1">
                                     <div className="img-box">
-                                        <img src="images/Icon_folder.png"/>
+                                        <img src={folder}/>
                                     </div>
                                     <div className="text-box">
                                         <h1 className="number">1.</h1>
@@ -31,7 +35,7 @@ export default class GlintHubLandingSteps extends React.Component {
                             <div className="col-lg-5 col-md-3 col-sm-4 col-xs-6">
                                 <div className="mid-tile" id="tile-2">
                                     <div className="img-box">
-                                        <img src="images/Icon_chart.png"/>
+                                        <img src={chart}/>
                                     </div>
                                     <div className="text-box">
                                         <h1 className="number">2.</h1>
@@ -42,7 +46,7 @@ export default class GlintHubLandingSteps extends React.Component {
                             <div className="col-lg-5 col-md-3 col-sm-4 col-xs-6">
                                 <div className="mid-tile" id="tile-3">
                                     <div className="img-box">
-                                        <img src="images/Icon_navigation.png"/>
+                                        <img src={navigation}/>
                                     </div>
                                     <div className="text-box">
                                         <h1 className="number">3.</h1>
@@ -53,7 +57,7 @@ export default class GlintHubLandingSteps extends React.Component {
                             <div className="col-lg-5 col-md-3 col-sm-4 col-xs-6">
                                 <div className="mid-tile" id="tile-4">
                                     <div className="img-box">
-                                        <img src="images/Icon_star.png"/>
+                                        <img src={star}/>
                                     </div>
                                     <div className="text-box">
                                         <h1 className="number">4.</h1>

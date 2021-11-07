@@ -1,5 +1,7 @@
 import React from "react";
 import ReviewCard from "./review-card";
+import Orbus from "../../assets/images/Orbus.png"
+import Send from "../../assets/images/send.svg"
 
 export default class GlintHubReviews extends React.Component {
     render() {
@@ -9,11 +11,7 @@ export default class GlintHubReviews extends React.Component {
                 <hr id="draft-line" />
                 <div className="review-wrapper">
                     <div className="review-left">
-                        <ReviewCard heading={"Orbus"} para={"Avenge - For the family"} image={"./main-dashboard/Rectangle 32.png"} />
-                        <ReviewCard heading={"Left n Right"} para={"A mediational game"} image={"./main-dashboard/Rectangle 33.png"} />
-                        <ReviewCard heading={"Covid19"} para={"Stay home, stay safe"} image={"./main-dashboard/Rectangle 34.png"} />
-                        <ReviewCard heading={"Hang on"} para={"Bring back culture"} image={"./main-dashboard/Rectangle 35.png"} />
-                        <ReviewCard heading={"Codera"} para={"Education without price tag"} image={"./main-dashboard/Rectangle 36.png"} />
+                        <ReviewCard heading={"Orbus"} para={"Avenge - For the family"} image={Orbus} />
                     </div>
                     <div className="review-right">
                         <div className="sender">
@@ -33,7 +31,7 @@ export default class GlintHubReviews extends React.Component {
                                 <input type="text" placeholder="Type a message..." />
                             </div>
                             <div className="search-logo">
-                                <img src="./main-dashboard/send.svg" alt="" />
+                                <img src={Send} alt="" />
                             </div>
                         </div>
                     </div>

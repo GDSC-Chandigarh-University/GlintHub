@@ -1,5 +1,6 @@
 import React from "react";
 import { GoogleAuthLogin } from "../config/firebase";
+import Hero from "../../assets/images/hero_img.png"
 
 export default function GlintHubLandingHero() {
    const handleGoogleAuthLogin = async () => {
@@ -14,7 +15,7 @@ export default function GlintHubLandingHero() {
         <div id="hero">
           <img
             className="hero_img"
-            src="./hero_img.png"
+            src={Hero}
             alt="Vector image of a hut"
           />
           <div className="hero_content">
