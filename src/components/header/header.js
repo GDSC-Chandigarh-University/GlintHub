@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { GoogleAuthLogin, GoogleAuthLogout } from "../config/firebase";
 import { AuthState } from "../config/firebaseauth";
+import { connect } from "react-redux";
+import Logo from "../../assets/images/logo.png"
 
-export default function Header() {
+function Header(props) {
     const currentUser = AuthState().currentUser
     const handleGoogleAuthLogin = async () => {
         try {
@@ -24,7 +26,7 @@ export default function Header() {
             <div className="header_pos">
                 <Link to="/">
                     <div className="logo">
-                        <img src="./logo.png" alt="logo" />
+                        <img src={Logo} alt="logo" />
                         <div>
                             <p className="logo_heading">Google Developer Student Clubs</p>
                             <p className="logo_content">Chandigarh University</p>
@@ -66,3 +68,9 @@ export default function Header() {
         </div>
     );
 }
+
+export default  connect((state) => {
+    return {
+        authReducer: state.authReducer
+    }
+})(Header)

@@ -12,7 +12,9 @@ const Projectuid = (props) => {
         console.log(store.getState())
         console.log(props.state)
       }, []) 
-    return null
+    return <div>
+        {props.state.authReducer.uid}
+    </div>
 }
 
 export default connect((state)=>{
