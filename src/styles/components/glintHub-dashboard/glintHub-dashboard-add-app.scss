@@ -132,6 +132,46 @@ textarea.form-control {
   text-align: center;
   margin-top: 3rem;
 }
-#glinthub-dashboard-add-app #draft-line{
+#glinthub-dashboard-add-app #draft-line {
   margin-bottom: 30px;
+}
+
+.appSaved {
+  font-size: 22px;
+  position: absolute;
+  background: var(--sidebar-bg);
+  left: 50%;
+  padding: 7px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: popanimation 2s;
+}
+
+@keyframes popanimation {
+  0% {opacity: 0;}
+  25% {opacity: 100;}
+  75% {opacity: 100;}
+  100% {opacity: 0;}
+}
+
+.onError {
+  font-size: 22px;
+  position: absolute;
+  background: #ff9f9f;
+  left: 50%;
+  transform: translate(-25%);
+  padding: 7px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: popanimation 2s;
+}
+
+.mr-15{
+  margin-right: 15px;
 }
