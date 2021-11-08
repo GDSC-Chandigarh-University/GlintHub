@@ -21,25 +21,37 @@ import Dashboard from './components/glintHub-dashboard/dashboard';
 const store = createStore(rootReducer, composeWithDevTools())
 
 class Root extends React.Component {
+    state = {
+        timeout: true
+    }
+
     componentDidMount() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 this.props.setUser(user)
-                this.props.history.push("/glinthub")
+                // this.props.history.push("/glinthub")
             } else {
-                this.props.history.push("/glinthub")
+                // this.props.history.push("/glinthub")
                 this.props.clearUser()
                 console.log("No user")
             }
         })
+        setTimeout(() => {
+            this.setState(() => {
+                return {
+                    timeout: false
+                }
+            })
+        }, 2300)
     }
+
     render() {
-        return this.props.userLoading ? <Spinner/> : this.props.user ?
+        return this.state.timeout ? <Spinner/> : this.props.userLoading ? <Spinner/> : this.props.user ?
         (<Switch>
-            <Route path="/glinthub" component={Dashboard} exact={true}></Route>
+            <Route path="/glinthub" component={Dashboard}></Route>
         </Switch>) :
         (<Switch>
-            <Route path="/glinthub" component={GlintHubLanding} exact={true}></Route>
+            <Route path="/glinthub" component={GlintHubLanding}></Route>
         </Switch>)
     }
 }
@@ -47,7 +59,8 @@ class Root extends React.Component {
 const mapStateFromProps = (state) => {
     return {
         userLoading: state.user.isLoading,
-        user: state.user.currentUser
+        user: state.user.currentUser,
+        appsloading: state.apps.isLoading
     }
 }
 

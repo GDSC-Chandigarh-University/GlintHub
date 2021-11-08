@@ -7,6 +7,7 @@ import { appsInit, setPublishedApp, setDraftedApp, setReviewApp, appsLoaded } fr
 import { collection, onSnapshot, query, orderBy } from "@firebase/firestore";
 import { Firestore } from "../../firebase";
 import Spinner from "../spinner/Spinner";
+import noProject from "../../assets/images/no-project.png"
 
 class GlintHubDashboard extends React.Component {
     state = {
@@ -86,7 +87,7 @@ class GlintHubDashboard extends React.Component {
     render() {
         let { url } = this.props.match
         let { publishedApps, draftedApps, reviewApps, firstLoad } = this.state
-        return firstLoad ? <Spinner/> : (
+        return firstLoad ? <Spinner/> : (publishedApps.length > 0 && draftedApps.length > 0 && reviewApps.length > 0) ? (
             <div id="glinthub-dashboard">
                 <div className="headingDash glinthub-dashboard-bold glinthub-dashboard-h1" id="board">Dashboard</div>
                 <div className="dash-container-1 glinthub-dashboard-bold">
@@ -107,7 +108,7 @@ class GlintHubDashboard extends React.Component {
                     </div>
                 </div>
 
-                <div className="dash-container-2">
+                {publishedApps.length > 0 && <div className="dash-container-2">
                     {/* <!-- Upper part --> */}
                     <div className="dashUp-1">
                         <span id="pr">Published Apps</span>
@@ -122,8 +123,8 @@ class GlintHubDashboard extends React.Component {
                         })}
                         <Link to={`${url}/add-app`} className="img-icn-plus" ><img src={AddApp} width="33px" height="31px" alt="Error" /></Link>
                     </div>
-                </div>
-                <div className="dash-container-2">
+                </div>}
+                {draftedApps.length > 0 && <div className="dash-container-2">
                     {/* <!-- Upper part --> */}
                     <div className="dashUp-1">
                         <span id="pr">Drafted Apps</span>
@@ -138,8 +139,8 @@ class GlintHubDashboard extends React.Component {
                         })}
                         <Link to={`${url}/add-app`} className="img-icn-plus" ><img src={AddApp} width="33px" height="31px" alt="Error" /></Link>
                     </div>
-                </div>
-                <div className="dash-container-2">
+                </div>}
+                {reviewApps.length > 0 && <div className="dash-container-2">
                     {/* <!-- Upper part --> */}
                     <div className="dashUp-1">
                         <span id="pr">In-reveiw Apps</span>
@@ -154,9 +155,13 @@ class GlintHubDashboard extends React.Component {
                         })}
                         <Link to={`${url}/add-app`} className="img-icn-plus" ><img src={AddApp} width="33px" height="31px" alt="Error" /></Link>
                     </div>
-                </div>
+                </div>}
             </div>
-        );
+        ) : (
+        <div id="glinthub-dashboard">
+            <div className="headingDash glinthub-dashboard-bold glinthub-dashboard-h1" id="board">Dashboard</div>
+            <img src={noProject}/>
+        </div>);
     }
 }
 

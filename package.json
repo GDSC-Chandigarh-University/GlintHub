@@ -18,6 +18,7 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.43.4",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
