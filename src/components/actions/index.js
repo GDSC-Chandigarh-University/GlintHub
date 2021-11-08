@@ -1,4 +1,4 @@
-import * as actionTypes from "./types" 
+import * as actionTypes from "./types";
 
 export const setUser = (user) => {
     return {
@@ -15,12 +15,41 @@ export const clearUser = () => {
     }
 }
 
-export const setCurrentChannel = (channels) => {
+export const appsInit = () => {
     return {
-        type: actionTypes.SET_CURRENT_CHANNEL,
+        type: actionTypes.APPS_INIT,
+    }
+}
+
+export const setPublishedApp = (app) => {
+    return {
+        type: actionTypes.SET_PUBLISHEDAPP,
         payload: {
-            currentChannel: channels
+            app: app
         }
     }
 }
 
+export const setDraftedApp = (app) => {
+    return {
+        type: actionTypes.SET_DRAFTEDAPP,
+        payload: {
+            app: app
+        }
+    }
+}
+
+export const setReviewApp = (app) => {
+    return {
+        type: actionTypes.SET_REVIEWAPP,
+        payload: {
+            app: app
+        }
+    }
+}
+
+export const appsLoaded = () => {
+    return {
+        type: actionTypes.APPS_LOADED,
+    }
+}

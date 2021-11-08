@@ -1,9 +1,9 @@
-import * as actionTypes from "../actions/types"
-import { combineReducers } from "redux"
+import * as actionTypes from "../actions/types";
+import { combineReducers } from "redux";
 
 const initialUserState = {
-    currentUser: null,
-    isLoading: true
+    isLoading: true,
+    currentUser: null
 }
 
 const user_reducer = (state = initialUserState, action) => {
@@ -23,17 +23,50 @@ const user_reducer = (state = initialUserState, action) => {
     }
 }
 
-const initialChannelState = {
-    currentChannel: null,
-    isLoading: true
+const initialProjectsState = {
+    isLoading: true,
+    publishedApps: [],
+    draftedApps: [],
+    reviewApps: []
 }
 
-const channel_reducer = (state = initialChannelState, action) => {
+const app_reducer = (state = initialProjectsState, action) => {
     switch (action.type) {
-        case actionTypes.SET_CURRENT_CHANNEL:
+        case actionTypes.APPS_INIT:
             return {
                 ...state,
-                currentChannel: action.payload.currentChannel
+                publishedApps: [],
+                draftedApps: [],
+                inReviewApps: []
+            }
+        case actionTypes.SET_PUBLISHEDAPP:
+            return {
+                ...state,
+                publishedApps: [
+                    ...state.publishedApps,
+                    action.payload.app
+                ]
+            }
+        case actionTypes.SET_REVIEWAPP:
+            return {
+                ...state,
+                reviewApps: [
+                    ...state.reviewApps,
+                    action.payload.app
+                ]
+            }
+        case actionTypes.SET_DRAFTEDAPP:
+            return {
+                ...state,
+                draftedApps: [
+                    ...state.draftedApps,
+                    action.payload.app
+                ]
+            }
+        case actionTypes.APPS_LOADED:
+            return {
+                ...state,
+                isLoading: false
             }
         default:
             return state
@@ -42,7 +75,7 @@ const channel_reducer = (state = initialChannelState, action) => {
 
 const rootReducer = combineReducers({
     user: user_reducer,
-    channel: channel_reducer
+    apps: app_reducer
 })
 
 export default rootReducer
