@@ -37,7 +37,7 @@ const app_reducer = (state = initialProjectsState, action) => {
                 ...state,
                 publishedApps: [],
                 draftedApps: [],
-                inReviewApps: []
+                reviewApps: []
             }
         case actionTypes.SET_PUBLISHEDAPP:
             return {
