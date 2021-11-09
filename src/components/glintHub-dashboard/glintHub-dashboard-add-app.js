@@ -18,7 +18,11 @@ class GlintHubAddApp extends React.Component {
     user: this.props.currentUser,
     appSaved: false,
     errors: false,
-    isDrafted: false
+    isDrafted: false,
+    draftAppsLimit: this.props.apps.draftedApps.length,
+    reviewAppsLimit: this.props.apps.reviewApps.length,
+    draftAppsLimitError: false,
+    reviewAppsLimitError: false
   }
 
   handleChange = (event) => {
@@ -31,6 +35,22 @@ class GlintHubAddApp extends React.Component {
 
   isFormValid = ({ title, description, technology, imageURL, githubURL }) => {
     if (title && description && imageURL && technology && githubURL) {
+      // if (imageURL.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+      //   return true
+      // } else {
+      //   this.setState(() => {
+      //     return {
+      //       errors: true
+      //     }
+      //   })
+      //   setTimeout(() => {
+      //     this.setState(() => {
+      //       return {
+      //         errors: false
+      //       }
+      //     })
+      //   }, 2000)
+      // }
       return true
     } else {
       this.setState(() => {
@@ -49,10 +69,26 @@ class GlintHubAddApp extends React.Component {
     }
   }
 
-  handleAddProject = async (event) => {
-    const { title, technology, imageURL, description, githubURL, user } = this.state
+  handleAddProject = async () => {
+    const { title, technology, imageURL, description, githubURL, user, reviewAppsLimit } = this.state
+    console.log(reviewAppsLimit)
     const projectId = v4()
-    if (this.isFormValid(this.state)) {
+    if (reviewAppsLimit > 2) {
+      console.log(reviewAppsLimit, "good")
+      this.setState(() => {
+        return {
+          reviewAppsLimitError: true
+        }
+      })
+      setTimeout(() => {
+        this.setState(() => {
+          return {
+            reviewAppsLimitError: false
+          }
+        })
+      }, 2000)
+    } else if (this.isFormValid(this.state) && reviewAppsLimit < 3) {
+      console.log(reviewAppsLimit, "bad")
       this.setState(() => {
         return {
           addingProject: true
@@ -83,9 +119,25 @@ class GlintHubAddApp extends React.Component {
   }
 
   handleDraftProject = async () => {
-    const { title, technology, imageURL, description, githubURL, user } = this.state
+    const { title, technology, imageURL, description, githubURL, user, draftAppsLimit } = this.state
+    console.log(draftAppsLimit)
     const projectId = v4()
-    if (this.isFormValid(this.state)) {
+    if (draftAppsLimit > 4) {
+      console.log(draftAppsLimit, "good")
+      this.setState(() => {
+        return {
+          draftAppsLimitError: true
+        }
+      })
+      setTimeout(() => {
+        this.setState(() => {
+          return {
+            draftAppsLimitError: false
+          }
+        })
+      }, 2000)
+    } else if (this.isFormValid(this.state) && draftAppsLimit < 5) {
+      console.log(draftAppsLimit, "bad")
       this.setState(() => {
         return {
           isDrafted: true,
@@ -117,19 +169,21 @@ class GlintHubAddApp extends React.Component {
   }
 
   render() {
-    const { title, technology, imageURL, description, githubURL, appSaved, errors, addingProject } = this.state
-    console.log(this.props)
+    const { title, technology, imageURL, description, githubURL, appSaved, errors, addingProject, reviewAppsLimitError, draftAppsLimitError } = this.state
     return (
       <div id="glinthub-dashboard-add-app">
         <div id="app-upload-section">
           <div className="container-1">
             {appSaved && (this.state.isDrafted ? (<div className="appSaved">App Drafted <img src={Check} /></div>) : (<div className="appSaved">App Saved <img src={Check} /></div>))}
             {errors && (<div className="onError">Fields should not be empty <img src={xCircle} /></div>)}
+            {reviewAppsLimitError && (<div className="onError"> Review Apps Limit Reached <img src={xCircle} /></div>)}
+            {draftAppsLimitError && (<div className="onError"> Draft Apps Limit Reached <img src={xCircle} /></div>)}
             <h1 className=" heading">Add App</h1>
             <hr id="draft-line" />
             <div className="form-group card_radius">
               <div className="card-body text_card">
                 <input
+                  maxlength="15"
                   className="bg_color"
                   type="text"
                   name="title"

@@ -151,10 +151,18 @@ textarea.form-control {
 }
 
 @keyframes popanimation {
-  0% {opacity: 0;}
-  25% {opacity: 100;}
-  75% {opacity: 100;}
-  100% {opacity: 0;}
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 100;
+  }
+  75% {
+    opacity: 100;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .onError {
@@ -162,16 +170,19 @@ textarea.form-control {
   position: absolute;
   background: #ff9f9f;
   left: 50%;
+  top: 100px;
+  font-weight: 400;
   transform: translate(-25%);
   padding: 7px 10px;
   border-radius: 6px;
   display: flex;
   align-items: center;
+  grid-gap: 6px;
   gap: 6px;
-  opacity: 0;
+  opacity: 100;
   animation: popanimation 2s;
 }
 
-.mr-15{
+.mr-15 {
   margin-right: 15px;
 }
