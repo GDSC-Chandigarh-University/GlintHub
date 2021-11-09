@@ -18,11 +18,14 @@ export default class GlintHubReviews extends React.Component {
         sendingMessage: false,
         loadingChannel: false,
         newCurrentChannel: null,
-        mount: true
+        mount: true,
+        isMounted: true
     }
 
     componentDidMount() {
+        if(this.state.isMounted) {
         this.loadChannelMessages(this.state.currentChannel)
+        }
     }
 
     loadChannelMessages = (currentChannel) => {
@@ -53,6 +56,7 @@ export default class GlintHubReviews extends React.Component {
     }
 
     componentDidUpdate() {
+        if(this.state.isMounted) {
         if (this.state.newCurrentChannel) {
             if (this.state.currentChannel.id !== this.state.newCurrentChannel.id) {
                 this.setState(() => {
@@ -96,6 +100,11 @@ export default class GlintHubReviews extends React.Component {
                 }
             })
         }
+    }
+    }
+
+    componentWillUnmount() {
+        this.state.isMounted = false;
     }
 
     handleChange = (event) => {
