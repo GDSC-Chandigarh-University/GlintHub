@@ -17,7 +17,7 @@ class Dashboard extends React.Component {
             <div>
                 <Header></Header>
                 <div id="root">
-                    <GlintHubSidebar></GlintHubSidebar>
+                    <GlintHubSidebar apps={this.props.apps}></GlintHubSidebar>
                     <div id="root-1">
                         <div className="upper-div">
                             <Switch>
@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
                                     <GlintHubDashboard currentUser={this.props.currentUser}/>
                                 </Route>}
                                 <Route path={`${path}/add-app`}>
-                                    <GlintubAddApp currentUser={this.props.currentUser}/>
+                                    <GlintubAddApp currentUser={this.props.currentUser} apps={this.props.apps}/>
                                 </Route>
                                 <Route path={`${path}/published-app`}>
                                     <GlintHubPublishedApp currentUser={this.props.currentUser}/>
@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
                                     <GlintHubDraftedApp currentUser={this.props.currentUser}/>
                                 </Route>
                                 <Route path={`${path}/reviews`}>
-                                    <GlintHubReviews currentUser={this.props.currentUser}/>
+                                    <GlintHubReviews currentUser={this.props.currentUser} apps={this.props.apps}/>
                                 </Route>
                             </Switch>
                         </div>
