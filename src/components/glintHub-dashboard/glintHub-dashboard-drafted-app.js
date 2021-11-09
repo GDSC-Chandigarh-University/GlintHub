@@ -1,11 +1,11 @@
 import React from "react";
-import Orbus from "../../assets/images/Orbus.png";
 import EditButton from "../../assets/images/edit.png";
 import { connect } from "react-redux";
 import { appsInit, setPublishedApp, setDraftedApp, setReviewApp, appsLoaded } from "../actions";
 import { collection, onSnapshot, query, orderBy } from "@firebase/firestore";
 import { Firestore } from "../../firebase";
 import Spinner from "../spinner/Spinner";
+import Modal from "react-modal";
 
 class GlintHubDraftedApp extends React.Component {
     state = {
@@ -14,7 +14,14 @@ class GlintHubDraftedApp extends React.Component {
         publishedApps: [],
         draftedApps: [],
         reviewApps: [],
-        firstLoad: true
+        firstLoad: true,
+        modalApp: null,
+        modalIsOpen: false,
+        title: '',
+        technology: '',
+        gitHubURL: '',
+        imageURL: '',
+        description: ''
     }
 
     componentDidMount() {
@@ -81,8 +88,44 @@ class GlintHubDraftedApp extends React.Component {
         }
     }
 
+    modalClick = (app) => {
+        this.setState(() => {
+            return {
+                modalApp: app,
+                modalIsOpen: true,
+            }
+        })
+        this.setState(() => {
+            return {
+                title: this.state.modalApp.title,
+                technology: this.state.modalApp.technology,
+                description
+                : this.state.modalApp.description
+                ,
+                title: this.state.modalApp.title,
+                title: this.state.modalApp.title
+            }
+        })
+    }
+
+    closeModal = () => {
+        this.setState(() => {
+            return {
+                modalIsOpen: false
+            }
+        })
+    }
+
+    handleUpdateModal = () => {
+
+    }
+
+    handleDeleteModal = () => {
+
+    }
+
     render() {
-        let { draftedApps, firstLoad } = this.state
+        let { draftedApps, firstLoad, modalIsOpen, title, description, gitHubURL, imageURL, technology } = this.state
         return firstLoad ? <Spinner /> : (
             <div id="glinthub-dashboard-drafted-app">
                 <div id="draft-title">
@@ -93,7 +136,7 @@ class GlintHubDraftedApp extends React.Component {
                     <section className="row">
                         {draftedApps.map((app) => {
                             return (
-                                <div className="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div key={app.id} className="col-lg-3 col-md-3 col-sm-4 col-xs-6" onClick={() => { this.modalClick(app) }}>
                                     <div className="draft-tile" id="draft-tile-1">
                                         <div className="img-box">
                                             <img className="icon" src={app.imageURL} />
@@ -106,6 +149,25 @@ class GlintHubDraftedApp extends React.Component {
                                 </div>
                             )
                         })}
+                        <Modal
+                            isOpen={modalIsOpen}
+                            onRequestClose={this.closeModal}
+                            ariaHideApp={false}
+                        >
+                            <div>Update App</div>
+                            <div>
+                            <input type="text" name="title" value={title}  onChange={this.handleChange} />
+                            <input type="text" name="technology" value={technology}  onChange={this.handleChange} />
+                            <input type="text" name="description" value={description} onChange={this.handleChange} />
+                            <input type="text" name="imageURL" value={imageURL} onChange={this.handleChange} />
+                            <input type="text" name="gitHubURL" value={gitHubURL}  onChange={this.handleChange} />
+                            </div>
+                            <div>
+                            <button onClick={this.handleUpdateModal}>Update App</button>
+                            <button onClick={this.handleDeleteModal}>Delete App</button>
+                            <button onClick={this.closeModal}>Close</button>
+                            </div>
+                        </Modal>
                     </section>
                 </div>
             </div>

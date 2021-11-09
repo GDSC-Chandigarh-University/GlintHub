@@ -10,7 +10,7 @@ import GlintHubReviews from "./glintHub-dashboard-reviews";
 import { connect } from "react-redux";
 import Spinner from "../spinner/Spinner";
 
-class Dashboard extends React.Component {
+class AdminDashboard extends React.Component {
     render() {
         let { path } = this.props.match
         return (
@@ -50,4 +50,4 @@ export default withRouter(connect((state) => {
       currentUser: state.user.currentUser,
       apps: state.apps
     }
-  })(Dashboard))
+  })(AdminDashboard))

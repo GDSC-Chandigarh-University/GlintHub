@@ -7,7 +7,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import "./styles/styles.scss"
 import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom"
-import { onAuthStateChanged } from '@firebase/auth';
+import { onAuthStateChanged, updateProfile } from '@firebase/auth';
 import { auth } from './firebase';
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
@@ -17,6 +17,8 @@ import { setUser, clearUser } from './components/actions';
 import Spinner from './components/spinner/Spinner';
 import GlintHubLanding from "./components/glintHub-landing/glintHub-landing";
 import Dashboard from './components/glintHub-dashboard/dashboard';
+import roles from './components/config/roles';
+import AdminDashboard from "./components/glintHub-dashboard/admin/dashboard"
 
 const store = createStore(rootReducer, composeWithDevTools())
 
@@ -28,12 +30,14 @@ class Root extends React.Component {
     componentDidMount() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                if(roles.indexOf(user.email) == 0) {
+                    user.role = "admin"
+                }
                 this.props.setUser(user)
-                // this.props.history.push("/glinthub")
+                this.props.history.push("/glinthub")
             } else {
-                // this.props.history.push("/glinthub")
+                this.props.history.push("/glinthub")
                 this.props.clearUser()
-                console.log("No user")
             }
         })
         setTimeout(() => {
@@ -46,7 +50,9 @@ class Root extends React.Component {
     }
 
     render() {
-        return this.state.timeout ? <Spinner/> : this.props.userLoading ? <Spinner/> : this.props.user ?
+        return this.state.timeout ? <Spinner/> : this.props.userLoading ? <Spinner/> : this.props.user ? this.props.user.role == "admin" ? (<Switch>
+            <Route path="/glinthub" component={AdminDashboard}></Route>
+        </Switch>) :
         (<Switch>
             <Route path="/glinthub" component={Dashboard}></Route>
         </Switch>) :
