@@ -1,4 +1,4 @@
-#glinthub-dashboard-reviews{
+#glinthub-dashboard-reviews {
     .upper-h1 {
         margin-top: 7px;
         font-weight: 700;
@@ -7,8 +7,8 @@
     }
 }
 
-.review-wrapper{
-    background: #D8EFCE;
+.review-wrapper {
+    background: #d8efce;
     border-radius: 17px;
     // padding: 23px;
     width: 95%;
@@ -16,28 +16,29 @@
     display: flex;
     // align-items: center;
     // justify-content: space-between;
-    .review-left{
+    .review-left {
         min-width: 28%;
         padding: 23px 0;
-        
+
         // .marginBottom{
         //     margin-bottom: 30px;
         // }
-        &:last-child{
+        &:last-child {
             margin-bottom: 0;
         }
     }
-    .review-right{
+    .review-right {
         color: #858585;
-        background: #EBF7E7;
-        padding: 23px;
+        background: #ebf7e7;
+        padding: 23px 0 23px 23px;
         height: 610px;
         display: flex;
         flex-direction: column;
         border-radius: 17px;
+        overflow: auto;
 
-
-        .sender{
+        .sender {
+            word-wrap: break-word;
             background: rgba(133, 205, 102, 0.4);
             border-radius: 17px;
             width: 50%;
@@ -45,9 +46,10 @@
             padding: 20px;
             // opacity: 0.4;
             box-shadow: 0px 4px 8px rgba(133, 205, 102, 0.8);
+            margin-bottom: 20px;
         }
-        
-        .receiver{
+
+        .receiver {
             background: #ffffffc2;
             border-radius: 17px;
             padding: 20px;
@@ -55,15 +57,18 @@
             margin-left: auto;
             // opacity: 0.4;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+            margin-bottom: 20px;
+            margin-right: 23px;
         }
 
-        .search-wrapper{
+        .search-wrapper {
             bottom: 23px;
             display: flex;
             margin-top: auto;
             justify-content: space-between;
-            .search-box{
-                background: #9DD785;
+            margin-right: 23px;
+            .search-box {
+                background: #9dd785;
                 // opacity: 0.4;
                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
                 width: 85%;
@@ -73,7 +78,7 @@
                 align-items: center;
                 padding: 10px 20px;
 
-                input{
+                input {
                     width: 100%;
                     background: none;
                     outline: none;
@@ -81,12 +86,14 @@
                     margin: 0;
                 }
 
-                input:hover, input:focus, input:active{
+                input:hover,
+                input:focus,
+                input:active {
                     border: none;
                 }
             }
-            .search-logo{
-                background:#195F34;
+            .search-logo {
+                background: #195f34;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -94,15 +101,19 @@
                 width: 10%;
                 height: 62px;
             }
+            .search-logo:hover {
+                cursor: pointer;
+                background-color: #218838;
+            }
         }
     }
 
-    .active{
+    .active {
         background-color: #000;
     }
 }
 
-.wrapper-review-card{
+.wrapper-review-card {
     display: flex;
     align-items: center;
     padding-right: 20px;
@@ -112,20 +123,20 @@
     /* padding-bottom: 5px; */
     padding: 15px;
 
-    .content{
+    .content {
         display: flex;
         margin-left: 18px;
         flex-direction: column;
         justify-content: center;
 
-        h1{
+        h1 {
             font-size: 24px;
             line-height: 33px;
             margin: 0;
             color: #595959;
         }
 
-        p{
+        p {
             font-weight: normal;
             color: #858585;
             font-size: 18px;
@@ -134,15 +145,20 @@
         }
     }
 
-    .logo-review{
+    .logo-review {
         img {
             height: 80px;
             width: 80px;
         }
     }
 }
-.wrapper-review-card:first-child{
-    background-color: #EBF7E7 !important;
-    border-top-left-radius: 17px;
-    border-bottom-left-radius: 17px;
+.active-channel {
+    background-color: #ebf7e7 !important;
+}
+.wrapper-review-card:hover {
+    cursor: pointer;
+}
+div#review-message {
+    height: 480px;
+    overflow-y: auto;
 }
