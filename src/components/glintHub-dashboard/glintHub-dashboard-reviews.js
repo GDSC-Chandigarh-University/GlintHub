@@ -3,7 +3,7 @@ import Send from "../../assets/images/send.svg";
 import { Firestore } from "../../firebase";
 import { v4 } from "uuid";
 import { serverTimestamp } from "@firebase/firestore";
-import { setDoc, doc, onSnapshot, collection } from "@firebase/firestore";
+import { setDoc, doc, onSnapshot, collection, query, orderBy } from "@firebase/firestore";
 import Spinner from "../spinner/Spinner";
 import { app, firestore } from "../config/firebaseConfig";
 
@@ -29,8 +29,8 @@ export default class GlintHubReviews extends React.Component {
     }
 
     loadChannelMessages = (currentChannel) => {
-        let collectionRef = collection(Firestore, "Users", this.state.user.uid, "Projects", currentChannel.id, "MESSAGES")
-        onSnapshot(collectionRef, (snapshot) => {
+        const Query = query(collection(Firestore, "Users", this.state.user.uid, "Projects", currentChannel.id, "Messages"), orderBy("timestamp", "asc"))
+        onSnapshot(Query, (snapshot) => {
             this.setState(() => {
                 return {
                     messages: []
@@ -124,10 +124,14 @@ export default class GlintHubReviews extends React.Component {
                     sendingMessage: true
                 }
             })
-            await setDoc(doc(Firestore, "Users", user.uid, "Projects", currentChannel.id, "MESSAGES", newmessageId), {
+            await setDoc(doc(Firestore, "Users", user.uid, "Projects", currentChannel.id, "Messages", newmessageId), {
                 content: messageContent,
                 id: newmessageId,
-                uid: user.uid,
+                user: {
+                    uid: user.uid,
+                    displayName: user.displayName,
+                    photoURL: user.photoURL
+                },
                 timestamp: serverTimestamp()
             })
             this.setState(() => {
@@ -148,7 +152,7 @@ export default class GlintHubReviews extends React.Component {
     }
 
     render() {
-        const { messageContent, reviewApps, firstLoad, sendingMessage, messages } = this.state
+        const { messageContent, reviewApps, firstLoad, sendingMessage, messages, currentChannel } = this.state
         return firstLoad ? <Spinner /> : (
             <div id="glinthub-dashboard-reviews">
                 <h1 className="upper-h1">Reviews</h1>
@@ -163,7 +167,7 @@ export default class GlintHubReviews extends React.Component {
                                     </div>
                                     <div className="content">
                                         <h1>{reviewApp.title}</h1>
-                                        <p>{"Avenge - For the family"}</p>
+                                        <p>{reviewApp.description}</p>
                                     </div>
                                 </div>
                             )
@@ -171,24 +175,21 @@ export default class GlintHubReviews extends React.Component {
                     </div>
                     <div className="review-right">
                         <div id="review-message">
-                            <div className="sender">
-                                Hey Ade, <br />
-                                We’ve gone through your awesome game.
-                                Great work. But there are few minor bugs.
-                                Can you fix them? A detailed bug report
-                                is already sent on your email, please check.
-                            </div>
-                            <div className="receiver">
-                                Yeah sure, <br />
-                                I’ll fix those bugs and update the package.
-                                Thanks for your support!
-                            </div>
                             {messages.map((message) => {
-                                return (
-                                    <div className="sender">
-                                        {message.content}
-                                    </div>
-                                )
+                                if (message.user.uid == currentChannel.user.uid) {
+                                    return (
+                                        <div className="sender">
+                                            {message.content}
+                                        </div>
+                                    )
+                                } else {
+                                    return (
+                                        <div className="receiver">
+                                            {message.content}
+                                        </div>
+                                    )
+                                }
+                                
                             })}
                         </div>
                         <div className="search-wrapper">

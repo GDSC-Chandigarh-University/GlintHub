@@ -18,6 +18,9 @@
     // justify-content: space-between;
     .review-left {
         min-width: 28%;
+        height: 610px;
+        overflow-y: auto;
+        min-width: 28%;
         padding: 23px 0;
 
         // .marginBottom{
@@ -29,6 +32,7 @@
     }
     .review-right {
         color: #858585;
+        width: 100%;
         background: #ebf7e7;
         padding: 23px 0 23px 23px;
         height: 610px;
