@@ -44,7 +44,7 @@ class GlintHubSidebar extends React.Component {
                     </div>
                     <div className="sidebar-mid-option">
                         <img className="sidebar-icon" src={PublishedSvg} />
-                        {publishedApps.length > 0 ? <NavLink to={`${url}/published-app`} activeClassName="is-active">Published App</NavLink> : <NavLink name="errorPublished" to="" onClick={this.handleClick}>Published App</NavLink>}
+                        {publishedApps.length > 0 ? <NavLink to={`${url}/published-app`} activeClassName="is-active">Manage Apps</NavLink> : <NavLink name="errorPublished" to="" onClick={this.handleClick}>Published App</NavLink>}
                         {errorPublished && <div className="onError">No App Published Yet!<img src={xCircle} /></div>}
                     </div>
                     <div className="sidebar-mid-option">

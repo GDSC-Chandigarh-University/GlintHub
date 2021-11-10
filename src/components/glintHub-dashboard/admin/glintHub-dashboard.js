@@ -11,7 +11,6 @@ import Modal from "react-modal";
 
 class GlintHubDashboard extends React.Component {
     state = {
-        user: this.props.currentUser,
         totalProjects: null,
         publishedApps: [],
         draftedApps: [],
@@ -136,14 +135,11 @@ class GlintHubDashboard extends React.Component {
         })
     }
 
-    handleUpdateModal = async () => {
-        let { user, modalApp, title, technology, description, githubURL, imageURL } = this.state
-        await updateDoc(doc(Firestore, "Users", user.uid, "Projects", modalApp.id), {
-            title,
-            technology,
-            imageURL,
-            description,
-            githubURL
+    handlePublishModal = async () => {
+        let { user, modalApp } = this.state
+        await updateDoc(doc(Firestore, "Users", modalApp.user.uid, "Projects", modalApp.id), {
+            isPublished: true,
+            inReview: false
         })
         this.initAgain()
         this.closeModal()
@@ -231,14 +227,14 @@ class GlintHubDashboard extends React.Component {
                         <span><h1>{modalApp.user.displayName}</h1></span>
                     </div>
                         <div>
-                            <input type="text" name="title" value={title} onChange={this.handleChange} />
-                            <input type="text" name="technology" value={technology} onChange={this.handleChange} />
-                            <input type="text" name="description" value={description} onChange={this.handleChange} />
-                            <input type="text" name="imageURL" value={imageURL} onChange={this.handleChange} />
-                            <input type="text" name="githubURL" value={githubURL} onChange={this.handleChange} />
+                            <input type="text" disabled name="title" value={title} onChange={this.handleChange} />
+                            <input type="text" disabled name="technology" value={technology} onChange={this.handleChange} />
+                            <input type="text" disabled name="description" value={description} onChange={this.handleChange} />
+                            <input type="text" disabled name="imageURL" value={imageURL} onChange={this.handleChange} />
+                            <input type="text" disabled name="githubURL" value={githubURL} onChange={this.handleChange} />
                         </div>
                         <div>
-                            <button onClick={this.handleUpdateModal}>Update App</button>
+                            <button onClick={this.handlePublishModal}>Publish App</button>
                             <button onClick={this.handleDeleteModal}>Delete App</button>
                             <button onClick={this.closeModal}>Close</button>
                         </div></div>)}
