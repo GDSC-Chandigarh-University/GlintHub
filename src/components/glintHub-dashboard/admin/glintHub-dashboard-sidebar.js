@@ -43,15 +43,6 @@ class GlintHubSidebar extends React.Component {
                         <NavLink to={url} exact={true} activeClassName="is-active">Dashboard</NavLink>
                     </div>
                     <div className="sidebar-mid-option">
-                        <img className="sidebar-icon" src={AddAppSvg} />
-                        <NavLink to={`${url}/add-app`} activeClassName="is-active" >Add App</NavLink>
-                    </div>
-                    <div className="sidebar-mid-option">
-                        <img className="sidebar-icon" src={DraftedSvg} />
-                        {draftedApps.length > 0 ? <NavLink to={`${url}/drafted-app`} activeClassName="is-active">Drafted App</NavLink> : <NavLink name="errorDrafted" to="" onClick={this.handleClick}>Drafted App</NavLink>}
-                        { errorDrafted && <div className="onError">No App Drafted Yet!<img src={xCircle} /></div>}
-                    </div>
-                    <div className="sidebar-mid-option">
                         <img className="sidebar-icon" src={PublishedSvg} />
                         {publishedApps.length > 0 ? <NavLink to={`${url}/published-app`} activeClassName="is-active">Published App</NavLink> : <NavLink name="errorPublished" to="" onClick={this.handleClick}>Published App</NavLink>}
                         {errorPublished && <div className="onError">No App Published Yet!<img src={xCircle} /></div>}
