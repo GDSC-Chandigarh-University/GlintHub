@@ -104,7 +104,12 @@ class GlintHubAddApp extends React.Component {
         isPublished: false,
         inReview: true,
         isDrafted: false,
-        timestamp: serverTimestamp()
+        timestamp: serverTimestamp(),
+        user: {
+          uid: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        }
       })
       this.setState(() => {
         return {
@@ -154,7 +159,12 @@ class GlintHubAddApp extends React.Component {
         isPublished: false,
         inReview: false,
         isDrafted: true,
-        timestamp: serverTimestamp()
+        timestamp: serverTimestamp(),
+        user: {
+          uid: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        }
       })
       this.setState(() => {
         return {
@@ -183,7 +193,7 @@ class GlintHubAddApp extends React.Component {
             <div className="form-group card_radius">
               <div className="card-body text_card">
                 <input
-                  maxlength="15"
+                  maxLength="15"
                   className="bg_color"
                   type="text"
                   name="title"
