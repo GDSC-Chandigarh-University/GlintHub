@@ -29,80 +29,20 @@ class GlintHubDraftedApp extends React.Component {
 
     componentDidMount() {
         if(this.state.isMounted) {
-            this.initAgain()
+            // this.initAgain()
         }
-    }
-
-    initAgain = () => {
-        this.props.appsInit()
-        this.setState(() => {
-            return {
-                publishedApps: [],
-                draftedApps: [],
-                reviewApps: []
-            }
-        })
-        const Query = query(collection(Firestore, "Users", this.state.user.uid, "Projects"), orderBy("timestamp", "desc"))
-        onSnapshot(Query, (snapshot) => {
-            snapshot.docs.map((doc) => {
-                if (doc.data().inReview) {
-                    this.props.setReviewApp(doc.data())
-                    this.setState((prevState) => {
-                        return {
-                            reviewApps: [
-                                ...prevState.reviewApps,
-                                doc.data()
-                            ]
-                        }
-                    })
-                } else if (doc.data().isDrafted) {
-                    this.props.setDraftedApp(doc.data())
-                    this.setState((prevState) => {
-                        return {
-                            draftedApps: [
-                                ...prevState.draftedApps,
-                                doc.data()
-                            ]
-                        }
-                    })
-                } else if (doc.data().isPublished) {
-                    this.props.setPublishedApp(doc.data())
-                    this.setState((prevState) => {
-                        return {
-                            publishedApps: [
-                                ...prevState.publishedApps,
-                                doc.data()
-                            ]
-                        }
-                    })
-                }
-            })
-            this.setState(() => {
-                return {
-                    totalProjects: snapshot.docs.length
-                }
-            })
-        });
     }
 
     componentDidUpdate() {
         if(this.state.isMounted) {
-        let { publishedApps, draftedApps, reviewApps, totalProjects, firstLoad, modalLoaded } = this.state
-        if (totalProjects == publishedApps.length + reviewApps.length + draftedApps.length && firstLoad) {
-            this.setState(() => {
-                return {
-                    firstLoad: false
-                }
-            })
-        }
-        if (modalLoaded) {
+        if (this.state.modalLoaded) {
             this.onModalLoad()
         }
     }
     }
 
     componentWillUnmount() {
-        this.state.isMounted = false;
+        
     }
 
     modalClick = (app) => {
@@ -167,8 +107,9 @@ class GlintHubDraftedApp extends React.Component {
     }
 
     render() {
-        let { draftedApps, firstLoad, modalIsOpen, title, description, githubURL, imageURL, technology, modalLoading } = this.state
-        return firstLoad ? <Spinner /> : (
+        let { modalIsOpen, title, description, githubURL, imageURL, technology, modalLoading } = this.state
+        let {draftedApps} = this.props.projects
+        return  (
             <div id="glinthub-dashboard-drafted-app">
                 <div id="draft-title">
                     <h1 id="glinthub-dashboard-h1">Drafted Apps</h1>

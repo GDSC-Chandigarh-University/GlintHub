@@ -6,6 +6,8 @@ import { setDoc, doc } from "@firebase/firestore";
 import Check from "../../assets/images/check-circle.svg";
 import xCircle from "../../assets/images/x-circle.svg";
 import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import { setReviewApp, setDraftedApp } from "../actions";
 
 class GlintHubAddApp extends React.Component {
   state = {
@@ -94,7 +96,7 @@ class GlintHubAddApp extends React.Component {
           addingProject: true
         }
       })
-      await setDoc(doc(Firestore, "Users", user.uid, "Projects", projectId), {
+      const data = {
         title,
         technology,
         imageURL,
@@ -110,7 +112,13 @@ class GlintHubAddApp extends React.Component {
           displayName: user.displayName,
           photoURL: user.photoURL
         }
-      })
+      }
+      await setDoc(doc(Firestore, "Users", user.uid, "Projects", projectId), data)
+      this.props.setReviewApp(data)
+      var storedReviewApps = JSON.parse(localStorage.getItem("reviewApps"));
+      storedReviewApps.push(data)
+      console.log(storedReviewApps)
+      localStorage.setItem("reviewApps", JSON.stringify(storedReviewApps)) 
       this.setState(() => {
         return {
           appSaved: true,
@@ -149,7 +157,7 @@ class GlintHubAddApp extends React.Component {
           addingProject: true
         }
       })
-      await setDoc(doc(Firestore, "Users", user.uid, "Projects", projectId), {
+      const data = {
         title,
         technology,
         imageURL,
@@ -165,13 +173,13 @@ class GlintHubAddApp extends React.Component {
           displayName: user.displayName,
           photoURL: user.photoURL
         }
-      })
-      this.setState(() => {
-        return {
-          appSaved: true,
-          addingProject: false
-        }
-      })
+      }
+      await setDoc(doc(Firestore, "Users", user.uid, "Projects", projectId), data)
+      this.props.setDraftedApp(data)
+      var storedDraftedApps = JSON.parse(localStorage.getItem("draftedApps"));
+      storedDraftedApps.push(data)
+      console.log(storedDraftedApps)
+      localStorage.setItem("draftedApps", JSON.stringify(storedDraftedApps)) 
       setTimeout(() => {
         this.props.history.push("/glinthub/drafted-app")
       }, 2000)
@@ -283,4 +291,4 @@ class GlintHubAddApp extends React.Component {
   }
 }
 
-export default withRouter(GlintHubAddApp)
+export default withRouter(connect(null, { setDraftedApp, setReviewApp })(GlintHubAddApp))

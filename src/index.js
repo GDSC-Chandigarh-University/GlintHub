@@ -28,6 +28,10 @@ class Root extends React.Component {
     }
 
     componentDidMount() {
+        this.userLoading()
+    }
+
+    userLoading = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 if(roles.indexOf(user.email) == 0) {
@@ -49,6 +53,10 @@ class Root extends React.Component {
         }, 2300)
     }
 
+    componentWillUnmount() {
+        this.userLoading()
+    }
+
     render() {
         return this.state.timeout ? <Spinner/> : this.props.userLoading ? <Spinner/> : this.props.user ? this.props.user.role == "admin" ? (<Switch>
             <Route path="/glinthub" component={AdminDashboard}></Route>
@@ -64,9 +72,9 @@ class Root extends React.Component {
 
 const mapStateFromProps = (state) => {
     return {
-        userLoading: state.user.isLoading,
-        user: state.user.currentUser,
-        appsloading: state.apps.isLoading
+        userLoading: state.user_reducer.isLoading,
+        user: state.user_reducer.user,
+        appsloading: state.projects_reducer.isLoading
     }
 }
 
