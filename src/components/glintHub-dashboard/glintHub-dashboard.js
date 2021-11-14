@@ -1,22 +1,17 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import Orbus from "../../assets/images/Orbus.png";
-import AddApp from "../../assets/images/plus.png";
 import { connect } from "react-redux";
-import { appsInit, setPublishedApp, setDraftedApp, setReviewApp, appsLoaded } from "../actions";
 import { collection, onSnapshot, query, orderBy, doc, updateDoc, deleteDoc } from "@firebase/firestore";
+import Modal from "react-modal";
+import AddApp from "../../assets/images/plus.png";
+import { appsInit, setPublishedApp, setDraftedApp, setReviewApp, appsLoaded } from "../actions";
 import { Firestore } from "../../firebase";
 import Spinner from "../spinner/Spinner";
 import noProject from "../../assets/images/no-project.png";
-import Modal from "react-modal";
 
 class GlintHubDashboard extends React.Component {
     state = {
-        user: this.props.currentUser,
-        totalProjects: null,
-        publishedApps: [],
-        draftedApps: [],
-        reviewApps: [],
+        user: this.props.user,
         firstLoad: true,
         isMounted: true,
         modalApp: null,
@@ -32,74 +27,16 @@ class GlintHubDashboard extends React.Component {
 
     componentDidMount() {
         if (this.state.isMounted) {
-            this.initAgain()
+            // this.initAgain()
+            // this.props.appsLoaded()
         }
     }
 
-    initAgain = () => {
-        this.props.appsInit()
-        this.setState(() => {
-            return {
-                publishedApps: [],
-                draftedApps: [],
-                reviewApps: []
-            }
-        })
-        const Query = query(collection(Firestore, "Users", this.state.user.uid, "Projects"), orderBy("timestamp", "desc"))
-        onSnapshot(Query, (snapshot) => {
-            snapshot.docs.map((doc) => {
-                if (doc.data().inReview) {
-                    this.props.setReviewApp(doc.data())
-                    this.setState((prevState) => {
-                        return {
-                            reviewApps: [
-                                ...prevState.reviewApps,
-                                doc.data()
-                            ]
-                        }
-                    })
-                } else if (doc.data().isDrafted) {
-                    this.props.setDraftedApp(doc.data())
-                    this.setState((prevState) => {
-                        return {
-                            draftedApps: [
-                                ...prevState.draftedApps,
-                                doc.data()
-                            ]
-                        }
-                    })
-                } else if (doc.data().isPublished) {
-                    this.props.setPublishedApp(doc.data())
-                    this.setState((prevState) => {
-                        return {
-                            publishedApps: [
-                                ...prevState.publishedApps,
-                                doc.data()
-                            ]
-                        }
-                    })
-                }
-            })
-            this.setState(() => {
-                return {
-                    totalProjects: snapshot.docs.length
-                }
-            })
-        });
-    }
+    
 
     componentDidUpdate() {
         if (this.state.isMounted) {
-            let { publishedApps, draftedApps, reviewApps, totalProjects, firstLoad, modalLoaded } = this.state
-            if (totalProjects == publishedApps.length + reviewApps.length + draftedApps.length && firstLoad) {
-                this.setState(() => {
-                    return {
-                        firstLoad: false
-                    }
-                })
-                this.props.appsLoaded()
-            }
-            if (modalLoaded) {
+            if (this.state.modalLoaded) {
                 this.onModalLoad()
             }
         }
@@ -172,8 +109,9 @@ class GlintHubDashboard extends React.Component {
 
     render() {
         let { url } = this.props.match
-        let { publishedApps, draftedApps, reviewApps, firstLoad, modalIsOpen, title, description, githubURL, imageURL, technology, modalLoading } = this.state
-        return firstLoad ? <Spinner /> : (publishedApps.length > 0 || draftedApps.length > 0 || reviewApps.length > 0) ? (
+        let { firstLoad, modalIsOpen, title, description, githubURL, imageURL, technology, modalLoading } = this.state
+        let {publishedApps, draftedApps, reviewApps} = this.props.projects
+        return (publishedApps.length > 0 || draftedApps.length > 0 || reviewApps.length > 0) ? (
             <div id="glinthub-dashboard">
                 <div className="headingDash glinthub-dashboard-bold glinthub-dashboard-h1" id="board">Dashboard</div>
                 <div className="dash-container-1 glinthub-dashboard-bold">
