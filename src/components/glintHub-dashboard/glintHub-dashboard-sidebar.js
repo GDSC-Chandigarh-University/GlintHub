@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
-import AddAppSvg from "../../assets/images/add-svg.svg";
 import DashboardSvg from "../../assets/images/dashboard-svg.svg";
+import AddAppSvg from "../../assets/images/add-svg.svg";
 import DraftedSvg from "../../assets/images/drafted-svg.svg";
 import PublishedSvg from "../../assets/images/published-svg.svg";
 import ReviewsSvg from "../../assets/images/review-svg.svg";
@@ -34,7 +34,7 @@ class GlintHubSidebar extends React.Component {
     render() {
         let { url } = this.props.match
         let { errorDrafted, errorPublished, errorReview } = this.state
-        let { draftedApps, publishedApps, reviewApps } = this.props.apps
+        let { draftedApps, publishedApps, reviewApps } = this.props.projects
         return (
             <div id="sidebar">
                 <div id="sidebar-mid">

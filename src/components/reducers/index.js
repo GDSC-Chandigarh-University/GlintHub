@@ -3,14 +3,14 @@ import { combineReducers } from "redux";
 
 const initialUserState = {
     isLoading: true,
-    currentUser: null
+    user: null
 }
 
 const user_reducer = (state = initialUserState, action) => {
     switch (action.type) {
         case actionTypes.SET_USER:
             return {
-                currentUser: action.payload.currentUser,
+                user: action.payload.user,
                 isLoading: false
             }
         case actionTypes.CLEAR_USER:
@@ -30,7 +30,7 @@ const initialProjectsState = {
     reviewApps: []
 }
 
-const app_reducer = (state = initialProjectsState, action) => {
+const projects_reducer = (state = initialProjectsState, action) => {
     switch (action.type) {
         case actionTypes.APPS_INIT:
             return {
@@ -74,8 +74,8 @@ const app_reducer = (state = initialProjectsState, action) => {
 }
 
 const rootReducer = combineReducers({
-    user: user_reducer,
-    apps: app_reducer
+    user_reducer: user_reducer,
+    projects_reducer: projects_reducer
 })
 
 export default rootReducer
