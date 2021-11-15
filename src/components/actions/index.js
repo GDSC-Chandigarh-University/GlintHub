@@ -53,3 +53,22 @@ export const appsLoaded = () => {
         type: actionTypes.APPS_LOADED,
     }
 }
+
+export const updateApp = (app, data) => {
+    return {
+        type: actionTypes.UPDATE_APP,
+        payload: {
+            app: app,
+            data: data
+        }
+    }
+}
+
+export const deleteApp = (app) => {
+    return {
+        type: actionTypes.DELETE_APP,
+        payload: {
+            app: app
+        }
+    }
+}

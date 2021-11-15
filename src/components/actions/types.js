@@ -11,3 +11,7 @@ export const SET_DRAFTEDAPP = "SET_DRAFTEDAPP"
 export const SET_REVIEWAPP = "SET_REVIEWAPP"
 
 export const APPS_LOADED = "APPS_LOADED"
+
+export const UPDATE_APP = "UPDATE_APP"
+
+export const DELETE_APP = "DELETE_APP"
