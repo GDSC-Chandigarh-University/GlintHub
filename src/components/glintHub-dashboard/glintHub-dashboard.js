@@ -2,7 +2,8 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { collection, onSnapshot, query, orderBy, doc, updateDoc, deleteDoc } from "@firebase/firestore";
-import Modal from "react-modal";
+// import Modal from "react-modal";
+import Modal from "./Modal";
 import AddApp from "../../assets/images/plus.png";
 import { appsInit, setPublishedApp, setDraftedApp, setReviewApp, appsLoaded } from "../actions";
 import { Firestore } from "../../firebase";
@@ -51,16 +52,6 @@ class GlintHubDashboard extends React.Component {
             return {
                 modalApp: app,
                 modalIsOpen: true,
-                modalLoading: false,
-                modalLoaded: true
-            }
-        })
-    }
-
-    handleChange = (event) => {
-        this.setState(() => {
-            return {
-                [event.target.name]: event.target.value
             }
         })
     }
@@ -73,43 +64,8 @@ class GlintHubDashboard extends React.Component {
         })
     }
 
-    handleUpdateModal = async () => {
-        let { user, modalApp, title, technology, description, githubURL, imageURL } = this.state
-        await updateDoc(doc(Firestore, "Users", user.uid, "Projects", modalApp.id), {
-            title,
-            technology,
-            imageURL,
-            description,
-            githubURL
-        })
-        this.initAgain()
-        this.closeModal()
-    }
-
-    handleDeleteModal = async () => {
-        let { user, modalApp } = this.state
-        await deleteDoc(doc(Firestore, "Users", user.uid, "Projects", modalApp.id))
-        this.initAgain()
-        this.closeModal()
-    }
-
-    onModalLoad = () => {
-        console.log(this.state.modalApp)
-        this.setState(() => {
-            return {
-                modalLoaded: false,
-                title: this.state.modalApp.title,
-                technology: this.state.modalApp.technology,
-                description: this.state.modalApp.description,
-                githubURL: this.state.modalApp.githubURL,
-                imageURL: this.state.modalApp.imageURL
-            }
-        })
-    }
-
     render() {
         let { url } = this.props.match
-        let { firstLoad, modalIsOpen, title, description, githubURL, imageURL, technology, modalLoading } = this.state
         let {publishedApps, draftedApps, reviewApps} = this.props.projects
         return (publishedApps.length > 0 || draftedApps.length > 0 || reviewApps.length > 0) ? (
             <div id="glinthub-dashboard">
@@ -179,25 +135,7 @@ class GlintHubDashboard extends React.Component {
                         <Link to={`${url}/add-app`} className="img-icn-plus" ><img src={AddApp} width="33px" height="31px" alt="Error" /></Link>
                     </div>
                 </div>}
-                <Modal
-                    isOpen={modalIsOpen}
-                    onRequestClose={this.closeModal}
-                    ariaHideApp={false}
-                >
-                    {modalLoading ? "Loading" : (<div><div>Update App</div>
-                        <div>
-                            <input type="text" name="title" value={title} onChange={this.handleChange} />
-                            <input type="text" name="technology" value={technology} onChange={this.handleChange} />
-                            <input type="text" name="description" value={description} onChange={this.handleChange} />
-                            <input type="text" name="imageURL" value={imageURL} onChange={this.handleChange} />
-                            <input type="text" name="githubURL" value={githubURL} onChange={this.handleChange} />
-                        </div>
-                        <div>
-                            <button onClick={this.handleUpdateModal}>Update App</button>
-                            <button onClick={this.handleDeleteModal}>Delete App</button>
-                            <button onClick={this.closeModal}>Close</button>
-                        </div></div>)}
-                </Modal>
+                {this.state.modalIsOpen && <Modal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} user={this.props.user} projects={this.props.projects} modalApp={this.state.modalApp}/>}
             </div>
         ) : (
             <div id="glinthub-dashboard">

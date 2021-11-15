@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection } from "firebase/firestore"
+import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
 import { getAuth } from "@firebase/auth";
+import { getStorage, ref } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC2s2ojO76wtSU8fo0QnHHN3wYk47pscKw",
@@ -18,3 +19,9 @@ export const Firestore = getFirestore(Firebaseapp);
 export const UsersCollectionRef = collection(Firestore, "Users");
 
 export const auth = getAuth(Firebaseapp);
+
+export const storage = getStorage(Firebaseapp)
+
+export const storageRef = (Ref) => ref(storage, Ref);
+
+export const setDocRef = (id, data) => setDoc(doc(Firestore, "Projects", id), data)

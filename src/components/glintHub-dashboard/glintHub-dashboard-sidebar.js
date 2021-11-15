@@ -58,7 +58,7 @@ class GlintHubSidebar extends React.Component {
                     </div>
                     <div className="sidebar-mid-option">
                         <img className="sidebar-icon" src={ReviewsSvg} />
-                        {reviewApps.length > 0 ? <NavLink to={`${url}/reviews`} activeClassName="is-active">Reviews</NavLink> : <NavLink name="errorReview" to="" onClick={this.handleClick}>Reviews</NavLink>}
+                        {reviewApps.length > 0 ? <NavLink to={`${url}/reviews`} activeClassName="is-active">Review App</NavLink> : <NavLink name="errorReview" to="" onClick={this.handleClick}>Review App</NavLink>}
                         {errorReview && <div className="onError">No App In-Review Yet!<img src={xCircle} /></div>}
                     </div>
                 </div>

@@ -85,7 +85,7 @@ class Dashboard extends React.Component {
                                     <GlintHubDashboard user={this.props.user} projects={this.props.projects}/>
                                 </Route>}
                                 <Route path={`${path}/add-app`}>
-                                    <GlintubAddApp currentUser={this.props.user} apps={this.props.projects}/>
+                                    <GlintubAddApp user={this.props.user} projects={this.props.projects}/>
                                 </Route>
                                 <Route path={`${path}/published-app`}>
                                     <GlintHubPublishedApp user={this.props.user} projects={this.props.projects}/>
