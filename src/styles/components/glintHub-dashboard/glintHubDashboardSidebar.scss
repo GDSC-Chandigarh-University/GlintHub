@@ -1,0 +1,50 @@
+#glinthubSidebar {
+    height: 100vh;
+    min-width: 240px;
+    background-color: var(--lightGreen2);
+
+    .sidebar-mid-option {
+        display: flex;
+        align-items: center;
+        margin-top: 0.5rem;
+        gap: 10px;
+        font-family: "Open Sans";
+        font-weight: 700;
+        font-size: 14px;
+    }
+    .sidebar-mid-option a {
+        text-decoration: none;
+        padding: 15px 0 16px 60px;
+        width: 100%;
+        color: #327642;
+    }
+    .sidebar-mid-option a:active {
+        color: #327642 !important;
+    }
+    #sidebar-top {
+        display: flex;
+        align-items: center;
+        gap: 75px;
+        margin: 1.5rem 1rem 1rem 1.2rem;
+    }
+    #sidebar-mid {
+        margin-top: 1.5rem;
+    }
+
+    .is-active {
+        background-color: rgb(133, 205, 102, 0.8);
+    }
+    .sidebar-icon {
+        position: absolute;
+        left: 18px;
+    }
+    #sidebar-icon {
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    #glinthubSidebar {
+        display: none;
+    }
+}

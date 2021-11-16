@@ -1,0 +1,66 @@
+.greenSignal {
+  font-size: 22px;
+  position: absolute;
+  background: var(--lightGreen2);
+  left: 50%;
+  padding: 7px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: popanimation 1s;
+}
+
+.redSignal {
+  font-size: 22px;
+  position: absolute;
+  background: var(--midLightRed);
+  left: 50%;
+  top: 100px;
+  font-weight: 400;
+  transform: translate(-25%);
+  padding: 7px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  grid-gap: 6px;
+  gap: 6px;
+  opacity: 0;
+  animation: popanimation 1s;
+}
+
+@keyframes popanimation {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 100;
+  }
+  75% {
+    opacity: 100;
+  }
+}
+
+.hrLine {
+  width: 800px;
+  height: 7px;
+  border-radius: 10px;
+  background-color: #85cd66;
+  opacity: 80%;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .hrLine {
+    width: 330px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .hrLine {
+    width: 230px;
+  }
+}

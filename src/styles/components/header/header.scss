@@ -86,3 +86,9 @@ a:hover{
 .header_dropdown li:hover{
   background-color: #f3f3f3;
 }
+
+@media screen and (max-width: 1000px) {
+  .header_options {
+      display: none;
+  }
+}

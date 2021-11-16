@@ -1,6 +1,54 @@
-@import './components/base/base.scss';
-@import './components/base/reboot.scss';
-@import './components/header/header.scss';
-@import './components/glintHub-dashboard/glintHub-dashboard.scss';
-@import './components/glintHub-landing/glintHub-landing.scss';
-@import './components/spinner.scss';
+@import "./components/base/base.scss";
+@import "./components/base/base.scss";
+@import "./components/base/component.scss";
+@import "./components/base/reboot.scss";
+@import "./components/header/header.scss";
+@import "./components/glintHub-dashboard/glintHubDashboard.scss";
+@import "./components/glintHub-landing/glintHub-landing.scss";
+@import "./components/spinner.scss";
+
+h1, .h1 {
+  font-size: 48px;
+  color: #525252;
+  line-height: 65.37px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+h2, .h2 {
+  font-size: 28px;
+  line-height: 38.13px;
+}
+
+h3, .h3 {
+  font-size: 24px;
+  line-height: 32.68px;
+  margin-bottom: 0;
+}
+
+.cl-font-grey {
+  color: #757575;
+}
+
+.fw-700{
+  font-weight: 700;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+.mr-0 {
+  margin-right: 0px !important;
+}
+
+@media screen and (max-width: 520px) {
+  h1, .h1 {
+    font-size: 40px;
+    margin-bottom: 5px;
+  }
+
+  h2, .h2 {
+    font-size: 24px;
+  }
+}
