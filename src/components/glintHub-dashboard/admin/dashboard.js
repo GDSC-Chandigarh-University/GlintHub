@@ -1,8 +1,8 @@
 import React from "react";
-import GlintHubSidebar from "./glintHub-dashboard-sidebar";
+import GlintHubSidebar from "./glintHubDashboardSidebar";
 import Header from "../../header/header";
 import { Switch, Route, withRouter } from "react-router-dom";
-import GlintHubDashboard from "./glintHub-dashboard";
+import GlintHubDashboard from "./glintHubDashboard";
 import GlintHubPublishedApp from "./glintHub-dashboard-published-app";
 import GlintHubReviews from "./glintHub-dashboard-reviews";
 import { connect } from "react-redux";

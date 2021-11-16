@@ -25,111 +25,104 @@ const user_reducer = (state = initialUserState, action) => {
 
 const initialProjectsState = {
     isLoading: true,
-    publishedApps: [],
-    draftedApps: [],
-    reviewApps: [],
+    publishedProjects: [],
+    draftedProjects: [],
+    reviewProjects: [],
 };
 
 const projects_reducer = (state = initialProjectsState, action) => {
     switch (action.type) {
-        case actionTypes.APPS_INIT:
+        case actionTypes.SET_PUBLISHEDPROJECT:
             return {
                 ...state,
-                publishedApps: [],
-                draftedApps: [],
-                reviewApps: [],
+                publishedProjects: [...state.publishedProjects, action.payload.projectData],
             };
-        case actionTypes.SET_PUBLISHEDAPP:
+        case actionTypes.SET_REVIEWPROJECT:
             return {
                 ...state,
-                publishedApps: [...state.publishedApps, action.payload.app],
+                reviewProjects: [...state.reviewProjects, action.payload.projectData],
             };
-        case actionTypes.SET_REVIEWAPP:
+        case actionTypes.SET_DRAFTEDPROJECT:
             return {
                 ...state,
-                reviewApps: [...state.reviewApps, action.payload.app],
+                draftedProjects: [...state.draftedProjects, action.payload.projectData],
             };
-        case actionTypes.SET_DRAFTEDAPP:
-            return {
-                ...state,
-                draftedApps: [...state.draftedApps, action.payload.app],
-            };
-        case actionTypes.APPS_LOADED:
+        case actionTypes.PROJECTS_LOADED:
             return {
                 ...state,
                 isLoading: false,
             };
-        case actionTypes.UPDATE_APP:
-            if (action.payload.app.isPublished) {
-                const updatedApps = state.publishedApps.map((app) => {
-                    if (app.id == action.payload.app.id) {
-                        console.log({ ...app, ...action.payload.data });
-                        return { ...app, ...action.payload.data };
+        case actionTypes.UPDATE_PROJECT:
+            if (action.payload.project.projectStatus === "isPublished") {
+                const updatedProjects = state.publishedProjects.map((project) => {
+                    if (project.id == action.payload.projectId) {
+                        console.log({ ...project, ...action.payload.projectData });
+                        return { ...project, ...action.payload.projectData };
                     } else {
-                        return { ...app }
+                        return { ...project }
                     }
                 });
-                localStorage.setItem("publishedApps", JSON.stringify(updatedApps))
+                localStorage.setItem("publishedProjects", JSON.stringify(updatedProjects))
                 return {
                     ...state,
-                    publishedApps: [...updatedApps]
+                    publishedProjects: [...updatedProjects]
                 }
-            } else if (action.payload.app.isDrafted) {
-                const updatedApps = state.draftedApps.map((app) => {
-                    if (app.id == action.payload.app.id) {
-                        console.log({ ...app, ...action.payload.data });
-                        return { ...app, ...action.payload.data };
+            } else if (action.payload.project.isDrafted) {
+                const updatedProjects = state.draftedProjects.map((project) => {
+                    if (project.id == action.payload.projectId) {
+                        console.log({ ...project, ...action.payload.projectData });
+                        return { ...project, ...action.payload.projectData };
                     } else {
-                        return { ...app }
+                        return { ...project }
                     }
                 });
-                localStorage.setItem("draftedApps", JSON.stringify(updatedApps))
+                localStorage.setItem("draftedProjects", JSON.stringify(updatedProjects))
                 return {
                     ...state,
-                    draftedApps: [...updatedApps]
+                    draftedProjects: [...updatedProjects]
                 }
-            } else if (action.payload.app.inReview) {
-                const updatedApps = state.reviewApps.map((app) => {
-                    if (app.id == action.payload.app.id) {
-                        console.log({ ...app, ...action.payload.data });
-                        return { ...app, ...action.payload.data };
+            } else if (action.payload.project.inReview) {
+                const updatedProjects = state.reviewProjects.map((project) => {
+                    if (project.id == action.payload.projectId) {
+                        console.log({ ...project, ...action.payload.projectData });
+                        return { ...project, ...action.payload.projectData };
                     } else {
-                        return { ...app }
+                        return { ...project }
                     }
                 });
-                localStorage.setItem("reviewApps", JSON.stringify(updatedApps))
+                localStorage.setItem("reviewProjects", JSON.stringify(updatedProjects))
                 return {
                     ...state,
-                    reviewApps: [...updatedApps]
+                    reviewProjects: [...updatedProjects]
                 }
             }
-        case actionTypes.DELETE_APP:
-            if (action.payload.app.isPublished) {
-                const updatedApps = state.publishedApps.filter((app) => {
-                    return app.id !== action.payload.app.id
+        case actionTypes.DELETE_PROJECT:
+            if (action.payload.project.isPublished) {
+                const updatedProjects = state.publishedProjects.filter((project) => {
+                    return project.id !== action.payload.projectId
                 });
-                localStorage.setItem("publishedApps", JSON.stringify(updatedApps))
+                localStorage.setItem("publishedProjects", JSON.stringify(updatedProjects))
                 return {
                     ...state,
-                    publishedApps: [...updatedApps]
+                    publishedProjects: [...updatedProjects]
                 }
-            } else if (action.payload.app.isDrafted) {
-                const updatedApps = state.draftedApps.filter((app) => {
-                    return app.id !== action.payload.app.id
+            } else if (action.payload.project.isDrafted) {
+                const updatedProjects = state.draftedProjects.filter((project) => {
+                    return project.id !== action.payload.projectId
                 });
-                localStorage.setItem("draftedApps", JSON.stringify(updatedApps))
+                localStorage.setItem("draftedProjects", JSON.stringify(updatedProjects))
                 return {
                     ...state,
-                    draftedApps: [...updatedApps]
+                    draftedProjects: [...updatedProjects]
                 }
-            } else if (action.payload.app.inReview) {
-                const updatedApps = state.reviewApps.filter((app) => {
-                    return app.id !== action.payload.app.id
+            } else if (action.payload.project.inReview) {
+                const updatedProjects = state.reviewProjects.filter((project) => {
+                    return project.id !== action.payload.projectId
                 });
-                localStorage.setItem("reviewApps", JSON.stringify(updatedApps))
+                localStorage.setItem("reviewProjects", JSON.stringify(updatedProjects))
                 return {
                     ...state,
-                    reviewApps: [...updatedApps]
+                    reviewProjects: [...updatedProjects]
                 }
             }
         default:
