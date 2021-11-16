@@ -203,7 +203,7 @@ class GlintHubDashboard extends React.Component {
                 {reviewApps.length > 0 && <div className="dash-container-2">
                     {/* <!-- Upper part --> */}
                     <div className="dashUp-1">
-                        <span id="pr">In-reveiw Apps</span>
+                        <span id="pr">In-review Apps</span>
                         <Link to={`${url}/reviews`}><span id="vie">View All</span></Link>
                     </div>
 

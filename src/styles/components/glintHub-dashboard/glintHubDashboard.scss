@@ -1,18 +1,13 @@
-@import "./glintHub-dashboard-add-app.scss";
-@import "./glintHub-dashboard-drafted-app.scss";
+@import "./glintHubDashboardAddApp.scss";
+@import "./glintHubDashboardDraftedApp.scss";
 @import "./glintHub-dashboard-published-app.scss";
 @import "./glintHub-dashboard-reviews.scss";
-@import "./glintHub-dashboard-sidebar.scss";
+@import "./glintHubDashboardSidebar.scss";
 
-#glinthub-dashboard {
+#glinthubDashboard {
     .dash-container-1 {
         display: flex;
         margin-bottom: 25px;
-    }
-
-    #board {
-        font-size: 3rem;
-        color: rgba(82, 82, 82, 1);
     }
 
     .bx-1 {
@@ -80,32 +75,27 @@
     }
     .img-icn-plus {
         background-color: rgba(133, 205, 102, 0.8);
-        margin: 3rem;
         padding: 15px;
         padding-top: 18px;
         border-radius: 9px;
+    }
+
+    .addProject {
+        display: flex;
+        align-items: center;
     }
 
     .bx-2 {
         display: flex;
         margin-top: 35px;
     }
+    #no-project-img {
+        margin-left: 20px;
+        margin-bottom: 60px;
+    }
 }
-.glinthub-dashboard-bold {
-    font-weight: 700 !important;
-}
-.glinthub-dashboard-h1 {
-    margin-bottom: 15px !important;
-    font-size: 3rem !important;
-}
-.glinthub-dashboard-no-project-h2 {
-    font-size: 1.5rem !important;
-    margin-top: -10px;
-}
-#glinthub-dashboard-no-project-img {
-    margin-left: 20px;
-    margin-bottom: 60px;
-}
+
+
 a.img-icn-plus.no-project-add {
     margin-right: 1.5rem !important;
     margin-left: 0rem !important;
@@ -117,3 +107,12 @@ a.img-icn-plus.no-project-add {
     height: 162px;
     object-fit: cover;
 }
+
+@media screen and (max-width: 520px) {
+    #glinthubDashboard {
+        #no-project-img  {
+            margin-left: 0;
+            width: 320px;
+        }
+    }
+  }

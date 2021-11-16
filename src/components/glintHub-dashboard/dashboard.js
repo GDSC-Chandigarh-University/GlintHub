@@ -1,55 +1,104 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { collection, onSnapshot, query, orderBy } from "@firebase/firestore";
-import { setPublishedApp, setDraftedApp, setReviewApp, appsLoaded } from "../actions";
-import { Firestore } from "../../firebase";
+import { onSnapshot } from "@firebase/firestore";
+import { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded } from "../actions";
+import { getCollectionProjects } from "../../firebase";
 import Header from "../header/header";
-import GlintHubSidebar from "./glintHub-dashboard-sidebar";
-import GlintHubDashboard from "./glintHub-dashboard";
-import GlintubAddApp from "./glintHub-dashboard-add-app";
-import GlintHubDraftedApp from "./glintHub-dashboard-drafted-app";
+import GlintHubSidebar from "./glintHubDashboardSidebar";
+import GlintHubDashboard from "./glintHubDashboard";
+import GlintubDashboardAddApp from "./glintHubDashboardAddApp";
+import GlintHubDraftedApp from "./glintHubDashboardDraftedApp";
 import GlintHubPublishedApp from "./glintHub-dashboard-published-app";
 import GlintHubReviews from "./glintHub-dashboard-reviews";
+
 
 class Dashboard extends React.Component {
     state = {
         settingLocalStorage: true
     }
 
+
     componentDidMount() {
         this.projectsLoader()
     }
 
+    componentWillUnmount() {
+        console.log('unmounted')
+    }
+
+
     projectsLoader = () => {
-        if(localStorage.getItem("reveiwApps") || localStorage.getItem("draftedApps") || localStorage.getItem("publishedApps")) {
-            var storedReviewApps = JSON.parse(localStorage.getItem("reviewApps"));
-            var storedDraftedApps = JSON.parse(localStorage.getItem("draftedApps"));
-            var storedPublishedApps = JSON.parse(localStorage.getItem("publishedApps"));
-            console.log('loading local storage')
-            storedReviewApps.map((app) => {
-                this.props.setReviewApp(app)
-            })
-            storedDraftedApps.map((app) => {
-                this.props.setDraftedApp(app)
-            })
-            storedPublishedApps.map((app) => {
-                this.props.setPublishedApp(app)
-            })
-            this.props.appsLoaded()
-        } else {
-            const Query = query(collection(Firestore, "Users", this.props.user.uid, "Projects"), orderBy("timestamp", "desc"))
-            const unSubscribe = onSnapshot(Query, (snapshot) => {
-                snapshot.docs.map((doc, key) => {
-                    if (doc.data().inReview) {
-                        this.props.setReviewApp(doc.data())
-                    } else if (doc.data().isDrafted) {
-                        this.props.setDraftedApp(doc.data())
-                    } else if (doc.data().isPublished) {
-                        this.props.setPublishedApp(doc.data())
+        console.log(this.props.user.uid)
+        const getLocalPublishedProjects = JSON.parse(localStorage.getItem("publishedProjects"));
+        const getLocalDraftedProjects = JSON.parse(localStorage.getItem("draftedProjects"));
+        const getLocalReviewProjects = JSON.parse(localStorage.getItem("reviewProjects"));
+        console.log(this.props.projects)
+        // getLocalPublishedProjects || getLocalDraftedProjects || getLocalReviewProjects
+        if (false) {
+            const unSubscribe = onSnapshot(getCollectionProjects(this.props.user.uid), (snapshot) => {
+                // console.log(snapshot)
+                console.log(getLocalReviewProjects)
+                if (snapshot.docs.length != getLocalPublishedProjects.length + getLocalDraftedProjects.length + getLocalReviewProjects.length) {
+                    console.log(snapshot.docs.length, getLocalPublishedProjects.length + getLocalDraftedProjects.length + getLocalReviewProjects.length, this.props.projects.draftedProjects.length + this.props.projects.reviewProjects.length + this.props.projects.publishedProjects.length)
+                    // console.log("Setting up new data");
+                    console.log(getLocalReviewProjects)
+                    snapshot.docs.map((doc, key) => {
+                        // Fututre Optimization Load only those projects which are not present in Local Storage
+                        if (doc.data().projectStatus == 'isPublished') {
+                            this.props.setPublishedProject(doc.data())
+                        } else if (doc.data().projectStatus == 'isDrafted') {
+                            this.props.setDraftedProject(doc.data())
+                        } else if (doc.data().projectStatus == 'inReview') {
+                            this.props.setReviewProject(doc.data())
+                        }
+                        if (key + 1 == snapshot.docs.length) { // key starts from 0
+                            console.log(getLocalReviewProjects)
+                            console.log('errorplace')
+                            this.props.projectsLoaded()
+                            unSubscribe()
+                        }
+                    })
+                    if (snapshot.docs.length == 0) { // key starts from 0
+                        console.log(getLocalReviewProjects)
+                        console.log('errorplace')
+                        this.props.projectsLoaded()
+                        unSubscribe()
                     }
-                    if(key + 1 == snapshot.docs.length) {
-                        this.props.appsLoaded()
+                }
+                else {
+                    // console.log(getLocalReviewProjects, getLocalPublishedProjects, getLocalDraftedProjects)
+                    // console.log('loading local storage');
+                    console.log('errorplace')
+                    getLocalPublishedProjects.map((project) => {
+                        this.props.setPublishedProject(project)
+                    })
+                    getLocalDraftedProjects.map((project) => {
+                        this.props.setDraftedProject(project)
+                    })
+                    getLocalReviewProjects.map((project) => {
+                        this.props.setReviewProject(project)
+                    })
+                    console.log('errorplace')
+                    this.props.projectsLoaded()
+                    this.setState(() => ({ settingLocalStorage: false }))
+                }
+            });
+        } else {
+            const unSubscribe = onSnapshot(getCollectionProjects(this.props.user.uid), (snapshot) => {
+                // console.log(snapshot)
+                console.log('errorplace')
+                snapshot.docs.map((doc, key) => {
+                    if (doc.data().projectStatus == 'inReview') {
+                        this.props.setReviewProject(doc.data())
+                    } else if (doc.data().projectStatus == 'isDrafted') {
+                        this.props.setDraftedProject(doc.data())
+                    } else if (doc.data().projectStatus == 'isPublished') {
+                        this.props.setPublishedProject(doc.data())
+                    }
+                    if (key + 1 == snapshot.docs.length) {
+                        console.log('errorplace')
+                        this.props.projectsLoaded()
                         unSubscribe()
                     }
                 })
@@ -57,20 +106,24 @@ class Dashboard extends React.Component {
         }
     }
 
+
     componentDidUpdate() {
-        if (!this.props.projects.isLoading && this.state.settingLocalStorage && !(localStorage.getItem("reveiwApps") || localStorage.getItem("draftedApps") || localStorage.getItem("publishedApps"))) {
-            localStorage.setItem("reviewApps", JSON.stringify(this.props.projects.reviewApps))
-            localStorage.setItem("draftedApps", JSON.stringify(this.props.projects.draftedApps))
-            localStorage.setItem("publishedApps", JSON.stringify(this.props.projects.publishedApps))
+        // Updating Local Storage with New Data if any
+        if (!this.props.projects.isLoading && this.state.settingLocalStorage) {
+            localStorage.setItem("reviewProjects", JSON.stringify(this.props.projects.reviewProjects))
+            localStorage.setItem("draftedProjects", JSON.stringify(this.props.projects.draftedProjects))
+            localStorage.setItem("publishedProjects", JSON.stringify(this.props.projects.publishedProjects))
+            console.log('errorplace')
             this.setState(() => {
                 return {
                     settingLocalStorage: false
                 }
             })
-            console.log('setting project to local storage')
+            // console.log("Setting project to local storage")
         }
     }
 
+    
     render() {
         let { path } = this.props.match
         return (
@@ -82,19 +135,19 @@ class Dashboard extends React.Component {
                         <div className="upper-div">
                             <Switch>
                                 {<Route exact path={path}>
-                                    <GlintHubDashboard user={this.props.user} projects={this.props.projects}/>
+                                    <GlintHubDashboard user={this.props.user} projects={this.props.projects} />
                                 </Route>}
-                                <Route path={`${path}/add-app`}>
-                                    <GlintubAddApp user={this.props.user} projects={this.props.projects}/>
+                                <Route path={`${path}/addApp`}>
+                                    <GlintubDashboardAddApp user={this.props.user} projects={this.props.projects} />
                                 </Route>
-                                <Route path={`${path}/published-app`}>
-                                    <GlintHubPublishedApp user={this.props.user} projects={this.props.projects}/>
+                                <Route path={`${path}/publishedApp`}>
+                                    <GlintHubPublishedApp user={this.props.user} projects={this.props.projects} />
                                 </Route>
-                                <Route path={`${path}/drafted-app`}>
-                                    <GlintHubDraftedApp user={this.props.user} projects={this.props.projects}/>
+                                <Route path={`${path}/draftedApp`}>
+                                    <GlintHubDraftedApp user={this.props.user} projects={this.props.projects} />
                                 </Route>
-                                <Route path={`${path}/reviews`}>
-                                    <GlintHubReviews currentUser={this.props.user} apps={this.props.projects}/>
+                                <Route path={`${path}/reviewApp`}>
+                                    <GlintHubReviews user={this.props.user} projects={this.props.projects} />
                                 </Route>
                             </Switch>
                         </div>
@@ -105,9 +158,10 @@ class Dashboard extends React.Component {
     }
 }
 
+
 export default connect((state) => {
     return {
-      user: state.user_reducer.user,
-      projects: state.projects_reducer
+        user: state.user_reducer.user,
+        projects: state.projects_reducer
     }
-  }, { setPublishedApp, setDraftedApp, setReviewApp, appsLoaded })(Dashboard)
+}, { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded })(Dashboard)
