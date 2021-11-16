@@ -1,0 +1,249 @@
+#glinthubDashboardAddApp {
+  .addAppForm {
+    display: grid;
+    grid-template-columns: 460px 460px;
+    grid-template-areas:
+      "title githubURL"
+      "image coreTech"
+      "description techUsed"
+      "description _blank";
+    grid-gap: 20px;
+    gap: 25px;
+  }
+
+  .addAppFormFields {
+    background-color: var(--lightGreen1);
+    border-radius: 15px;
+    padding: 1.25rem;
+  }
+
+  .addAppForm .title {
+    grid-area: title;
+  }
+
+  .addAppForm .image {
+    display: flex;
+    align-items: center;
+    grid-area: image;
+  }
+
+  .addAppForm .description {
+    grid-area: description;
+    height: 180px;
+  }
+
+  .addAppForm .githubURL {
+    grid-area: githubURL;
+  }
+
+  .addAppForm .coreTech {
+    grid-area: coreTech;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .addAppForm .techUsed {
+    grid-area: techUsed;
+  }
+
+  .addAppFormField {
+    display: block;
+    width: 100%;
+    border: none;
+    height: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: var(--lightGreen1);
+    line-height: 1.5;
+    color: var(--black);
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .addAppFormField:focus {
+    color: var(--black);
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+  }
+
+  .addProject {
+    font-size: 1.3rem;
+    background-color: var(--darkGreen);
+    border-radius: 10px;
+    width: 150px;
+    height: 55px;
+    margin-top: 30px;
+    margin-right: 20px;
+    border: none;
+  }
+
+  input:-internal-autofill-selected {
+    background-color: red !important;
+ }
+
+  // Choose Project Image
+  .image {
+    #image {
+      opacity: 0;
+      left: 20px;
+      top: 20px;
+      height: 38px;
+      position: absolute !important;
+      color: transparent;
+      width: 70%;
+    }
+
+    #imageLabel {
+      border: solid 1.5px #000;
+      padding-left: 5px;
+      padding-top: 6px;
+      position: absolute;
+      top: 20px;
+      height: 38px;
+      border-color: #80bdff;
+      box-shadow: 0 0 0 0.1rem rgb(0 123 255 / 25%);
+    }
+
+    #imageLabel::after {
+      content: "X";
+      font-size: 16px;
+      margin-left: 6px;
+      padding: 6px 5px 5px 1px;
+    }
+
+    label#imageLabel:hover::after {
+      cursor: pointer;
+    }
+
+    #image:hover {
+      cursor: pointer;
+    }
+
+    .labelCoverBtn {
+      background-color: var(--darkGreen);
+      color: white;
+      height: 38px;
+      border-radius: 7px;
+      padding: 0 8px;
+    }
+
+    .labelCover {
+      margin-left: 8px;
+      color: grey;
+    }
+  }
+
+  // coreTech Checkbox
+  .coreTech {
+    .labels {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 0;
+      cursor: pointer;
+      font-size: 16px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      align-self: center;
+      color: gray;
+    }
+  
+    .labels input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+  
+    .labelCheck {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: var(--lightGreen3);
+    }
+  
+    .labels:hover input ~ .labelCheck {
+      background-color: var(--darkGreen);
+    }
+  
+    .labels input:checked ~ .labelCheck {
+      background-color: var(--darkGreen);
+    }
+  
+    .labelCheck:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+  
+    .labels input:checked ~ .labelCheck:after {
+      display: block;
+    }
+  
+    .labels .labelCheck:after {
+      left: 10.5px;
+      top: 6.5px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #glinthubDashboardAddApp {
+    .addAppForm {
+      display: grid;
+      grid-template-columns: 460px;
+      grid-template-areas:
+        "title"
+        "githubURL"
+        "image"
+        "coreTech"
+        "description"
+        "description"
+        "techUsed";
+      grid-gap: 20px;
+      gap: 25px;
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  #glinthubDashboardAddApp {
+    .addAppForm {
+      grid-template-columns: 310px;
+      justify-content: center;
+    }
+
+    .labelCover {
+      display: none;
+    }
+
+    .addAppForm .coreTech {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .justify-self-end {
+      justify-self: flex-start;
+    }
+
+    .addProject {
+      width: 130px;
+      margin-right: 10px;
+    }
+  }
+}
