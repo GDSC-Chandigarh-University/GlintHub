@@ -55,7 +55,7 @@ const projects_reducer = (state = initialProjectsState, action) => {
         case actionTypes.UPDATE_PROJECT:
             if (action.payload.project.projectStatus === "isPublished") {
                 const updatedProjects = state.publishedProjects.map((project) => {
-                    if (project.id == action.payload.projectId) {
+                    if (project.id == action.payload.project.id) {
                         console.log({ ...project, ...action.payload.projectData });
                         return { ...project, ...action.payload.projectData };
                     } else {
@@ -67,9 +67,9 @@ const projects_reducer = (state = initialProjectsState, action) => {
                     ...state,
                     publishedProjects: [...updatedProjects]
                 }
-            } else if (action.payload.project.isDrafted) {
+            } else if (action.payload.project.projectStatus === "isDrafted") {
                 const updatedProjects = state.draftedProjects.map((project) => {
-                    if (project.id == action.payload.projectId) {
+                    if (project.id == action.payload.project.id) {
                         console.log({ ...project, ...action.payload.projectData });
                         return { ...project, ...action.payload.projectData };
                     } else {
@@ -81,9 +81,9 @@ const projects_reducer = (state = initialProjectsState, action) => {
                     ...state,
                     draftedProjects: [...updatedProjects]
                 }
-            } else if (action.payload.project.inReview) {
+            } else if (action.payload.project.projectStatus === "inReview") {
                 const updatedProjects = state.reviewProjects.map((project) => {
-                    if (project.id == action.payload.projectId) {
+                    if (project.id == action.payload.project.id) {
                         console.log({ ...project, ...action.payload.projectData });
                         return { ...project, ...action.payload.projectData };
                     } else {
@@ -97,27 +97,27 @@ const projects_reducer = (state = initialProjectsState, action) => {
                 }
             }
         case actionTypes.DELETE_PROJECT:
-            if (action.payload.project.isPublished) {
+            if (action.payload.project.projectStatus == "isPublished") {
                 const updatedProjects = state.publishedProjects.filter((project) => {
-                    return project.id !== action.payload.projectId
+                    return project.id !== action.payload.project.id
                 });
                 localStorage.setItem("publishedProjects", JSON.stringify(updatedProjects))
                 return {
                     ...state,
                     publishedProjects: [...updatedProjects]
                 }
-            } else if (action.payload.project.isDrafted) {
+            } else if (action.payload.project.projectStatus == "isDrafted") {
                 const updatedProjects = state.draftedProjects.filter((project) => {
-                    return project.id !== action.payload.projectId
+                    return project.id !== action.payload.project.id
                 });
                 localStorage.setItem("draftedProjects", JSON.stringify(updatedProjects))
                 return {
                     ...state,
                     draftedProjects: [...updatedProjects]
                 }
-            } else if (action.payload.project.inReview) {
+            } else if (action.payload.project.projectStatus == "inReview") {
                 const updatedProjects = state.reviewProjects.filter((project) => {
-                    return project.id !== action.payload.projectId
+                    return project.id !== action.payload.project.id
                 });
                 localStorage.setItem("reviewProjects", JSON.stringify(updatedProjects))
                 return {

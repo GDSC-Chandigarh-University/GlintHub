@@ -21,6 +21,7 @@ function Header(props) {
           console.log(error);
         }
       }
+      console.log(currentUser)
     return (
         <div id="header">
             <div className="header_pos">

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
-import AddAppSvg from "../../../assets/images/add-svg.svg";
 import DashboardSvg from "../../../assets/images/dashboard-svg.svg";
+import AddAppSvg from "../../../assets/images/add-svg.svg";
 import DraftedSvg from "../../../assets/images/drafted-svg.svg";
 import PublishedSvg from "../../../assets/images/published-svg.svg";
 import ReviewsSvg from "../../../assets/images/review-svg.svg";
@@ -10,52 +10,44 @@ import xCircle from "../../../assets/images/x-circle.svg";
 
 class GlintHubSidebar extends React.Component {
     state = {
-        errorDrafted: false,
-        errorPublished: false,
-        errorReview: false
+        error: false // Changed to error message
     }
+
 
     handleClick = (event) => {
         event.preventDefault()
-        this.setState(() => {
-            return {
-                [event.target.name]: true
-            }
-        })
+        this.setState(() => ({error: `No App ${event.target.name} Yet!`}))
         setTimeout(() => {
-            this.setState(() => {
-                return {
-                    [event.target.name]: false
-                }
-            })
+            this.setState(() => ({error: false}))
         }, 2000)
     }
 
+
     render() {
         let { url } = this.props.match
-        let { errorDrafted, errorPublished, errorReview } = this.state
-        let { draftedApps, publishedApps, reviewApps } = this.props.apps
+        let { error } = this.state
+        let { draftedProjects, publishedProjects, reviewProjects } = this.props.projects
         return (
-            <div id="sidebar">
+            <div id="glinthubSidebar">
                 <div id="sidebar-mid">
+                    { error && <div className="redSignal">{error}<img src={xCircle} /></div>}
                     <div className="sidebar-mid-option">
                         <img className="sidebar-icon" src={DashboardSvg} />
                         <NavLink to={url} exact={true} activeClassName="is-active">Dashboard</NavLink>
                     </div>
                     <div className="sidebar-mid-option">
                         <img className="sidebar-icon" src={PublishedSvg} />
-                        {publishedApps.length > 0 ? <NavLink to={`${url}/published-app`} activeClassName="is-active">Manage Apps</NavLink> : <NavLink name="errorPublished" to="" onClick={this.handleClick}>Published App</NavLink>}
-                        {errorPublished && <div className="onError">No App Published Yet!<img src={xCircle} /></div>}
+                        {publishedProjects.length > 0 ? <NavLink to={`${url}/publishedApp`} activeClassName="is-active">Published App</NavLink> : <NavLink name="Published" to="" onClick={this.handleClick}>Manage App</NavLink>}
                     </div>
                     <div className="sidebar-mid-option">
                         <img className="sidebar-icon" src={ReviewsSvg} />
-                        {reviewApps.length > 0 ? <NavLink to={`${url}/reviews`} activeClassName="is-active">Reviews</NavLink> : <NavLink name="errorReview" to="" onClick={this.handleClick}>Reviews</NavLink>}
-                        {errorReview && <div className="onError">No App In-Review Yet!<img src={xCircle} /></div>}
+                        {reviewProjects.length > 0 ? <NavLink to={`${url}/reviewApp`} activeClassName="is-active">Review App</NavLink> : <NavLink name="In-Review" to="" onClick={this.handleClick}>Review App</NavLink>}
                     </div>
                 </div>
             </div>
         );
     }
 }
+
 
 export default withRouter(GlintHubSidebar)

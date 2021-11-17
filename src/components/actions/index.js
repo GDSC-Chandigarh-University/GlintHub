@@ -36,17 +36,17 @@ export const projectsLoaded = () => ({
     type: actionTypes.PROJECTS_LOADED,
 })
 
-export const updateProject = (projectId, projectData) => ({
+export const updateProject = (project, projectData) => ({
     type: actionTypes.UPDATE_PROJECT,
     payload: {
-        projectId: projectId,
+        project: project,
         projectData: projectData
     }
 })
 
-export const deleteProject = (projectId) => ({
+export const deleteProject = (project) => ({
     type: actionTypes.DELETE_PROJECT,
     payload: {
-        projectId: projectId
+        project: project
     }
 })

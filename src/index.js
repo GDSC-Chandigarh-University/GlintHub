@@ -18,6 +18,7 @@ import Spinner from './components/spinner/Spinner';
 import GlintHubLanding from "./components/glintHub-landing/glintHub-landing";
 import Dashboard from './components/glintHub-dashboard/dashboard';
 import roles from './components/config/roles';
+import AdminDashboard from "./components/glintHub-dashboard/admin/dashboard"
 
 const store = createStore(rootReducer, composeWithDevTools())
 
@@ -43,6 +44,7 @@ class Root extends React.Component {
                 this.props.clearUser()
                 localStorage.clear()
             }
+            console.log(user)
         })
         setTimeout(() => {
             this.setState(() => {
@@ -59,7 +61,7 @@ class Root extends React.Component {
 
     render() {
         return this.state.timeout ? <Spinner/> : this.props.userLoading ? <Spinner/> : this.props.user ? this.props.user.role == "admin" ? (<Switch>
-            <Route path="/glinthub" component={Dashboard}></Route>
+            <Route path="/glinthub" component={AdminDashboard}></Route>
         </Switch>) :
         (<Switch>
             <Route path="/glinthub" component={Dashboard}></Route>

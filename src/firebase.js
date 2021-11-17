@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "@firebase/auth";
-import { getFirestore, collection, doc, setDoc, query, orderBy, where } from "firebase/firestore";
+import { getFirestore, collection, doc, setDoc, query, orderBy, where, deleteDoc, updateDoc } from "firebase/firestore";
 import { getStorage, ref } from "firebase/storage";
 
 const firebaseConfig = {
@@ -26,7 +26,15 @@ export const setDocProject = (id, data) => setDoc(doc(Firestore, "Projects", id)
 
 export const getCollectionProjects = (userUid) => query(collection(Firestore, "Projects"), where("userUid", "==", userUid), orderBy("timestamp", 'desc'))
 
+export const getAllCollectionProjects = query(collection(Firestore, "Projects"), orderBy("timestamp", 'desc'))
+
+export const getCollectionMessages = (projectId) => query(collection(Firestore, "Messages"), where("id", "==", projectId), orderBy("timestamp", 'asc'))
+
 export const setDocUser = (id, data) => setDoc(doc(Firestore, "Users", id), data)
+
+export const deleteDocProject = (projectId) => deleteDoc(doc(Firestore, "Projects", projectId))
+
+export const updateDocProject = (id, data) => updateDoc(doc(Firestore, "Projects", id), data);
 
 export const setDocMessage = (id, data) => setDoc(doc(Firestore, "Messages", id), data)
 

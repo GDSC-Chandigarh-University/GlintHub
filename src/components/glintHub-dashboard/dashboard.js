@@ -109,18 +109,18 @@ class Dashboard extends React.Component {
 
     componentDidUpdate() {
         // Updating Local Storage with New Data if any
-        if (!this.props.projects.isLoading && this.state.settingLocalStorage) {
-            localStorage.setItem("reviewProjects", JSON.stringify(this.props.projects.reviewProjects))
-            localStorage.setItem("draftedProjects", JSON.stringify(this.props.projects.draftedProjects))
-            localStorage.setItem("publishedProjects", JSON.stringify(this.props.projects.publishedProjects))
-            console.log('errorplace')
-            this.setState(() => {
-                return {
-                    settingLocalStorage: false
-                }
-            })
-            // console.log("Setting project to local storage")
-        }
+        // if (!this.props.projects.isLoading && this.state.settingLocalStorage) {
+        //     localStorage.setItem("reviewProjects", JSON.stringify(this.props.projects.reviewProjects))
+        //     localStorage.setItem("draftedProjects", JSON.stringify(this.props.projects.draftedProjects))
+        //     localStorage.setItem("publishedProjects", JSON.stringify(this.props.projects.publishedProjects))
+        //     console.log('errorplace')
+        //     this.setState(() => {
+        //         return {
+        //             settingLocalStorage: false
+        //         }
+        //     })
+        //     // console.log("Setting project to local storage")
+        // }
     }
 
     

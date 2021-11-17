@@ -6,15 +6,16 @@ import { serverTimestamp } from "@firebase/firestore";
 import { setDoc, doc, onSnapshot, collection, query, orderBy } from "@firebase/firestore";
 import Spinner from "../spinner/Spinner";
 import { app, firestore } from "../config/firebaseConfig";
+import { getCollectionMessages, setDocMessage } from "../../firebase";
 
 export default class GlintHubReviews extends React.Component {
     state = {
         messageContent: '',
         messages: [],
         firstLoad: true,
-        reviewApps: this.props.apps.reviewApps,
-        user: this.props.currentUser,
-        currentChannel: this.props.apps.reviewApps[0],
+        reviewProjects: this.props.projects.reviewProjects,
+        user: this.props.user,
+        currentChannel: this.props.projects.reviewProjects[0],
         sendingMessage: false,
         loadingChannel: false,
         newCurrentChannel: null,
@@ -29,29 +30,18 @@ export default class GlintHubReviews extends React.Component {
     }
 
     loadChannelMessages = (currentChannel) => {
-        const Query = query(collection(Firestore, "Users", this.state.user.uid, "Projects", currentChannel.id, "Messages"), orderBy("timestamp", "asc"))
-        onSnapshot(Query, (snapshot) => {
-            this.setState(() => {
-                return {
-                    messages: []
-                }
-            })
+        onSnapshot(getCollectionMessages(currentChannel.id), (snapshot) => {
+            this.setState(() => ({ messages: [] }))
             snapshot.docs.map((doc) => {
-                this.setState((prevState) => {
-                    return {
+                this.setState((prevState) => ({
                         messages: [
                             ...prevState.messages, doc.data()
                         ]
-                    }
-                })
+                    }))
             })
         });
         if (this.state.firstLoad) {
-            this.setState(() => {
-                return {
-                    firstLoad: false
-                }
-            })
+            this.setState(() => ({ firstLoad: false  }))
         }
     }
 
@@ -124,16 +114,15 @@ export default class GlintHubReviews extends React.Component {
                     sendingMessage: true
                 }
             })
-            await setDoc(doc(Firestore, "Users", user.uid, "Projects", currentChannel.id, "Messages", newmessageId), {
+            const messageData = {
                 content: messageContent,
-                id: newmessageId,
-                user: {
-                    uid: user.uid,
-                    displayName: user.displayName,
-                    photoURL: user.photoURL
-                },
+                id:  currentChannel.id,
+                userUid: user.uid,
+                userDisplayName: user.displayName,
+                userPhotoURL: user.photoURL,
                 timestamp: serverTimestamp()
-            })
+            }
+            await setDocMessage(newmessageId, messageData)
             this.setState(() => {
                 return {
                     sendingMessage: false,
@@ -152,18 +141,18 @@ export default class GlintHubReviews extends React.Component {
     }
 
     render() {
-        const { messageContent, reviewApps, firstLoad, sendingMessage, messages, currentChannel } = this.state
+        const { messageContent, reviewProjects, firstLoad, sendingMessage, messages, currentChannel } = this.state
         return firstLoad ? <Spinner /> : (
             <div id="glinthub-dashboard-reviews">
-                <h1 className="upper-h1">Reviews</h1>
-                <hr id="draft-line" />
+                <h1>Review App</h1>
+        <hr className="hrLine" />
                 <div className="review-wrapper">
                     <div id="channelContainer" className="review-left">
-                        {reviewApps.map((reviewApp) => {
+                        {reviewProjects.map((reviewApp) => {
                             return (
                                 <div className="wrapper-review-card channel" onClick={() => { this.changeChannel(reviewApp) }} key={reviewApp.id}>
                                     <div className="logo-review">
-                                        <img src={reviewApp.imageURL} alt="Error" />
+                                        <img src={reviewApp.image} alt="Error" />
                                     </div>
                                     <div className="content">
                                         <h1>{reviewApp.title}</h1>
@@ -176,7 +165,7 @@ export default class GlintHubReviews extends React.Component {
                     <div className="review-right">
                         <div id="review-message">
                             {messages.map((message) => {
-                                if (message.user.uid == currentChannel.user.uid) {
+                                if (message.userUid == currentChannel.userUid) {
                                     return (
                                         <div className="sender">
                                             {message.content}

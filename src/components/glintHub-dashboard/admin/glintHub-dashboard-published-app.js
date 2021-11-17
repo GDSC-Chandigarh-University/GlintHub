@@ -1,10 +1,7 @@
 import React from "react";
-import EditButton from "../../../assets/images/edit.png";
 import { connect } from "react-redux";
-import { appsInit, setPublishedApp, setDraftedApp, setReviewApp } from "../../actions";
-import { collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, collectionGroup } from "@firebase/firestore";
+import { doc, deleteDoc } from "@firebase/firestore";
 import { Firestore } from "../../../firebase";
-import Spinner from "../../spinner/Spinner";
 import Modal from "react-modal";
 
 class GlintHubDraftedApp extends React.Component {
@@ -29,73 +26,14 @@ class GlintHubDraftedApp extends React.Component {
 
     componentDidMount() {
         if (this.state.isMounted) {
-            this.initAgain()
+            // this.initAgain()
         }
     }
 
-    initAgain = () => {
-        this.props.appsInit()
-        this.setState(() => {
-            return {
-                publishedApps: [],
-                draftedApps: [],
-                reviewApps: []
-            }
-        })
-        const Query = query(collectionGroup(Firestore, "Projects"), orderBy("timestamp", "desc"))
-        onSnapshot(Query, (snapshot) => {
-            snapshot.docs.map((doc) => {
-                if (doc.data().inReview) {
-                    this.props.setReviewApp(doc.data())
-                    this.setState((prevState) => {
-                        return {
-                            reviewApps: [
-                                ...prevState.reviewApps,
-                                doc.data()
-                            ]
-                        }
-                    })
-                } else if (doc.data().isDrafted) {
-                    this.props.setDraftedApp(doc.data())
-                    this.setState((prevState) => {
-                        return {
-                            draftedApps: [
-                                ...prevState.draftedApps,
-                                doc.data()
-                            ]
-                        }
-                    })
-                } else if (doc.data().isPublished) {
-                    this.props.setPublishedApp(doc.data())
-                    this.setState((prevState) => {
-                        return {
-                            publishedApps: [
-                                ...prevState.publishedApps,
-                                doc.data()
-                            ]
-                        }
-                    })
-                }
-            })
-            this.setState(() => {
-                return {
-                    totalProjects: snapshot.docs.length
-                }
-            })
-        });
-    }
-
+    
     componentDidUpdate() {
         if (this.state.isMounted) {
-            let { publishedApps, draftedApps, reviewApps, totalProjects, firstLoad, modalLoaded } = this.state
-            if (totalProjects == publishedApps.length + reviewApps.length + draftedApps.length && firstLoad) {
-                this.setState(() => {
-                    return {
-                        firstLoad: false
-                    }
-                })
-            }
-            if (modalLoaded) {
+            if (this.state.modalLoaded) {
                 this.onModalLoad()
             }
         }
@@ -154,8 +92,9 @@ class GlintHubDraftedApp extends React.Component {
     }
 
     render() {
-        let { draftedApps, reviewApps, publishedApps, firstLoad, modalIsOpen, title, description, githubURL, imageURL, technology, modalLoading } = this.state
-        return firstLoad ? <Spinner /> : (
+        let { modalIsOpen, title, description, githubURL, imageURL, technology, modalLoading } = this.state
+        let {publishedApps} = this.props.projects
+        return (
             <div id="glinthub-dashboard-published-app">
                 <h1 className="upper-h1">Published Apps</h1>
                 <hr id="draft-line" />
@@ -201,4 +140,4 @@ class GlintHubDraftedApp extends React.Component {
     }
 }
 
-export default connect(null, { appsInit, setPublishedApp, setDraftedApp, setReviewApp })(GlintHubDraftedApp)
+export default connect(null)(GlintHubDraftedApp)
