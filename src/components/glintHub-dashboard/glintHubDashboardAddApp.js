@@ -123,7 +123,7 @@ class GlintHubDashboardAddApp extends React.Component {
 
               if (event.target.name === 'draftApp') {
                 console.log(JSON.parse(localStorage.getItem("draftedProjects")))
-                // this.props.setDraftedProject(projectData);
+                this.props.setDraftedProject(projectData);
                 var storedDraftedProjects = JSON.parse(localStorage.getItem("draftedProjects"));
                 storedDraftedProjects.push(projectData);
                 // console.log(storedDraftedProjects);
@@ -131,7 +131,7 @@ class GlintHubDashboardAddApp extends React.Component {
               }
               else {
                 console.log("setting app to Local Storage", JSON.parse(localStorage.getItem("reviewProjects")))
-                // this.props.setReviewProject(projectData);
+                this.props.setReviewProject(projectData);
                 let storedReviewProjects = JSON.parse(localStorage.getItem("reviewProjects"));
                 storedReviewProjects.push(projectData);
                 // console.log(storedReviewProjects);

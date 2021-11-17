@@ -2,7 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import { doc, updateDoc, deleteDoc } from "@firebase/firestore";
 import { connect } from "react-redux";
-import { updateProject, deleteProject } from "../actions";
+import { updateProject, deleteProject, setPublishedProject } from "../actions";
 import { Firestore, deleteDocProject, updateDocProject, storageProject } from "../../firebase";
 import { uploadBytes, getDownloadURL } from "@firebase/storage";
 
@@ -89,11 +89,20 @@ class Modal extends React.Component {
                   });
               });
             } else {
+                let { title, image, description, githubURL, coreTech, techUsed, modalApp } = this.state;
                 let projectData = {
+                    title: modalApp.title,
+                    image: modalApp.image,
+                    description: modalApp.description,
+                    githubURL: modalApp.githubURL,
+                    coreTech: modalApp.coreTech,
+                    techUsed: modalApp.techUsed,
                     projectStatus: "isPublished"
               };
-            await updateDocProject(this.state.modalApp.id, projectData)
-            this.props.updateProject(this.state.modalApp, projectData)
+              this.props.setPublishedProject(projectData);
+            // await updateDocProject(this.state.modalApp.id, projectData)
+            
+            this.props.deleteProject(modalApp)
             this.props.closeModal();
             
             }
@@ -168,4 +177,4 @@ class Modal extends React.Component {
     }
 }
 
-export default connect(null, { updateProject, deleteProject })(Modal)
+export default connect(null, { updateProject, deleteProject, setPublishedProject })(Modal)

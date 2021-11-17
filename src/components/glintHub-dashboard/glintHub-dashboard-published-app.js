@@ -28,8 +28,8 @@ class GlintHubDraftedApp extends React.Component {
         let {publishedProjects} = this.props.projects
         return (
             <div id="glinthub-dashboard-published-app">
-                <h1 className="upper-h1">Published Apps</h1>
-                <hr id="draft-line" />
+                <h1>Published Apps</h1>
+        <hr className="hrLine" />
                 <div className="publish-apps-wrapper">
                     <div className="line1">
                         {publishedProjects.map((app) => {
