@@ -6,7 +6,7 @@ import './index.css';
 // import Register from "./components/Auth/Register";
 import registerServiceWorker from './registerServiceWorker';
 import "./styles/styles.scss"
-import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, withRouter, Link } from "react-router-dom"
 import { onAuthStateChanged, updateProfile } from '@firebase/auth';
 import { auth } from './firebase';
 import { createStore } from 'redux';
@@ -34,7 +34,7 @@ class Root extends React.Component {
     userLoading = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                if(roles.indexOf(user.email) == 0) {
+                if (roles.indexOf(user.email) == 0) {
                     user.role = "admin"
                 }
                 this.props.setUser(user)
@@ -55,20 +55,18 @@ class Root extends React.Component {
         }, 2300)
     }
 
-    componentWillUnmount() {
-        this.userLoading()
-    }
-
     render() {
-        return this.state.timeout ? <Spinner/> : this.props.userLoading ? <Spinner/> : this.props.user ? this.props.user.role == "admin" ? (<Switch>
+        return this.state.timeout ? <Spinner /> : this.props.userLoading ? <Spinner /> : this.props.user ? this.props.user.role == "admin" ? (<Switch>
+            <Route path="/" component={AdminDashboard}></Route>
             <Route path="/glinthub" component={AdminDashboard}></Route>
         </Switch>) :
-        (<Switch>
-            <Route path="/glinthub" component={Dashboard}></Route>
-        </Switch>) :
-        (<Switch>
-            <Route path="/glinthub" component={GlintHubLanding}></Route>
-        </Switch>)
+            (<Switch>
+                <Route path="/" exact={true}><Link to="/glinthub">GlintHub</Link></Route>
+                <Route path="/glinthub" component={Dashboard}></Route>
+            </Switch>) :
+            (<Switch>
+                <Route path="/glinthub" component={GlintHubLanding}></Route>
+            </Switch>)
     }
 }
 

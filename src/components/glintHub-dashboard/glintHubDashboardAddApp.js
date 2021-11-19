@@ -27,7 +27,7 @@ class GlintHubDashboardAddApp extends React.Component {
 
 
   componentDidMount() {
-    document.getElementById("imageLabel").style.display = "none";
+    // document.getElementById("imageLabel").style.display = "none";
   }
 
   componentWillUnmount() {
@@ -126,7 +126,7 @@ class GlintHubDashboardAddApp extends React.Component {
                 this.props.setDraftedProject(projectData);
                 var storedDraftedProjects = JSON.parse(localStorage.getItem("draftedProjects"));
                 storedDraftedProjects.push(projectData);
-                // console.log(storedDraftedProjects);
+                console.log(storedDraftedProjects);
                 localStorage.setItem("draftedProjects", JSON.stringify(storedDraftedProjects));
               }
               else {
@@ -134,8 +134,8 @@ class GlintHubDashboardAddApp extends React.Component {
                 this.props.setReviewProject(projectData);
                 let storedReviewProjects = JSON.parse(localStorage.getItem("reviewProjects"));
                 storedReviewProjects.push(projectData);
-                // console.log(storedReviewProjects);
-                localStorage.setItem("reviewProjects", JSON.stringify(storedReviewProjects));
+                console.log(storedReviewProjects);
+                localStorage.setItem("reviewProjects", JSON.stringify(storedReviewProjects))
               }
 
               this.setState(() => ({

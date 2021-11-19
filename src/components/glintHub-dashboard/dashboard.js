@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { onSnapshot } from "@firebase/firestore";
-import { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded } from "../actions";
+import { getDocs, onSnapshot } from "@firebase/firestore";
+import { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded, projectsInit } from "../actions";
 import { getCollectionProjects } from "../../firebase";
 import Header from "../header/header";
 import GlintHubSidebar from "./glintHubDashboardSidebar";
@@ -25,24 +25,25 @@ class Dashboard extends React.Component {
 
     componentWillUnmount() {
         console.log('unmounted')
+        this.props.projectsInit()
     }
 
 
-    projectsLoader = () => {
-        console.log(this.props.user.uid)
+    projectsLoader = async () => {
+        // console.log(this.props.user.uid)
         const getLocalPublishedProjects = JSON.parse(localStorage.getItem("publishedProjects"));
         const getLocalDraftedProjects = JSON.parse(localStorage.getItem("draftedProjects"));
         const getLocalReviewProjects = JSON.parse(localStorage.getItem("reviewProjects"));
-        console.log(this.props.projects)
         // getLocalPublishedProjects || getLocalDraftedProjects || getLocalReviewProjects
-        if (false) {
-            const unSubscribe = onSnapshot(getCollectionProjects(this.props.user.uid), (snapshot) => {
-                // console.log(snapshot)
-                console.log(getLocalReviewProjects)
+        if (getLocalPublishedProjects || getLocalDraftedProjects || getLocalReviewProjects) {
+            console.log("local project present")
+            const snapshot = await getDocs(getCollectionProjects(this.props.user.uid))
+                console.log(snapshot)
                 if (snapshot.docs.length != getLocalPublishedProjects.length + getLocalDraftedProjects.length + getLocalReviewProjects.length) {
                     console.log(snapshot.docs.length, getLocalPublishedProjects.length + getLocalDraftedProjects.length + getLocalReviewProjects.length, this.props.projects.draftedProjects.length + this.props.projects.reviewProjects.length + this.props.projects.publishedProjects.length)
-                    // console.log("Setting up new data");
-                    console.log(getLocalReviewProjects)
+                    console.log('firebase and local storage are different')
+                    console.log("Setting up new data");
+                //     console.log(getLocalReviewProjects)
                     snapshot.docs.map((doc, key) => {
                         // Fututre Optimization Load only those projects which are not present in Local Storage
                         if (doc.data().projectStatus == 'isPublished') {
@@ -53,23 +54,18 @@ class Dashboard extends React.Component {
                             this.props.setReviewProject(doc.data())
                         }
                         if (key + 1 == snapshot.docs.length) { // key starts from 0
-                            console.log(getLocalReviewProjects)
-                            console.log('errorplace')
+                            console.log("setting up new data completed")
                             this.props.projectsLoaded()
-                            unSubscribe()
                         }
                     })
                     if (snapshot.docs.length == 0) { // key starts from 0
-                        console.log(getLocalReviewProjects)
-                        console.log('errorplace')
                         this.props.projectsLoaded()
-                        unSubscribe()
                     }
+                    this.setState(() => ({ settingLocalStorage: false }))
                 }
                 else {
-                    // console.log(getLocalReviewProjects, getLocalPublishedProjects, getLocalDraftedProjects)
-                    // console.log('loading local storage');
-                    console.log('errorplace')
+                    console.log(getLocalReviewProjects, getLocalPublishedProjects, getLocalDraftedProjects)
+                    console.log('loading local storage');
                     getLocalPublishedProjects.map((project) => {
                         this.props.setPublishedProject(project)
                     })
@@ -79,13 +75,11 @@ class Dashboard extends React.Component {
                     getLocalReviewProjects.map((project) => {
                         this.props.setReviewProject(project)
                     })
-                    console.log('errorplace')
-                    this.props.projectsLoaded()
                     this.setState(() => ({ settingLocalStorage: false }))
+                    this.props.projectsLoaded()
                 }
-            });
         } else {
-            const unSubscribe = onSnapshot(getCollectionProjects(this.props.user.uid), (snapshot) => {
+            const snapshot = getDocs(getCollectionProjects(this.props.user.uid))
                 // console.log(snapshot)
                 console.log('errorplace')
                 snapshot.docs.map((doc, key) => {
@@ -99,28 +93,26 @@ class Dashboard extends React.Component {
                     if (key + 1 == snapshot.docs.length) {
                         console.log('errorplace')
                         this.props.projectsLoaded()
-                        unSubscribe()
                     }
                 })
-            });
         }
     }
 
 
     componentDidUpdate() {
         // Updating Local Storage with New Data if any
-        // if (!this.props.projects.isLoading && this.state.settingLocalStorage) {
-        //     localStorage.setItem("reviewProjects", JSON.stringify(this.props.projects.reviewProjects))
-        //     localStorage.setItem("draftedProjects", JSON.stringify(this.props.projects.draftedProjects))
-        //     localStorage.setItem("publishedProjects", JSON.stringify(this.props.projects.publishedProjects))
-        //     console.log('errorplace')
-        //     this.setState(() => {
-        //         return {
-        //             settingLocalStorage: false
-        //         }
-        //     })
-        //     // console.log("Setting project to local storage")
-        // }
+        if (!this.props.projects.isLoading && this.state.settingLocalStorage) {
+            console.log("Setting project to local storage", this.state.settingLocalStorage)
+            localStorage.setItem("reviewProjects", JSON.stringify(this.props.projects.reviewProjects))
+            localStorage.setItem("draftedProjects", JSON.stringify(this.props.projects.draftedProjects))
+            localStorage.setItem("publishedProjects", JSON.stringify(this.props.projects.publishedProjects))
+            console.log('errorplace')
+            this.setState(() => {
+                return {
+                    settingLocalStorage: false
+                }
+            })
+        }
     }
 
     
@@ -164,4 +156,4 @@ export default connect((state) => {
         user: state.user_reducer.user,
         projects: state.projects_reducer
     }
-}, { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded })(Dashboard)
+}, { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded, projectsInit })(Dashboard)
