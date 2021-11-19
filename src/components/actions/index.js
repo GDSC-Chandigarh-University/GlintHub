@@ -32,6 +32,10 @@ export const setReviewProject = (projectData) => ({
     }
 })
 
+export const projectsInit = () => ({
+    type: actionTypes.PROJECTS_INIT,
+})
+
 export const projectsLoaded = () => ({
     type: actionTypes.PROJECTS_LOADED,
 })
