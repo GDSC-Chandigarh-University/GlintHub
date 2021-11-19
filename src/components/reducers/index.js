@@ -32,6 +32,13 @@ const initialProjectsState = {
 
 const projects_reducer = (state = initialProjectsState, action) => {
     switch (action.type) {
+        case actionTypes.PROJECTS_INIT:
+            return {
+                ...state,
+                publishedProjects: [],
+                draftedProjects: [],
+                reviewProjects: [],
+            };
         case actionTypes.SET_PUBLISHEDPROJECT:
             return {
                 ...state,
