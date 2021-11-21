@@ -1,21 +1,31 @@
 export const SET_USER = "SET_USER"
 
+
 export const CLEAR_USER = "CLEAR_USER"
+
 
 export const PROJECTS_INIT = "PROJECTS_INIT"
 
+
 export const SET_PUBLISHEDPROJECT = "SET_PUBLISHEDPROJECT"
+
 
 export const SET_DRAFTEDPROJECT = "SET_DRAFTEDPROJECT"
 
+
 export const SET_REVIEWPROJECT = "SET_REVIEWPROJECT"
+
 
 export const PROJECTS_LOADED = "PROJECTS_LOADED"
 
+
 export const UPDATE_PROJECT = "UPDATE_PROJECT"
+
 
 export const DELETE_PROJECT = "DELETE_PROJECT"
 
-export const DISABLER_OFF = "DISABLER_OFF"
 
 export const DISABLER_ON = "DISABLER_ON"
+
+
+export const DISABLER_OFF = "DISABLER_OFF"

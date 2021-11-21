@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleAuthLogin } from "../config/firebase";
+import { GoogleAuthLogin } from "../../config/firebase";
 import Hero from "../../assets/images/hero_img.png"
 
 export default function GlintHubLandingHero() {

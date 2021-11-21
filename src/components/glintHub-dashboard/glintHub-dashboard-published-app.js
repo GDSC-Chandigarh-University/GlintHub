@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { doc, deleteDoc } from "@firebase/firestore";
-import { Firestore } from "../../firebase";
+import { Firestore } from "../../config/firebase";
 import Modal from "./Modal";
 
 class GlintHubDraftedApp extends React.Component {

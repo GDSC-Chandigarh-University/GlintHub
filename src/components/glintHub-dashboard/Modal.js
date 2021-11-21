@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import { doc, updateDoc, deleteDoc } from "@firebase/firestore";
 import { connect } from "react-redux";
 import { updateProject, deleteProject, setPublishedProject } from "../actions";
-import { Firestore, deleteDocProject, updateDocProject, storageProject } from "../../firebase";
+import { Firestore, deleteDocProject, updateDocProject, storageProject } from "../../config/firebase"
 import { uploadBytes, getDownloadURL } from "@firebase/storage";
 
 class Modal extends React.Component {

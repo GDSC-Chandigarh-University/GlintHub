@@ -1,12 +1,11 @@
 import React from "react";
 import Send from "../../assets/images/send.svg";
-import { Firestore } from "../../firebase";
+import { Firestore } from "../../config/firebase";
 import { v4 } from "uuid";
 import { serverTimestamp } from "@firebase/firestore";
 import { setDoc, doc, onSnapshot, collection, query, orderBy } from "@firebase/firestore";
 import Spinner from "../spinner/Spinner";
-import { app, firestore } from "../config/firebaseConfig";
-import { getCollectionMessages, setDocMessage } from "../../firebase";
+import { getCollectionMessages, setDocMessage } from "../../config/firebase";
 
 export default class GlintHubReviews extends React.Component {
     state = {
