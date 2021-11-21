@@ -7,7 +7,7 @@ import { v4 } from "uuid"; // ProjectId
 import LinearProgress from '@mui/material/LinearProgress';
 import { setReviewProject, setDraftedProject } from "../actions"; // Set Project to redux store
 import { disablerOn, disablerOff } from "../actions"; // Disable all other activities (clicks) while adding the Project
-import { storageProject, setDocProject } from "../../firebase"; //Set Project to firebase
+import { storageProject, setDocProject } from "../../config/firebase"; //Set Project to firebase
 import checkCircle from "../../assets/images/check-circle.svg";
 import xCircle from "../../assets/images/x-circle.svg";
 

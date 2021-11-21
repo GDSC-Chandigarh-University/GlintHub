@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { getDocs, onSnapshot } from "@firebase/firestore";
 import { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded, projectsInit } from "../actions";
-import { getCollectionProjects } from "../../firebase";
+import { getUserCollectionProjects } from "../../config/firebase";
 import Header from "../header/header";
 import GlintHubSidebar from "./glintHubDashboardSidebar";
 import GlintHubDashboard from "./glintHubDashboard";
@@ -37,8 +37,8 @@ class Dashboard extends React.Component {
         // getLocalPublishedProjects || getLocalDraftedProjects || getLocalReviewProjects
         if (getLocalPublishedProjects || getLocalDraftedProjects || getLocalReviewProjects) {
             console.log("local project present")
-            const snapshot = await getDocs(getCollectionProjects(this.props.user.uid))
-                console.log(snapshot)
+            const snapshot = await getDocs(getUserCollectionProjects(this.props.user.uid))
+                console.log(snapshot.docs.length)
                 if (snapshot.docs.length != getLocalPublishedProjects.length + getLocalDraftedProjects.length + getLocalReviewProjects.length) {
                     console.log(snapshot.docs.length, getLocalPublishedProjects.length + getLocalDraftedProjects.length + getLocalReviewProjects.length, this.props.projects.draftedProjects.length + this.props.projects.reviewProjects.length + this.props.projects.publishedProjects.length)
                     console.log('firebase and local storage are different')
@@ -79,7 +79,10 @@ class Dashboard extends React.Component {
                     this.props.projectsLoaded()
                 }
         } else {
-                getDocs(getCollectionProjects(this.props.user.uid))
+            localStorage.setItem("publishedProjects", JSON.stringify([]))
+            localStorage.setItem("draftedProjects", JSON.stringify([]))
+            localStorage.setItem("reviewProjects", JSON.stringify([]))
+                getDocs(getUserCollectionProjects(this.props.user.uid))
                 .then((snapshot) => {
                     snapshot.docs.map((doc, key) => {
                         if (doc.data().projectStatus == 'inReview') {
@@ -154,8 +157,8 @@ class Dashboard extends React.Component {
 
 export default connect((state) => {
     return {
-        user: state.user_reducer.user,
-        projects: state.projects_reducer,
-        disabler: state.disabler_reducer.disable
+        user: state.userReducer.user,
+        projects: state.projectsReducer,
+        disabler: state.disablerReducer.disable
     }
 }, { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded, projectsInit })(Dashboard)

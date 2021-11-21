@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { GoogleAuthLogin, GoogleAuthLogout } from "../config/firebase";
-import { AuthState } from "../config/firebaseauth";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { GoogleAuthLogin, GoogleAuthLogout } from "../../config/firebase";
 import Logo from "../../assets/images/logo.png"
 
 function Header(props) {
-    const currentUser = AuthState().currentUser
+    const currentUser = props.user
     const handleGoogleAuthLogin = async () => {
         try {
           await GoogleAuthLogin()
@@ -71,6 +70,6 @@ function Header(props) {
 
 export default  connect((state) => {
     return {
-        authReducer: state.authReducer
+        user: state.userReducer.user
     }
 })(Header)
