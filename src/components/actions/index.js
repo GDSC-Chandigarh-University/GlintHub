@@ -54,3 +54,11 @@ export const deleteProject = (project) => ({
         project: project
     }
 })
+
+export const disablerOn = () => ({
+    type: actionTypes.DISABLER_ON,
+})
+
+export const disablerOff = () => ({
+    type: actionTypes.DISABLER_OFF,
+})

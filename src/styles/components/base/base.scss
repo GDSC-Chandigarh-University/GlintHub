@@ -58,3 +58,12 @@ a{
     padding: 15px 20px;
   }
 }
+
+#disabler {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  z-index: 10000;
+}

@@ -42,17 +42,17 @@ const projects_reducer = (state = initialProjectsState, action) => {
         case actionTypes.SET_PUBLISHEDPROJECT:
             return {
                 ...state,
-                publishedProjects: [...state.publishedProjects, action.payload.projectData],
+                publishedProjects: [ action.payload.projectData, ...state.publishedProjects ],
             };
         case actionTypes.SET_REVIEWPROJECT:
             return {
                 ...state,
-                reviewProjects: [...state.reviewProjects, action.payload.projectData],
+                reviewProjects: [action.payload.projectData, ...state.reviewProjects ],
             };
         case actionTypes.SET_DRAFTEDPROJECT:
             return {
                 ...state,
-                draftedProjects: [...state.draftedProjects, action.payload.projectData],
+                draftedProjects: [action.payload.projectData,...state.draftedProjects ],
             };
         case actionTypes.PROJECTS_LOADED:
             return {
@@ -137,9 +137,29 @@ const projects_reducer = (state = initialProjectsState, action) => {
     }
 };
 
+const disablerState = {
+    disable: false
+};
+
+const disabler_reducer = (state = initialUserState, action) => {
+    switch (action.type) {
+        case actionTypes.DISABLER_ON:
+            return {
+                disable: true
+            };
+        case actionTypes.DISABLER_OFF:
+            return {
+                disable: false
+            };
+        default:
+            return state;
+    }
+};
+
 const rootReducer = combineReducers({
     user_reducer: user_reducer,
     projects_reducer: projects_reducer,
+    disabler_reducer: disabler_reducer
 });
 
 export default rootReducer;
