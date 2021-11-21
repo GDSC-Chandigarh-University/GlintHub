@@ -1,0 +1,24 @@
+.MuiLinearProgress-root {
+    width: 800px;
+    height: 7px !important;
+    border-radius: 10px;
+    background-color: var(--lightGreen3) !important;
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+
+.MuiLinearProgress-bar {
+    background-color: var(--darkGreen) !important;
+}
+
+@media screen and (max-width: 1000px) {
+    .MuiLinearProgress-root {
+        width: 330px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .MuiLinearProgress-root {
+        width: 230px;
+    }
+}

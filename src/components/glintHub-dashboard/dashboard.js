@@ -79,21 +79,21 @@ class Dashboard extends React.Component {
                     this.props.projectsLoaded()
                 }
         } else {
-            const snapshot = getDocs(getCollectionProjects(this.props.user.uid))
-                // console.log(snapshot)
-                console.log('errorplace')
-                snapshot.docs.map((doc, key) => {
-                    if (doc.data().projectStatus == 'inReview') {
-                        this.props.setReviewProject(doc.data())
-                    } else if (doc.data().projectStatus == 'isDrafted') {
-                        this.props.setDraftedProject(doc.data())
-                    } else if (doc.data().projectStatus == 'isPublished') {
-                        this.props.setPublishedProject(doc.data())
-                    }
-                    if (key + 1 == snapshot.docs.length) {
-                        console.log('errorplace')
-                        this.props.projectsLoaded()
-                    }
+                getDocs(getCollectionProjects(this.props.user.uid))
+                .then((snapshot) => {
+                    snapshot.docs.map((doc, key) => {
+                        if (doc.data().projectStatus == 'inReview') {
+                            this.props.setReviewProject(doc.data())
+                        } else if (doc.data().projectStatus == 'isDrafted') {
+                            this.props.setDraftedProject(doc.data())
+                        } else if (doc.data().projectStatus == 'isPublished') {
+                            this.props.setPublishedProject(doc.data())
+                        }
+                        if (key + 1 == snapshot.docs.length) {
+                            console.log('errorplace')
+                            this.props.projectsLoaded()
+                        }
+                    })
                 })
         }
     }
@@ -120,6 +120,7 @@ class Dashboard extends React.Component {
         let { path } = this.props.match
         return (
             <div>
+                {this.props.disabler && <div id="disabler"></div>}
                 <Header></Header>
                 <div id="root">
                     <GlintHubSidebar projects={this.props.projects}></GlintHubSidebar>
@@ -154,6 +155,7 @@ class Dashboard extends React.Component {
 export default connect((state) => {
     return {
         user: state.user_reducer.user,
-        projects: state.projects_reducer
+        projects: state.projects_reducer,
+        disabler: state.disabler_reducer.disable
     }
 }, { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded, projectsInit })(Dashboard)

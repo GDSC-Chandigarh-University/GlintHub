@@ -2,10 +2,12 @@ import React from "react";
 import { withRouter } from "react-router"; // Redirecting after adding Project
 import { connect } from "react-redux";
 import { serverTimestamp } from "@firebase/firestore";
-import { uploadBytes, getDownloadURL } from "@firebase/storage";
+import { uploadBytes, getDownloadURL } from "@firebase/storage"; // Upload the image to firebsae storage and get it's URL
 import { v4 } from "uuid"; // ProjectId
-import { setReviewProject, setDraftedProject } from "../actions";
-import { storageProject, setDocProject } from "../../firebase";
+import LinearProgress from '@mui/material/LinearProgress';
+import { setReviewProject, setDraftedProject } from "../actions"; // Set Project to redux store
+import { disablerOn, disablerOff } from "../actions"; // Disable all other activities (clicks) while adding the Project
+import { storageProject, setDocProject } from "../../firebase"; //Set Project to firebase
 import checkCircle from "../../assets/images/check-circle.svg";
 import xCircle from "../../assets/images/x-circle.svg";
 
@@ -15,24 +17,16 @@ class GlintHubDashboardAddApp extends React.Component {
     user: this.props.user,
     projects: this.props.projects,
     title: "",
-    image: "", // To pass inFormValid
+    image: "", // To pass image through inFormValid
     description: "",
     githubURL: "",
     coreTech: "",
     techUsed: "",
-    addingProject: false,
+    addingProject: false, // Disable the buttons while adding the Project
+    addingProjectProgress: 0, // Loading of project to redux store and firebase
     error: false, // Changed to error message
-    projectAdded: false, // Changed to inReview or isDrafted
+    projectAdded: false, // Changed to inReview or isDrafted t0 show added status
   };
-
-
-  componentDidMount() {
-    // document.getElementById("imageLabel").style.display = "none";
-  }
-
-  componentWillUnmount() {
-    console.log('Unmounted')
-  }
 
 
   handleChange = (event) => {
@@ -45,13 +39,12 @@ class GlintHubDashboardAddApp extends React.Component {
 
   isFormValid = ({ title, image, description, githubURL, coreTech, techUsed }) => {
     if (title && image && description && githubURL && coreTech && techUsed) {
-      // console.log(image, this.getFileExtension(image))
       if (this.getFileExtension(image) === "png" || this.getFileExtension(image) === "jpg" || this.getFileExtension(image) === "jpeg") {
         const imageFile = document.getElementById("image").files[0];
         if (imageFile.size > 1000000) {
           this.setState(() => ({ error: "Image size should be less than 1MB" }))
           setTimeout(() => {
-            this.setState(() => ({ error: false })) // Making error false again so that user can again get error on mistake
+            this.setState(() => ({ error: false })) // Making error false again so that user can again get error on another mistake
           }, 1000)
           return false
         }
@@ -60,7 +53,7 @@ class GlintHubDashboardAddApp extends React.Component {
       else {
         this.setState(() => ({ error: "Image should only be in PNG, JPG, or JPEG Format" }))
         setTimeout(() => {
-          this.setState(() => ({ error: false })) // Making error false again so that user can again get error on mistake
+          this.setState(() => ({ error: false })) // Making error false again so that user can again get error on another mistake
         }, 1000)
         return false
       }
@@ -68,7 +61,7 @@ class GlintHubDashboardAddApp extends React.Component {
     else {
       this.setState(() => ({ error: "Fields should not be empty" }))
       setTimeout(() => {
-        this.setState(() => ({ error: false }))
+        this.setState(() => ({ error: false })) // Making error false again so that user can again get error on another mistake
       }, 1000);
       return false;
     }
@@ -76,8 +69,11 @@ class GlintHubDashboardAddApp extends React.Component {
 
 
   handleAddProject = async (event) => {
+    document.getElementById('root-1').scrollTo({  // For mobile view
+      top: 0,
+      behavior: "smooth"
+    });
     const { user, projects, title, description, githubURL, coreTech, techUsed } = this.state
-    const imageFile = document.getElementById("image").files[0];
     const projectId = v4();
 
     if (event.target.name === "addApp" && projects.reviewProjects.length > 2) {
@@ -93,68 +89,125 @@ class GlintHubDashboardAddApp extends React.Component {
       }, 1000);
     }
     else if (this.isFormValid(this.state)) {
-      this.setState(() => ({ addingProject: true }))
+      const imageFile = document.getElementById("image").files[0];
+      this.props.disablerOn()
+      this.setState(() => ({
+        addingProject: true,
+        addingProjectProgress: 10
+      }))
+      setInterval(() => {
+        this.setState((prevState) => {
+          if (prevState.addingProjectProgress < 20) {
+            return {
+              addingProjectProgress: 20
+            }
+          }
+        })
+      }, 1000);
+      setInterval(() => {
+        this.setState((prevState) => {
+          if (prevState.addingProjectProgress < 30) {
+            return {
+              addingProjectProgress: 30
+            }
+          }
+        })
+      }, 2000);
+      setInterval(() => {
+        this.setState((prevState) => {
+          if (prevState.addingProjectProgress < 40) {
+            return {
+              addingProjectProgress: 40
+            }
+          }
+        })
+      }, 3000);
+      setInterval(() => {
+        this.setState((prevState) => {
+          if (prevState.addingProjectProgress < 50) {
+            return {
+              addingProjectProgress: 50
+            }
+          }
+        })
+      }, 4000);
+
       uploadBytes(storageProject(projectId), imageFile).then((snapshot) => {
         // console.log("Uploaded a blob or file!", snapshot);
+        this.setState(() => ({
+          addingProjectProgress: 60
+        }))
         getDownloadURL(storageProject(projectId))
-          .then(
-            async (url) => {
-              let projectData = {
-                title,
-                image: url,
-                description,
-                githubURL,
-                coreTech,
-                techUsed,
-                id: projectId,
-                projectStatus: 'inReview',
-                timestamp: serverTimestamp(),
-                userUid: user.uid,
-                userDisplayName: user.displayName,
-                userPhotoURL: user.photoURL,
-              };
+          .then(async (url) => {
 
-              if (event.target.name === 'draftApp') {
-                projectData = { ...projectData, projectStatus: "isDrafted" }
-              }
+            let projectData = {
+              title,
+              image: url,
+              description,
+              githubURL,
+              coreTech,
+              techUsed,
+              id: projectId,
+              projectStatus: 'inReview',
+              timestamp: serverTimestamp(),
+              userUid: user.uid,
+              userDisplayName: user.displayName,
+              userPhotoURL: user.photoURL,
+            };
 
-              // console.log(url);
-              await setDocProject(projectId, projectData);
+            if (event.target.name === 'draftApp') {
+              projectData = { ...projectData, projectStatus: "isDrafted" }
+            }
 
-              if (event.target.name === 'draftApp') {
-                console.log(JSON.parse(localStorage.getItem("draftedProjects")))
-                this.props.setDraftedProject(projectData);
-                var storedDraftedProjects = JSON.parse(localStorage.getItem("draftedProjects"));
-                storedDraftedProjects.push(projectData);
-                console.log(storedDraftedProjects);
-                localStorage.setItem("draftedProjects", JSON.stringify(storedDraftedProjects));
-              }
-              else {
-                console.log("setting app to Local Storage", JSON.parse(localStorage.getItem("reviewProjects")))
-                this.props.setReviewProject(projectData);
-                let storedReviewProjects = JSON.parse(localStorage.getItem("reviewProjects"));
-                storedReviewProjects.push(projectData);
-                console.log(storedReviewProjects);
-                localStorage.setItem("reviewProjects", JSON.stringify(storedReviewProjects))
-              }
+            setInterval(() => {
+              this.setState((prevState) => {
+                if (prevState.addingProjectProgress < 70) {
+                  return {
+                    addingProjectProgress: 70
+                  }
+                }
+              })
+            }, 1000);
+            await setDocProject(projectId, projectData);
+            this.setState(() => ({
+              addingProjectProgress: 80
+            }))
+            setInterval(() => {
+              this.setState((prevState) => {
+                if (prevState.addingProjectProgress < 90) {
+                  return {
+                    addingProjectProgress: 90
+                  }
+                }
+              })
+            }, 1000);
 
-              this.setState(() => ({
-                addingProject: false,
-                projectAdded: "inReview",
-              }));
+            if (event.target.name === 'draftApp') {
+              this.props.setDraftedProject(projectData);
+            }
+            else {
+              this.props.setReviewProject(projectData);
+            }
 
-              if (event.target.name === "draftApp") {
-                this.setState(() => ({ projectAdded: "isDrafted", }));
-                setTimeout(() => {
-                  this.props.history.push("/glinthub/draftedApp");
-                }, 1000);
-              }
-              else {
-                setTimeout(() => {
-                  this.props.history.push("/glinthub");
-                }, 1000);
-              }
-            })
+            this.setState(() => ({
+              addingProjectProgress: 100,
+              addingProject: false,
+              projectAdded: "inReview",
+            }))
+            
+            if (event.target.name === "draftApp") {
+              this.setState(() => ({ projectAdded: "isDrafted", }));
+              setTimeout(() => {
+                this.props.history.push("/glinthub/draftedApp");
+              }, 1000);
+            }
+            else {
+              setTimeout(() => {
+                this.props.history.push("/glinthub/reviewApp");
+              }, 1000);
+            }
+            this.props.disablerOff()
+          })
           .catch((error) => {
             // console.log(error)
           });
@@ -164,19 +217,18 @@ class GlintHubDashboardAddApp extends React.Component {
 
 
   uploadImage = (event) => {
-    // Change Image value at state so that it can go through isFormValid
-    this.setState(() => ({ [event.target.name]: event.target.value }));
-    // console.log("pressed");
-    var image = document.getElementById("image"); // Visibility Hidden at componentDidMount
+    var image = document.getElementById("image");
     var imageLabel = document.getElementById("imageLabel");
 
     if (image.value !== "") {
       document.getElementById("labelCover").style.visibility = "hidden";
-      var imageSplit = image.value.split("\\");
-      var imageName = imageSplit[imageSplit.length - 1];
+      var imageName = image.value.split("\\").pop();
+      this.setState(() => ({ [event.target.name]: imageName })); // Change Image value at state so that it can pass through isFormValid
+      if (imageName.length > 22) {
+        imageName = imageName.substr(0, 22) + '...' + this.getFileExtension(imageName)
+      }
       imageLabel.textContent = imageName;
       imageLabel.style.display = "block";
-      imageLabel.classList.add("imageLabel"); // Add border, padding etc.
       image.setAttribute("disabled", "disabled");
     }
   };
@@ -186,19 +238,20 @@ class GlintHubDashboardAddApp extends React.Component {
     var image = document.getElementById("image");
     var imageLabel = document.getElementById("imageLabel");
 
-    // console.log(event.nativeEvent.offsetX, imageLabel.offsetWidth - 17);
     if (event.nativeEvent.offsetX > imageLabel.offsetWidth - 17) {
       image.value = "";
       this.setState(() => ({ image: "" }));
-      document.getElementById("labelCover").style.visibility = "visible";
       imageLabel.style.display = "none";
+      imageLabel.textContent = "No file chosen";
+      document.getElementById("labelCover").style.visibility = "visible";
       image.removeAttribute("disabled");
     }
   };
 
 
   render() {
-    const { title, image, description, githubURL, techUsed, addingProject, projectAdded, error } = this.state
+    const { title, description, githubURL, techUsed, addingProject, addingProjectProgress, error, projectAdded } = this.state
+
     return (
       <div id="glinthubDashboardAddApp">
         {projectAdded && (projectAdded === "isDrafted" ? (
@@ -216,7 +269,7 @@ class GlintHubDashboardAddApp extends React.Component {
           </div>
         )}
         <h1>Add App</h1>
-        <hr className="hrLine" />
+        <LinearProgress variant="determinate" value={addingProjectProgress} />
         <div className="addAppForm">
           <div className="addAppFormFields title">
             <input className="addAppFormField" maxLength="15" type="text" name="title" value={title} placeholder="Project Title" onChange={this.handleChange} />
@@ -227,7 +280,7 @@ class GlintHubDashboardAddApp extends React.Component {
               <span className="labelCover">No file chosen</span>
             </div>
             <input className="addAppFormField" type="file" id="image" name="image" onChange={this.uploadImage} />
-            <label id="imageLabel" onClick={this.removeImage}>No file chosen</label>
+            <label id="imageLabel" className="imageLabel" onClick={this.removeImage}>No file chosen</label>
           </div>
           <div className="addAppFormFields description">
             <textarea className="addAppFormField" type="text" placeholder="Project Description" name="description" value={description} onChange={this.handleChange}></textarea>
@@ -263,5 +316,5 @@ class GlintHubDashboardAddApp extends React.Component {
 
 
 export default withRouter(
-  connect(null, { setDraftedProject, setReviewProject })(GlintHubDashboardAddApp)
+  connect(null, { setDraftedProject, setReviewProject, disablerOn, disablerOff })(GlintHubDashboardAddApp)
 );
