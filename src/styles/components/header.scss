@@ -1,0 +1,227 @@
+#header {
+  width: 100%;
+  height: 68px;
+  background-color: white;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 45px 40px 55px;
+
+  .logo {
+    height: 35px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  #navbar {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+
+    > a:hover,
+    span:hover {
+      cursor: pointer;
+      border-bottom: 1.6px solid black;
+    }
+  }
+
+  #profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-radius: 8px;
+    padding: 10px 15px 10px 10px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--lightGreen2);
+    }
+
+    .profileImg {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+    }
+
+    .arrow {
+      width: 8px;
+      transform: rotate(90deg);
+    }
+  }
+
+  #profileDropdown {
+    display: flex;
+    background-color: white;
+    min-width: 240px;
+    flex-direction: column;
+    border-radius: 15px;
+    opacity: 100;
+    right: 40px;
+    animation: profileDropdown 0.3s linear;
+    top: 82px;
+    position: absolute;
+    box-shadow: 2px 8px 16px rgb(3 17 38 / 11%), 0 0 1px rgb(0 12 32 / 2%);
+
+    > a {
+      padding: 10px 25px;
+
+      &:last-child {
+        border-radius: 0 0 15px 15px;
+      }
+
+      &:hover {
+        background-color: var(--lightGreen2);
+      }
+    }
+
+    .userInfo {
+      padding: 20px 20px 10px 20px;
+      display: flex;
+      gap: 10px;
+
+      .profileImg {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+      }
+    }
+  }
+
+  @keyframes profileDropdown {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 100;
+    }
+  }
+
+  #burger {
+    display: none;
+    position: absolute;
+    cursor: pointer;
+    width: 2rem;
+    height: 22px;
+    top: 29px;
+    right: 35px;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 0;
+
+    > div {
+      height: 2.4px;
+      background-color: #000;
+      transition: 0.5s;
+      z-index: 999;
+      border-radius: 100px;
+    }
+  }
+
+  #menuInput {
+    display: none;
+
+    &:checked ~ #burger > div:nth-child(1) {
+      transform: translate(0.5px, 10.5px) rotate(45deg);
+    }
+
+    &:checked ~ #burger > div:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:checked ~ #burger > div:nth-child(3) {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+
+    &:checked ~ #menu {
+      transform: translateX(0);
+    }
+  }
+
+  #menu {
+    display: none;
+    padding-top: 10px;
+    background: white;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    transform: translateX(100%);
+    top: 81px;
+    z-index: 1000;
+    transition: 0.5s;
+
+    .menu {
+      overflow-y: auto;
+      display: flex;
+      height: calc(100vh - 81px);
+      flex-direction: column;
+      align-items: center;
+
+      a,
+      span {
+        font-size: 22px;
+        line-height: 31.68px;
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+
+        &:hover {
+          cursor: pointer;
+          background-color: var(--lightGreen2);
+        }
+      }
+
+      .userInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        .profileImg {
+          border-radius: 100%;
+          width: 130px;
+          height: 130px;
+        }
+      }
+
+      .profileDropdown {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .logOut {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+
+          img {
+            width: 22px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #header {
+    padding: 40px 25px 40px 35px;
+
+    #navbar {
+      display: none;
+    }
+
+    #burger {
+      display: flex;
+    }
+
+    #menu {
+      display: block;
+    }
+  }
+}
