@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "@firebase/auth";
-import { getFirestore, collection, doc, setDoc, query, orderBy, where, deleteDoc, updateDoc } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider, signOut, signInWithRedirect } from "@firebase/auth";
+import { getFirestore, collection, doc, setDoc, query, orderBy, where, deleteDoc, updateDoc, limit } from "firebase/firestore";
 import { getStorage, ref } from "firebase/storage";
 
 
@@ -26,31 +26,44 @@ export const provider = new GoogleAuthProvider()
 export const auth = getAuth(firebaseApp);
 
 
-export async function GoogleAuthLogin() {
-    return await signInWithPopup(auth, provider)
+export async function googleAuthLogin() {
+    await signInWithRedirect(auth, provider)
         .catch((error) => {
             console.log(error)
         });
 }
 
 
-export async function GoogleAuthLogout() {
-    await signOut(auth).catch((error) => {
-        console.log(error)
-    });
+export async function googleAuthLogout() {
+    await signOut(auth)
+        .catch((error) => {
+            console.log(error)
+        });
 }
 
 
 export const setDocProject = (id, data) => setDoc(doc(firestore, "Projects", id), data)
 
 
+export const setDocUser = (id, data) => setDoc(doc(firestore, "Users", id), data)
+
+
 export const getUserCollectionProjects = (userUid) => query(collection(firestore, "Projects"), where("userUid", "==", userUid), orderBy("timestamp", 'asc'))
 
 
-export const getAllCollectionProjects = query(collection(firestore, "Projects"), orderBy("timestamp", 'asc'))
+export const getAllPublishedCollectionProjects = query(collection(firestore, "Projects"), where("projectStatus", "==", "isPublished"), orderBy("timestamp", 'asc'))
+
+
+export const getAllPublishedCollectionProjectsLimit = query(collection(firestore, "Projects"), where("projectStatus", "==", "isPublished"), orderBy("timestamp", 'asc'), limit(3))
+
+
+export const getCollectionUsers = (userUid) => query(collection(firestore, "Users"), where("userUid", "==", userUid))
 
 
 export const updateDocProject = (id, data) => updateDoc(doc(firestore, "Projects", id), data);
+
+
+export const updateDocUser = (id, data) => updateDoc(doc(firestore, "Users", id), data);
 
 
 export const deleteDocProject = (projectId) => deleteDoc(doc(firestore, "Projects", projectId))
@@ -66,3 +79,6 @@ export const storage = getStorage(firebaseApp)
 
 
 export const storageProject = (id) => ref(storage, `/Projects/${id}`);
+
+
+export const storageUser = (id) => ref(storage, `/Users/${id}`);

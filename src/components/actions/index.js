@@ -1,11 +1,21 @@
 import * as actionTypes from "./types";
 
 
+export const setServerError = () => ({
+    type: actionTypes.SET_SERVERERROR,
+})
+
+
 export const setUser = (user) => ({
     type: actionTypes.SET_USER,
     payload: {
         user: user
     }
+})
+
+
+export const setNewUser = () => ({
+    type: actionTypes.SET_NEWUSER,
 })
 
 
@@ -72,4 +82,33 @@ export const disablerOn = () => ({
 
 export const disablerOff = () => ({
     type: actionTypes.DISABLER_OFF,
+})
+
+
+export const setGlintHubSpaceProject = (projectData) => ({
+    type: actionTypes.SET_GLINTHUBSPACEPROJECT,
+    payload: {
+        projectData: projectData
+    }
+})
+
+
+export const glintHubSpaceProjectsLoaded = () => ({
+    type: actionTypes.GLINTHUBSPACEPROJECTS_LOADED,
+})
+
+
+export const glintHubSpaceFilterText = (text) => ({
+    type: actionTypes.GLINTHUBSPACEFILTER_TEXT,
+    payload: {
+        text
+    }
+})
+
+
+export const glintHubSpaceFilterTech = (tech) => ({
+    type: actionTypes.GLINTHUBSPACEFILTER_TECH,
+    payload: {
+        tech
+    }
 })

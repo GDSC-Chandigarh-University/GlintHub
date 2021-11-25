@@ -4,6 +4,7 @@ import * as actionTypes from "../actions/types";
 const initialUserState = {
     isLoading: true,
     user: null,
+    newUserLoading: true
 };
 
 
@@ -14,6 +15,11 @@ const userReducer = (state = initialUserState, action) => {
                 ...state,
                 user: action.payload.user,
                 isLoading: false
+            };
+        case actionTypes.SET_NEWUSER:
+            return {
+                ...state,
+                newUserLoading: false
             };
         case actionTypes.CLEAR_USER:
             return {
