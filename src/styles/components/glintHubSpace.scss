@@ -1,0 +1,51 @@
+.glintSpace {
+  padding: 0 70px;
+
+  .filterSection {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+
+    .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+      width: 50%;
+    }
+
+    .css-1nrlq1o-MuiFormControl-root {
+      width: 10%;
+    }
+  }
+}
+
+.glintSpaceSearchBar {
+  margin-bottom: 20px;
+  width: 40%;
+  height: 34px;
+  border-radius: 20px;
+  padding-left: 12px;
+  padding-bottom: 1px;
+}
+
+.glintHubSpaceGrid {
+  display: grid;
+  grid-template-columns: 438px 438px 438px;
+  gap: 30px;
+}
+
+@media screen and (max-width: 1520px) {
+  .glintHubSpaceGrid {
+    grid-template-columns: 439px 439px;
+  }
+}
+
+@media screen and (max-width: 1060px) {
+  .glintHubSpaceGrid {
+    grid-template-columns: 439px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .glintHubSpaceGrid {
+    grid-template-columns: 300px;
+  }
+}
