@@ -1,13 +1,27 @@
 import React from "react";
 
-const Spinner = () => {
-    return (
-        <div id="spinner">
-            <div className="load">
-                <hr /><hr /><hr /><hr />
+
+class Spinner extends React.Component {
+    componentDidMount() {
+        document.body.style.overflow = "hidden"
+    }
+
+
+    componentWillUnmount() {
+        document.body.style.overflow = "auto"
+    }
+
+
+    render() {
+        return (
+            <div id="spinner">
+                <div className="load">
+                    <hr /><hr /><hr /><hr />
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
+
 
 export default Spinner
