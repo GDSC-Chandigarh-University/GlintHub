@@ -1,0 +1,145 @@
+#userStepper {
+    .MuiBox-root.css-8atqhb {
+        padding: 50px 70px 0 70px;
+    }
+
+    #chooseImage {
+        height: 250px;
+        width: 250px;
+        background-color: wheat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        :hover {
+            cursor: pointer;
+        }
+
+        #image:hover {
+            cursor: pointer;
+        }
+
+        #imageViewer:hover {
+            cursor: pointer;
+        }
+
+        input {
+            visibility: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
+
+        img {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
+        color: var(--lightGreen4);
+    }
+
+    .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root {
+        height: 30px;
+        width: 30px;
+    }
+
+    .css-qivjh0-MuiStepLabel-label {
+        font-size: 18px;
+    }
+
+    .css-j5w0w9-MuiStepConnector-root {
+        height: 1.5px;
+        opacity: 0.2;
+        background-color: #707070;
+    }
+
+    .css-m5vj9m-MuiStepper-root {
+        margin-bottom: 50px;
+    }
+
+    .stepperContent {
+        padding: 0 40px 0px 40px;
+    }
+
+    .stepperTopFlex {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+
+        h5 {
+            width: 40%;
+        }
+    }
+
+    .stepperFlex {
+        width: 60%;
+        display: flex;
+        justify-content: space-between;
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+
+    .userInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        gap: 40px !important;
+
+        > div:first-child {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        div.MuiFormControl-root {
+            div {
+                height: 100%;
+                justify-self: stretch;
+            }
+        }
+        #bio {
+            height: 100%;
+            div.MuiFormControl-root {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+
+    .stepperFlex.reach {
+        flex-direction: column;
+        gap: 40px;
+
+        > div {
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 40px;
+
+            > div {
+                width: 100%;
+            }
+        }
+    }
+
+    .css-2royc9 {
+        padding: 0 40px 40px 0;
+    }
+
+    .css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input {
+        height: 100% !important;
+        overflow: auto !important;
+    }
+
+    .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
+        color: var(--lightGreen4);
+    }
+}

@@ -15,11 +15,16 @@ class Header extends React.Component {
 
 
     componentDidMount() {
-        { this.props.user && this.props.history.push("/glintHub") }
+        { (this.props.user && this.props.activeLink === "glintHub") && this.props.history.push("/glintHub") }
         window.addEventListener("click", (event) => {
             if (event && event.target) {
-                if (event.target.id !== "profile" && event.target.parentNode.id !== "profile" && event.target.id !== "profileDropdown" && event.target.parentNode.id !== "profileDropdown" && event.target.parentNode.parentNode.id !== "profileDropdown" && event.target.parentNode.parentNode.parentNode.id !== "profileDropdown") {
-                    this.setState(() => ({ openProfile: false }))
+                // console.log( event.target == "html")
+                try {
+                    if (event.target.id !== "profile" && event.target.parentNode.id !== "profile" && event.target.id !== "profileDropdown" && event.target.parentNode.id !== "profileDropdown" && event.target.parentNode.parentNode.id !== "profileDropdown" && event.target.parentNode.parentNode.parentNode.id !== "profileDropdown") {
+                        this.setState(() => ({ openProfile: false }))
+                    }
+                } catch (error) {
+                    console.log(error)
                 }
             }
         })
@@ -73,6 +78,16 @@ class Header extends React.Component {
     }
 
 
+    userStepperOut = () => {
+        if (this.props.activeLink === "userStepper") {
+            googleAuthLogout().then(() => {
+                window.location.reload()
+            })
+            this.closeMenu()
+        }
+    }
+
+
     render() {
         const { user, projects, activeLink } = this.props
         const { openProfile, error } = this.state
@@ -81,13 +96,13 @@ class Header extends React.Component {
             <div id="header">
                 {error && <div className="redSignal">{error}<img src={xCircle} /></div>}
                 <Link to={user ? "/glintHub" : "/"}>
-                    <img className="logo" src={glintHubLogo} alt="glintHub Logo" />
+                    {activeLink === "userStepper" ? <img className="logo" src={glintHubLogo} alt="glintHub Logo" onClick={this.userStepperOut} /> : <img className="logo" src={glintHubLogo} alt="glintHub Logo" />}
                 </Link>
                 <div id="navbar">
-                    <Link to="/liveSoon" target="_blank">GDSC CU</Link>
-                    <Link to={activeLink !== "glintHub" ? "/glintHub" : "/glintHubSpace"}>{activeLink !== "glintHub" ? "GlintHub" : "GlintHub Space"}</Link>
-                    <Link to={activeLink !== "glintHubStreak" ? "/glintHubStreak" : "/glintHubSpace"}>{activeLink !== "glintHubStreak" ? "GlintHub Streak" : "GlintHub Space"}</Link>
-                    <Link to="https://gdsc.community.dev/chandigarh-university-chandigarh/" target="_blank">Join Our Community</Link>
+                    <Link to="/liveSoon" onClick={this.userStepperOut} target="_blank">GDSC CU</Link>
+                    <Link onClick={this.userStepperOut} to={activeLink === "userStepper" ? "/glintHubSpace" : activeLink !== "glintHub" ? "/glintHub" : "/glintHubSpace"}>{activeLink === "userStepper" ? "GlintHub Space" : activeLink !== "glintHub" ? "GlintHub" : "GlintHub Space"}</Link>
+                    <Link onClick={this.userStepperOut} to={activeLink !== "glintHubStreak" ? "/glintHubStreak" : "/glintHubSpace"}>{activeLink !== "glintHubStreak" ? "GlintHub Streak" : "GlintHub Space"}</Link>
+                    <a href="https://gdsc.community.dev/chandigarh-university-chandigarh/" target="_blank">Join Our Community</a>
                     {user ? (<div>
                         <div id="profile" onClick={this.openProfile}>
                             <img className="profileImg" src={user.photoURL} alt="User" />
@@ -121,18 +136,18 @@ class Header extends React.Component {
                                 <p className="h3 mt-2">{user.displayName}</p>
                                 <p className="medium mb-3">{"Dummy Role"}</p>
                                 <div className="thinLine w-80 mb-3"></div>
-                                <Link to="/glintHub" onClick={this.closeMenu}>Dashboard</Link>
-                                <Link to={`${url}/addApp`} onClick={this.closeMenu}>Add App</Link>
-                                {projects.publishedProjects.length > 0 ? <Link to={`${url}/publishedApp`} onClick={this.closeMenu}>Published App</Link> : <Link name="Published" to="/" onClick={this.handleClick}>Published App</Link>}
-                                {projects.draftedProjects.length > 0 ? <Link to={`${url}/draftedApp`} onClick={this.closeMenu}>Drafted App</Link> : <Link name="Drafted" to="/" onClick={this.handleClick}>Drafted App</Link>}
-                                {projects.reviewProjects.length > 0 ? <Link className="mb-3" to={`${url}/reviewApp`} onClick={this.closeMenu}>Review App</Link> : <Link className="mb-3" name="In-Review" to="/" onClick={this.handleClick}>Review App</Link>}
+                                <Link to="/glintHub" onClick={this.userStepperOut}>Dashboard</Link>
+                                <Link to={`${url}/addApp`} onClick={this.userStepperOut}>Add App</Link>
+                                {projects.publishedProjects.length > 0 ? <Link to={`${url}/publishedApp`} onClick={this.userStepperOut}>Published App</Link> : <Link name="Published" to="/" onClick={this.handleClick}>Published App</Link>}
+                                {projects.draftedProjects.length > 0 ? <Link to={`${url}/draftedApp`} onClick={this.userStepperOut}>Drafted App</Link> : <Link name="Drafted" to="/" onClick={this.handleClick}>Drafted App</Link>}
+                                {projects.reviewProjects.length > 0 ? <Link className="mb-3" to={`${url}/reviewApp`} onClick={this.userStepperOut}>Review App</Link> : <Link className="mb-3" name="In-Review" to="/" onClick={this.handleClick}>Review App</Link>}
                                 <div className="thinLine w-80 mb-3"></div>
                             </div>
                         )}
-                        <Link to="/liveSoon" target="_blank" onClick={this.closeMenu}>GDSC CU</Link>
+                        <Link to="/liveSoon" target="_blank" onClick={this.userStepperOut}>GDSC CU</Link>
                         <Link to={activeLink !== "glintHub" ? "/glintHub" : "/glintHubSpace"}>{activeLink !== "glintHub" ? "GlintHub" : "GlintHub Space"}</Link>
                         <Link to={activeLink !== "glintHubStreak" ? "/glintHubStreak" : "/glintHubSpace"}>{activeLink !== "glintHubStreak" ? "GlintHub Streak" : "GlintHub Space"}</Link>
-                        <Link to="https://gdsc.community.dev/chandigarh-university-chandigarh/" target="_blank" onClick={this.closeMenu}>Join Our Community</Link>
+                        <Link to="https://gdsc.community.dev/chandigarh-university-chandigarh/" target="_blank" onClick={this.userStepperOut}>Join Our Community</Link>
                         {!user && <span className="mr-3" onClick={googleAuthLogin}>Sign In</span>}
                         {user && (
                             <div className="profileDropdown">
@@ -147,5 +162,6 @@ class Header extends React.Component {
         );
     }
 }
+
 
 export default withRouter(Header)
