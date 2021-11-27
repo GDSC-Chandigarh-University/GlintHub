@@ -1,0 +1,52 @@
+#glinthubLandingProjects {
+    padding: 0 70px;
+
+    .featured {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h3 {
+            font-size: 28px !important;
+        }
+    }
+
+    .viewAll {
+        background-color: var(--lightGreen4);
+        padding: 10px 20px;
+        border-radius: 15px;
+        color: white;
+    }
+
+    .glintHubSpaceGrid > div:nth-child(1) > div {
+        background-color: var(--p-bg-cl-6) !important;
+    }
+
+    .glintHubSpaceGrid > div:nth-child(2) > div {
+        background-color: var(--p-bg-cl-9) !important;
+    }
+
+    .glintHubSpaceGrid > div:nth-child(3) > div {
+        background-color: var(--p-bg-cl-8) !important;
+    }
+}
+
+
+@media screen and (max-width: 580px) {
+    #glinthubLandingProjects {
+        padding: 0 30px;
+
+        .featured.mb-4 {
+            margin-bottom: 10px !important;
+        }
+    
+        .viewAll{
+            display: none;
+        }
+
+        &.mt-100 {
+            margin-top: 10px;
+        }
+    }    
+  }
+  

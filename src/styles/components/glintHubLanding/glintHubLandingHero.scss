@@ -1,0 +1,56 @@
+#glinthubLandingHero {
+  height: calc(100vh - 81px);
+  display: flex;
+  align-items: center;
+  gap: 28%;
+
+  .heroContent {
+    margin-bottom: 50px;
+    margin-left: 140px;
+  }
+
+  .heroImg {
+    width: 55%;
+    position: absolute;
+    right: 22px;
+  }
+
+  .getStarted {
+    background-color: var(--lightGreen4);
+    padding: 10px 25px;
+    border: none;
+    color: white;
+    border-radius: 18px;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  #glinthubLandingHero {
+    .heroContent {
+      margin-left: 90px;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #glinthubLandingHero {
+    padding: 30px;
+    justify-content: center;
+
+    .heroContent {
+      margin-left: 0;
+    }
+    
+    .heroImg {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  #glinthubLandingHero {
+    .heroContent {
+      margin-bottom: 60px;
+    }
+  }
+}
