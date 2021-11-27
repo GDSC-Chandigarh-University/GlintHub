@@ -142,4 +142,10 @@
     .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
         color: var(--lightGreen4);
     }
+
+    .updateProfileButton {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 110px 40px 0;
+    }
 }
