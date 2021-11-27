@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { serverTimestamp } from "@firebase/firestore";
 import { uploadBytes, getDownloadURL } from "@firebase/storage";
 import { setDocUser, storageUser, updateDocUser } from "../config/firebase";
-import { setNewUser } from "./actions";
+import { setNewUser, setUser } from "./actions";
 
 
 const steps = ['Social Profile', 'Work Profile'];
@@ -29,7 +29,7 @@ class HorizontalLinearStepper extends React.Component {
     twitter: '',
     bio: '',
     role: '',
-    univeristy: '',
+    university: '',
     workExperience: '',
     skills: '',
     achievements: ''
@@ -42,10 +42,10 @@ class HorizontalLinearStepper extends React.Component {
 
 
   handleNext = async () => {
-    const { user, activeStep, firstName, lastName, gitHub, linkedIn, twitter, website, bio, role, univeristy, workExperience, skills, achievements } = this.state
+    const { user, activeStep, firstName, lastName, gitHub, linkedIn, twitter, website, bio, role, university, workExperience, skills, achievements } = this.state
     if (activeStep == 2) {
       let userData = {
-        univeristy,
+        university,
         workExperience,
         achievements,
         skills,
@@ -64,24 +64,26 @@ class HorizontalLinearStepper extends React.Component {
               url = ''
             }
             let userData = {
-              userUid: user.uid,
+              uid: user.uid,
               displayName: user.displayName,
               photoURL: user.photoURL,
               image: url,
               role,
-              fullName: firstName + lastName,
+              firstName,
+              lastName,
               gitHub,
               linkedIn,
               twitter,
               website,
               bio,
               role,
-              univeristy,
+              university,
               workExperience,
               achievements,
               skills,
               timestamp: serverTimestamp(),
             };
+            this.props.setUser(userData)
             await setDocUser(user.uid, userData);
             this.setState((prevState) => ({ activeStep: prevState.activeStep + 1 }))
           })
@@ -118,7 +120,7 @@ class HorizontalLinearStepper extends React.Component {
 
 
   render() {
-    const { activeStep, firstName, lastName, gitHub, linkedIn, twitter, website, bio, role, userImage, univeristy, skills, workExperience, achievements } = this.state
+    const { activeStep, firstName, lastName, gitHub, linkedIn, twitter, website, bio, role, userImage, university, skills, workExperience, achievements } = this.state
     return (
       <div id="userStepper">
         <Header activeLink="userStepper" />
@@ -180,7 +182,7 @@ class HorizontalLinearStepper extends React.Component {
                 <div className="stepperTopFlex">
                   <h5>Education</h5>
                   <div className="stepperFlex reach">
-                    <TextField label="College/University" onChange={this.handleChange} name="univeristy" value={univeristy} variant="outlined" />
+                    <TextField label="College/University" onChange={this.handleChange} name="university" value={university} variant="outlined" />
                   </div>
                 </div>
                 <div className="stepperTopFlex">
@@ -236,4 +238,4 @@ export default connect((state) => {
   return {
     user: state.userReducer.user
   }
-}, { setNewUser })(HorizontalLinearStepper)
+}, { setNewUser, setUser })(HorizontalLinearStepper)

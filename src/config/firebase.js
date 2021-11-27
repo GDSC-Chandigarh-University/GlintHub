@@ -57,7 +57,7 @@ export const getAllPublishedCollectionProjects = query(collection(firestore, "Pr
 export const getAllPublishedCollectionProjectsLimit = query(collection(firestore, "Projects"), where("projectStatus", "==", "isPublished"), orderBy("timestamp", 'asc'), limit(3))
 
 
-export const getCollectionUsers = (userUid) => query(collection(firestore, "Users"), where("userUid", "==", userUid))
+export const getCollectionUsers = (userUid) => query(collection(firestore, "Users"), where("uid", "==", userUid))
 
 
 export const updateDocProject = (id, data) => updateDoc(doc(firestore, "Projects", id), data);

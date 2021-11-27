@@ -112,8 +112,8 @@ class Header extends React.Component {
                             <div className="userInfo mb-3">
                                 <img className="profileImg" src={user.photoURL} alt="User" />
                                 <div>
-                                    <p className="medium">{user.displayName}</p>
-                                    <p className="small">{"Dummy Role"}</p>
+                                    <p className="medium">{user.firstName ? `${user.firstName} ${user.lastName}` : user.displayName}</p>
+                                    <p className="small">{user.role ? user.role : "Student"}</p>
                                 </div>
                             </div>
                             <Link to={`/userProfile/${user.uid}`}>Edit Profile</Link>
