@@ -8,7 +8,7 @@ class GlintHubLandingHero extends React.Component {
     return (
       <div id="glinthubLandingHero">
         <div className="heroContent">
-          <p className="big-h1">Welcome to</p>
+          <p className="big-h1 cl-lightBlack">Welcome to</p>
           <p className="big-h1 cl-lightGreen4 mt--1">Glinthub</p>
           <h3 className="mb-4 fw-600 cl-ft-lightBlack pl-1">Make your projects published for FREE</h3>
           <button className="getStarted h3" onClick={googleAuthLogin}>Get Started</button>
