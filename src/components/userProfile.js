@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import { updateDocUser, storageUser } from "../config/firebase";
 import { uploadBytes, getDownloadURL } from "@firebase/storage";
 import { setUser } from "./actions";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 class UserProfile extends React.Component {
@@ -31,7 +32,8 @@ class UserProfile extends React.Component {
     university: '',
     workExperience: '',
     skills: '',
-    achievements: ''
+    achievements: '',
+    circularProgress: false
   }
 
 
@@ -70,6 +72,7 @@ class UserProfile extends React.Component {
   updateProfile = async () => {
     const { firstName, lastName, gitHub, linkedIn, twitter, website, bio, role, university, skills, workExperience, achievements, user } = this.state
     const image = document.getElementById("image").files[0]
+    this.setState(() => ({ circularProgress: true }))
     uploadBytes(storageUser(user.uid), image).then((snapshot) => {
       // console.log("Uploaded a blob or file!", snapshot);
 
@@ -79,24 +82,32 @@ class UserProfile extends React.Component {
             url = ''
           }
           let userData = {
+            uid: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
             image: url,
             firstName,
             lastName,
             gitHub,
             linkedIn,
-            website,
             twitter,
+            website,
             bio,
             role,
             university,
             workExperience,
+            achievements,
             skills,
-            achievements
+            university,
+            workExperience,
+            achievements,
+            skills,
           };
           this.props.setUser(userData)
           await updateDocUser(user.uid, userData).then(() => {
             this.props.history.push("/glintHub")
           })
+          this.setState(() => ({ circularProgress: false }))
         })
         .catch((error) => {
           // console.log(error)
@@ -130,10 +141,11 @@ class UserProfile extends React.Component {
 
 
   render() {
-    const { image, firstName, lastName, gitHub, linkedIn, twitter, website, bio, role, userImage, university, skills, workExperience, achievements } = this.state
+    const { image, firstName, lastName, gitHub, linkedIn, twitter, website, bio, role, userImage, university, skills, workExperience, achievements, circularProgress } = this.state
     console.log(this.props)
     return this.state.isLoading ? <Spinner /> : (
-      <div id="userStepper">
+      <div id="userStepper" className="position-relative">
+        {circularProgress && <div className="circularProgress"><CircularProgress /></div>}
         <Header user={this.props.user} />
         <div className="thinLine"></div>
         <Box sx={{ width: '100%' }}>

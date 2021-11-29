@@ -11,6 +11,7 @@ import { serverTimestamp } from "@firebase/firestore";
 import { uploadBytes, getDownloadURL } from "@firebase/storage";
 import { setDocUser, storageUser, updateDocUser } from "../config/firebase";
 import { setNewUser, setUser } from "./actions";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const steps = ['Social Profile', 'Work Profile'];
@@ -32,7 +33,8 @@ class HorizontalLinearStepper extends React.Component {
     university: '',
     workExperience: '',
     skills: '',
-    achievements: ''
+    achievements: '',
+    circularProgress: false
   }
 
 
@@ -50,11 +52,15 @@ class HorizontalLinearStepper extends React.Component {
         achievements,
         skills,
       };
-      await updateDocUser(user.uid, userData)
+      this.setState(() => ({ circularProgress: true }))
+      await updateDocUser(user.uid, userData).then(() => {
+        this.setState(() => ({ circularProgress: false }))
+      })
       this.props.setNewUser()
     }
     else {
       const image = document.getElementById("image").files[0]
+      this.setState(() => ({ circularProgress: true }))
       uploadBytes(storageUser(user.uid), image).then((snapshot) => {
         // console.log("Uploaded a blob or file!", snapshot);
 
@@ -68,7 +74,6 @@ class HorizontalLinearStepper extends React.Component {
               displayName: user.displayName,
               photoURL: user.photoURL,
               image: url,
-              role,
               firstName,
               lastName,
               gitHub,
@@ -86,11 +91,14 @@ class HorizontalLinearStepper extends React.Component {
             this.props.setUser(userData)
             await setDocUser(user.uid, userData);
             this.setState((prevState) => ({ activeStep: prevState.activeStep + 1 }))
+            this.setState(() => ({ circularProgress: false }))
           })
           .catch((error) => {
             // console.log(error)
           });
       });
+
+
     }
   };
 
@@ -120,9 +128,10 @@ class HorizontalLinearStepper extends React.Component {
 
 
   render() {
-    const { activeStep, firstName, lastName, gitHub, linkedIn, twitter, website, bio, role, userImage, university, skills, workExperience, achievements } = this.state
+    const { activeStep, firstName, lastName, gitHub, linkedIn, twitter, website, bio, role, userImage, university, skills, workExperience, achievements, circularProgress } = this.state
     return (
-      <div id="userStepper">
+      <div id="userStepper" className="position-relative">
+        {circularProgress && <div className="circularProgress"><CircularProgress/></div>}
         <Header activeLink="userStepper" />
         <div className="thinLine"></div>
         <Box sx={{ width: '100%' }}>
