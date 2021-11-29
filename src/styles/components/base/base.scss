@@ -30,7 +30,7 @@ a {
   --p-bg-cl-1: #ffd589e3;
   --p-bg-cl-2: #ff74389e;
   --p-bg-cl-3: #ff7f5d70;
-  --p-bg-cl-4: #59ff0075;
+  --p-bg-cl-4: #83fb4275;
   --p-bg-cl-5: #aa8bf475;
   --p-bg-cl-6: #00adff4a;
   --p-bg-cl-7: #cddc39;
@@ -44,6 +44,10 @@ a {
 
 .bg-cl-p-1 {
   background-color: var(--p-bg-cl-1) !important;
+}
+
+.bg-cl-lightGreen5 {
+  background-color: var(--lightGreen5) !important;
 }
 
 .bg-cl-p-3 {
@@ -82,8 +86,8 @@ a {
   color: var(--lightBlack);
 }
 
-.lh-28{
-  line-height: 28px
+.lh-28 {
+  line-height: 28px;
 }
 #root-1 {
   width: 100%;
@@ -144,4 +148,15 @@ a {
 
 .large-h1 {
   font-size: 80px;
+}
+
+.lh-22 {
+  line-height: 22px;
+}
+
+.thinLine {
+  background: #707070;
+  width: 100%;
+  opacity: 0.3;
+  height: 1.5px;
 }

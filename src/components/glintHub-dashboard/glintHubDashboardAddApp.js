@@ -139,8 +139,20 @@ class GlintHubDashboardAddApp extends React.Component {
         }))
         getDownloadURL(storageProject(projectId))
           .then(async (url) => {
+            let colorArray = [
+              "#ffd589e3",
+              "#ff74389e",
+              "#ff7f5d70",
+              "#83fb4275",
+              "#aa8bf475",
+              "#00adff4a",
+              "#cddc39",
+              "#ffd4c0",
+              "#9ff68b9c"
+            ]
 
             let projectData = {
+              bgColor: `${colorArray[Math.floor(Math.random() * 9)]}`,
               title,
               image: url,
               description,
@@ -194,7 +206,7 @@ class GlintHubDashboardAddApp extends React.Component {
               addingProject: false,
               projectAdded: "inReview",
             }))
-            
+
             if (event.target.name === "draftApp") {
               this.setState(() => ({ projectAdded: "isDrafted", }));
               setTimeout(() => {

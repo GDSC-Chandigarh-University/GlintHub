@@ -25,7 +25,7 @@ export default class GlintHubLandingProjects extends React.Component {
         snapshot.docs.map((doc, key) => {
           if (doc.data().projectStatus == 'isPublished') {
             this.setState((prevState) => ({
-              featuredProjects: [...prevState.featuredProjects, doc.data()]
+              featuredProjects: [doc.data(), ...prevState.featuredProjects]
             }))
           }
           if (key + 1 == snapshot.docs.length) {

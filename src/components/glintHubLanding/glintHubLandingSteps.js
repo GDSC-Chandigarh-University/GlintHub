@@ -13,21 +13,21 @@ export default class GlintHubLandingSteps extends React.Component {
                 <div className="flex">
                     <div className="boxFlex mr-4 mb-5">
                         <h3 className="ml-2 mb-2 fw-600">Submit</h3>
-                        <div className="box mb-4 p-bg-cl-1 bg-cl-p-1 p-4">
+                        <div className="box mb-4 bg-cl-p-2 p-4">
                             <h4 className="lh-28">Submit your app to glintHub by submitting the given form with proper information.</h4>
                         </div>
                         <h3 className="ml-2 mb-2 mt-2 fw-600">Publish</h3>
-                        <div className="box p-bg-cl-2 bg-cl-p-2 p-4">
+                        <div className="box bg-cl-p-6 p-4">
                             <h4 className="lh-28">After mentor approval we will provide you with free domain and hosting to host your app.</h4>
                         </div>
                     </div>
                     <div className="boxFlex ml-4 mt-5">
                     <h3 className="ml-2 mb-2 fw-600">Review</h3>
-                        <div className="box mb-4 p-bg-cl-3 bg-cl-p-3 p-4">
+                        <div className="box mb-4 p-4 bg-cl-lightGreen5">
                             <h4 className="lh-28">Mentors will review the submitted app and help you to improve your app via real time chat.</h4>
                         </div>
                         <h3 className="ml-2 mb-2 mt-2 fw-600">Featured</h3>
-                        <div className="box p-bg-cl-4 bg-cl-p-6 p-4">
+                        <div className="box bg-cl-p-1 p-4">
                             <h4 className="lh-28">After publishing your app will get featured on glintHubSpace where other users can upvote and comment on your app.</h4>
                         </div>
                     </div>

@@ -68,9 +68,9 @@ class GlintHubSpace extends React.Component {
                 <div className="thinLine"></div>
                 <div className="glintSpace">
                     <div className="filterSection">
-                        <TextField className="glintSpaceSearchBar" label="Search" variant="outlined" value={this.state.textFilter} onChange={this.textFilter} />
+                        <TextField className="glintSpaceSearchBar" label="Search for App tilte" variant="outlined" value={this.state.textFilter} onChange={this.textFilter} />
                         <FormControl>
-                            <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+                            <InputLabel id="demo-simple-select-helper-label">Filter Tech</InputLabel>
                             <Select
                                 onChange={this.techFilter}
                                 displayEmpty

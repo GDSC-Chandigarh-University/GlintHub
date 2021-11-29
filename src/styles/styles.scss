@@ -10,8 +10,10 @@
 @import "./components/glintHubSpace.scss";
 @import "./components/materialUI/linearProgress.scss";
 @import "./components/materialUI/userStepper.scss";
+@import "./components/materialUI/inputFields.scss";
 
-h1, .h1 {
+h1,
+.h1 {
   font-size: 48px;
   color: #403f3f;
   line-height: 65.37px;
@@ -23,18 +25,21 @@ h1, .h1 {
   font-size: 58px;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-size: 28px;
   line-height: 38.13px;
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-size: 24px;
   line-height: 32.68px;
   margin-bottom: 0;
 }
 
-h4, .h4 {
+h4,
+.h4 {
   font-size: 20px;
 }
 
@@ -42,7 +47,7 @@ h4, .h4 {
   color: #757575;
 }
 
-.fw-700{
+.fw-700 {
   font-weight: 700;
 }
 
@@ -55,12 +60,14 @@ h4, .h4 {
 }
 
 @media screen and (max-width: 520px) {
-  h1, .h1 {
+  h1,
+  .h1 {
     font-size: 40px;
     margin-bottom: 5px;
   }
 
-  h2, .h2 {
+  h2,
+  .h2 {
     font-size: 24px;
   }
 }
