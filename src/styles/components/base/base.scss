@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 
 * {
   margin: 0;
@@ -8,53 +8,105 @@
 
 body {
   font-family: "Open Sans", sans-serif;
+  font-weight: 600;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-:root{
+:root {
   --white: #fff;
   --black: #000;
-  --header-bg: rgb(244,244,244,0.45);
+  --header-bg: rgb(244, 244, 244, 0.45);
   --lightGreen1: #ebf7e7;
-  --lightGreen2: rgb(133,205,102,0.4);
+  --lightGreen2: rgb(133, 205, 102, 0.4);
   --lightGreen3: rgba(133, 205, 102, 0.8);
+  --lightGreen4: #20912d;
+  --lightGreen5: #85cd6699;
   --darkGreen: #135200;
+  --lightBlack: #403f3f;
   --midLightRed: #ff9f9f;
-} 
+  --p-bg-cl-1: #ffd589e3;
+  --p-bg-cl-2: #ff74389e;
+  --p-bg-cl-3: #ff7f5d70;
+  --p-bg-cl-4: #59ff0075;
+  --p-bg-cl-5: #aa8bf475;
+  --p-bg-cl-6: #00adff4a;
+  --p-bg-cl-7: #cddc39;
+  --p-bg-cl-8: #ffd4c0;
+  --p-bg-cl-9: #9ff68b9c;
+}
+
+.bg-cl-p-6 {
+  background-color: var(--p-bg-cl-6) !important;
+}
+
+.bg-cl-p-1 {
+  background-color: var(--p-bg-cl-1) !important;
+}
+
+.bg-cl-p-3 {
+  background-color: var(--p-bg-cl-3) !important;
+}
+
+.bg-cl-p-2 {
+  background-color: var(--p-bg-cl-2) !important;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.cl-lightGreen4 {
+  color: var(--lightGreen4);
+}
 
 .cl-lightGreen3 {
   color: var(--lightGreen3);
+}
+
+.cl-lightGreen4 {
+  color: var(--lightGreen4);
 }
 
 .cl-darkGreen {
   color: var(--darkGreen);
 }
 
-#root-1{
+.cl-lightBlack {
+  color: var(--lightBlack);
+}
+
+.lh-28{
+  line-height: 28px
+}
+#root-1 {
   width: 100%;
   padding: 25px 40px;
   overflow: auto;
 }
 
-#root{
+#root {
   display: flex;
   height: calc(100vh - 68px);
   overflow: hidden;
 }
 
-.upper-div{
+.upper-div {
   background-color: white;
 }
 
-a{
+a {
   color: black;
 }
 
 @media screen and (max-width: 520px) {
-  #root-1{
+  #root-1 {
     padding: 15px 20px;
   }
 }
@@ -66,4 +118,30 @@ a{
   top: 0;
   right: 0;
   z-index: 10000;
+}
+
+.big-h1 {
+  font-size: 84px;
+  font-weight: 600;
+}
+
+.mt--1 {
+  margin-top: -1rem;
+}
+
+.mt-100 {
+  margin-top: 100px !important;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.hover:hover {
+  cursor: pointer;
+}
+
+.large-h1 {
+  font-size: 80px;
 }

@@ -2,18 +2,25 @@
 @import "./components/base/base.scss";
 @import "./components/base/component.scss";
 @import "./components/base/reboot.scss";
-@import "./components/header/header.scss";
+@import "./components/header.scss";
 @import "./components/glintHub-dashboard/glintHubDashboard.scss";
-@import "./components/glintHub-landing/glintHub-landing.scss";
+@import "./components/glintHubLanding/glintHubLanding.scss";
 @import "./components/spinner.scss";
+@import "./components/projectCard.scss";
+@import "./components/glintHubSpace.scss";
 @import "./components/materialUI/linearProgress.scss";
+@import "./components/materialUI/userStepper.scss";
 
 h1, .h1 {
   font-size: 48px;
-  color: #525252;
+  color: #403f3f;
   line-height: 65.37px;
   font-weight: 700;
   margin-bottom: 10px;
+}
+
+.medium-h1 {
+  font-size: 58px;
 }
 
 h2, .h2 {
@@ -25,6 +32,10 @@ h3, .h3 {
   font-size: 24px;
   line-height: 32.68px;
   margin-bottom: 0;
+}
+
+h4, .h4 {
+  font-size: 20px;
 }
 
 .cl-font-grey {
