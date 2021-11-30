@@ -21,7 +21,8 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "uuid": "^8.3.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "sass": "^1.44.0"
   },
   "scripts": {
     "start": "react-scripts start",
