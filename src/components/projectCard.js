@@ -1,16 +1,32 @@
 import React from "react";
+import Skeleton from '@mui/material/Skeleton';
+
 
 export default class ProjectCard extends React.Component {
+    state = {
+        projectLoaded: false
+    }
+
+
+    projectLoader = () => {
+        this.setState(() => ({ projectLoaded: true }))
+    }
+
 
     render() {
-
         const project = this.props.project
 
         return (
-            <div className="projectCard grid" key={project.id} style={{ backgroundColor: `${project.bgColor}` }}>
-                <div className="img-box">
-                    <img src={project.image} alt={project.title} />
+            <div className="projectCard grid hover" key={project.id} style={{ backgroundColor: `${project.bgColor}` }}>
+                {!this.state.projectLoaded && (
+                <div>
+                    <Skeleton variant="rectangular" width={163} height={150} />
                 </div>
+                )}
+                 {(<div className="img-box" style={this.state.projectLoaded ? {} : {display: 'none'}}>
+                    <img src={project.image} onLoad={this.projectLoader} alt={project.title} />
+                </div>)}
+                    {/* <img src={project.image} alt={project.title} /> */}
                 <div className="text-box">
                     <div>
                         <h5>{project.title}</h5>

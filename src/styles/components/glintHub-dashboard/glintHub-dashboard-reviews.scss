@@ -1,4 +1,6 @@
 #glinthub-dashboard-reviews {
+    margin: -10px 0 !important;
+
     .upper-h1 {
         margin-top: 7px;
         font-weight: 700;
@@ -12,7 +14,6 @@
     border-radius: 17px;
     // padding: 23px;
     width: 95%;
-    margin: 30px 0;
     display: flex;
     // align-items: center;
     // justify-content: space-between;
@@ -126,6 +127,10 @@
     /* padding-top: 5px; */
     /* padding-bottom: 5px; */
     padding: 15px;
+
+    .logo-review {
+        background: white;
+    }
 
     .content {
         display: flex;

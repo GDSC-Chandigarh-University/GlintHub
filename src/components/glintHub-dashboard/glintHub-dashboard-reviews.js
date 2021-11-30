@@ -139,12 +139,15 @@ export default class GlintHubReviews extends React.Component {
         })
     }
 
+    onSubmit = (e) => {
+        e.preventDefault();
+        document.querySelector(".search-logo").click()
+    }
+
     render() {
         const { messageContent, reviewProjects, firstLoad, sendingMessage, messages, currentChannel } = this.state
         return firstLoad ? <Spinner /> : (
             <div id="glinthub-dashboard-reviews">
-                <h1>Review App</h1>
-        <hr className="hrLine" />
                 <div className="review-wrapper">
                     <div id="channelContainer" className="review-left">
                         {reviewProjects.map((reviewApp) => {
@@ -155,7 +158,7 @@ export default class GlintHubReviews extends React.Component {
                                     </div>
                                     <div className="content">
                                         <h1>{reviewApp.title}</h1>
-                                        <p>{reviewApp.description}</p>
+                                        <p>{reviewApp.description.substr(0, 35)}...</p>
                                     </div>
                                 </div>
                             )
@@ -180,14 +183,14 @@ export default class GlintHubReviews extends React.Component {
                                 
                             })}
                         </div>
-                        <div className="search-wrapper">
+                        <form className="search-wrapper" onSubmit={this.onSubmit}>
                                 <div className="search-box">
                                     <input type="text" disabled={sendingMessage} name="messageContent" value={messageContent} onChange={this.handleChange} placeholder="Type a message..." />
                                 </div>
                                 <button type="button" className="search-logo btn btn-success" disabled={sendingMessage} onClick={this.sendMessage}>
                                     <img src={Send} alt="" />
                                 </button>
-                            </div>
+                            </form>
                     </div>
                 </div>
             </div>

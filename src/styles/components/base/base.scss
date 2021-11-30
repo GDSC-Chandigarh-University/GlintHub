@@ -97,7 +97,7 @@ a {
 
 #root {
   display: flex;
-  height: calc(100vh - 68px);
+  height: calc(100vh - 82px);
   overflow: hidden;
 }
 
@@ -162,7 +162,7 @@ a {
 }
 
 .circularProgress {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;

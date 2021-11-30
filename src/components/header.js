@@ -105,12 +105,12 @@ class Header extends React.Component {
                     <a href="https://gdsc.community.dev/chandigarh-university-chandigarh/" target="_blank">Join Our Community</a>
                     {user ? (<div>
                         <div id="profile" onClick={this.openProfile}>
-                            <img className="profileImg" src={user.photoURL} alt="User" />
+                            <img className="profileImg" src={user.image ? user.image : user.photoURL} alt="User" />
                             <img className="arrow" src={arrow} alt="Arrow Dropdown" />
                         </div>
                         {openProfile && <div id="profileDropdown">
                             <div className="userInfo mb-3">
-                                <img className="profileImg" src={user.photoURL} alt="User" />
+                                <img className="profileImg" src={user.image ? user.image : user.photoURL} alt="User" />
                                 <div>
                                     <p className="medium">{user.firstName ? `${user.firstName} ${user.lastName}` : user.displayName}</p>
                                     <p className="small">{user.role ? user.role : "Student"}</p>
@@ -132,7 +132,7 @@ class Header extends React.Component {
                     <div className="menu">
                         {(user && projects) && ( // Projects take bit time to setup in redux state
                             <div className="userInfo">
-                                <img className="profileImg mt-3" src={user.photoURL} alt="User" />
+                                <img className="profileImg mt-3" src={user.image ? user.image : user.photoURL} alt="User" />
                                 <p className="h3 mt-2">{user.displayName}</p>
                                 <p className="medium mb-3">{"Dummy Role"}</p>
                                 <div className="thinLine w-80 mb-3"></div>
