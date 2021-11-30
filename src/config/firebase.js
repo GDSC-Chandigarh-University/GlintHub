@@ -48,6 +48,9 @@ export const setDocProject = (id, data) => setDoc(doc(firestore, "Projects", id)
 export const setDocUser = (id, data) => setDoc(doc(firestore, "Users", id), data)
 
 
+export const getAllCollectionProjects = (userUid) => query(collection(firestore, "Projects"), orderBy("timestamp", 'asc'))
+
+
 export const getUserCollectionProjects = (userUid) => query(collection(firestore, "Projects"), where("userUid", "==", userUid), orderBy("timestamp", 'asc'))
 
 

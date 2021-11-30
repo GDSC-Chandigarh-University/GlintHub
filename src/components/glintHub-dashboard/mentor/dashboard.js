@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { onSnapshot } from "@firebase/firestore";
 import { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded } from "../../actions";
 import { getAllCollectionProjects } from "../../../firebase";
-import Header from "../../header/header";
+import Header from "../header";
 import GlintHubSidebar from "./glintHubDashboardSidebar";
 import GlintHubDashboard from "./glintHubDashboard";
 import GlintHubPublishedApp from "./glintHub-dashboard-published-app";

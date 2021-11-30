@@ -134,7 +134,7 @@ class Header extends React.Component {
                             <div className="userInfo">
                                 <img className="profileImg mt-3" src={user.image ? user.image : user.photoURL} alt="User" />
                                 <p className="h3 mt-2">{user.displayName}</p>
-                                <p className="medium mb-3">{"Dummy Role"}</p>
+                                <p className="medium mb-3">{user.role}</p>
                                 <div className="thinLine w-80 mb-3"></div>
                                 <Link to="/glintHub" onClick={this.userStepperOut}>Dashboard</Link>
                                 <Link to={`${url}/addApp`} onClick={this.userStepperOut}>Add App</Link>

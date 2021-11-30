@@ -18,7 +18,7 @@ class Modal extends React.Component {
         coreTech: this.props.modalApp.coreTech,
         techUsed: this.props.modalApp.techUsed,
         modalApp: this.props.modalApp,
-        adminRole: this.props.user.role == "admin",
+        adminRole: this.props.user.role == "Mentor",
         circularProgress: false
     };
 
@@ -80,6 +80,7 @@ class Modal extends React.Component {
                                 githubURL,
                                 coreTech,
                                 techUsed,
+                                bgColor: modalApp.bgColor
                             };
 
                             // console.log(url);
@@ -94,6 +95,7 @@ class Modal extends React.Component {
             });
         } else {
             let { title, image, description, githubURL, coreTech, techUsed, modalApp } = this.state;
+            this.setState(() => ({ circularProgress: true }))
             let projectData = {
                 title: modalApp.title,
                 image: modalApp.image,
@@ -101,10 +103,13 @@ class Modal extends React.Component {
                 githubURL: modalApp.githubURL,
                 coreTech: modalApp.coreTech,
                 techUsed: modalApp.techUsed,
-                projectStatus: "isPublished"
+                projectStatus: "isPublished",
+                bgColor: modalApp.bgColor
             };
             this.props.setPublishedProject(projectData);
-            // await updateDocProject(this.state.modalApp.id, projectData)
+            await updateDocProject(modalApp.id, projectData).then(() => {
+                this.setState(() => ({ circularProgress: false }))
+            })
 
             this.props.deleteProject(modalApp)
             this.props.closeModal();

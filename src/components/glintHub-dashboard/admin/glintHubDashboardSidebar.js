@@ -36,10 +36,6 @@ class GlintHubSidebar extends React.Component {
                         <NavLink to={url} exact={true} activeClassName="is-active">Dashboard</NavLink>
                     </div>
                     <div className="sidebar-mid-option">
-                        <img className="sidebar-icon" src={PublishedSvg} />
-                        {publishedProjects.length > 0 ? <NavLink to={`${url}/publishedApp`} activeClassName="is-active">Published App</NavLink> : <NavLink name="Published" to="" onClick={this.handleClick}>Manage App</NavLink>}
-                    </div>
-                    <div className="sidebar-mid-option">
                         <img className="sidebar-icon" src={ReviewsSvg} />
                         {reviewProjects.length > 0 ? <NavLink to={`${url}/reviewApp`} activeClassName="is-active">Review App</NavLink> : <NavLink name="In-Review" to="" onClick={this.handleClick}>Review App</NavLink>}
                     </div>

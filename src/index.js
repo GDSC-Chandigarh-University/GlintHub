@@ -23,6 +23,7 @@ import GlintHubSpace from "./components/glintHubSpace"
 import UserProfile from "./components/userProfile"
 import { getCollectionUsers } from './config/firebase';
 import HorizontalLinearStepper from './components/userStepper';
+import AdminDashboard from "./components/glintHub-dashboard/admin/dashboard"
 
 
 const store = createStore(rootReducer, composeWithDevTools())
@@ -43,17 +44,21 @@ class Root extends React.Component {
         onAuthStateChanged(auth, async (user) => {
             if(user) {
                 this.props.setUser(user)
+                if (roles.indexOf(user.email) == 0) {
+                    user.role = "Mentor"
+                    this.props.setNewUser()
+
+                } else {
+
                 await getDocs(getCollectionUsers(user.uid))
                 .then((snapshot) => {
                     if (snapshot.docs.length) {
-                        if (roles.indexOf(user.email) == 0) {
-                            snapshot.docs[0].data().UserRole = "admin"
-                        }
                         this.props.setUser(snapshot.docs[0].data())
                         this.props.setNewUser()
                         // this.props.history.push("/glinthub")
                     } 
                 })
+            }
             } else {
                 // this.props.history.push("/glinthub")
                 this.props.clearUser()
@@ -71,13 +76,11 @@ class Root extends React.Component {
 
 
     render() {
-        return this.state.timeout ? <Spinner /> : this.props.userLoading ? <Spinner /> : this.props.user ? this.props.newUser ? <HorizontalLinearStepper/> : this.props.user.role == "admin" ? 
+        return this.state.timeout ? <Spinner /> : this.props.userLoading ? <Spinner /> : this.props.user ? this.props.newUser ? <HorizontalLinearStepper/> : this.props.user.role == "Mentor" ? 
         (
-            <h1>AdminDashboard</h1>
-        // <Switch>
-        //     <Route path="/" component={AdminDashboard}></Route>
-        //     <Route path="/glinthub" component={AdminDashboard}></Route>
-        // </Switch>
+        <Switch>
+            <Route path="/glinthub" component={AdminDashboard}></Route>
+        </Switch>
         ) :
             (<Switch>
                 <Route path="/glinthub" component={Dashboard}></Route>

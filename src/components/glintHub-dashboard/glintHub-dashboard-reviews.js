@@ -145,7 +145,7 @@ export default class GlintHubReviews extends React.Component {
     }
 
     render() {
-        const { messageContent, reviewProjects, firstLoad, sendingMessage, messages, currentChannel } = this.state
+        const { messageContent, reviewProjects, firstLoad, sendingMessage, messages, currentChannel, user } = this.state
         return firstLoad ? <Spinner /> : (
             <div id="glinthub-dashboard-reviews">
                 <div className="review-wrapper">
@@ -158,7 +158,7 @@ export default class GlintHubReviews extends React.Component {
                                     </div>
                                     <div className="content">
                                         <h1>{reviewApp.title}</h1>
-                                        <p>{reviewApp.description.substr(0, 35)}...</p>
+                                        <p>{reviewApp.description.length > 35 ? `${reviewApp.description.substr(0, 35)}...` : reviewApp.description}</p>
                                     </div>
                                 </div>
                             )
@@ -167,7 +167,7 @@ export default class GlintHubReviews extends React.Component {
                     <div className="review-right">
                         <div id="review-message">
                             {messages.map((message) => {
-                                if (message.userUid == currentChannel.userUid) {
+                                if (message.userUid == user.uid) {
                                     return (
                                         <div className="sender">
                                             {message.content}

@@ -20,7 +20,7 @@ const projectsReducer = (state = initialProjectsState, action) => {
             };
         case actionTypes.SET_PUBLISHEDPROJECT:
             var storedPublishedProjects = JSON.parse(localStorage.getItem("publishedProjects"));
-            storedPublishedProjects.unshift(action.payload.projectData);
+            storedPublishedProjects.push(action.payload.projectData);
             localStorage.setItem("publishedProjects", JSON.stringify(storedPublishedProjects));
             return {
                 ...state,
@@ -28,7 +28,7 @@ const projectsReducer = (state = initialProjectsState, action) => {
             };
         case actionTypes.SET_DRAFTEDPROJECT:
             var storedDraftedProjects = JSON.parse(localStorage.getItem("draftedProjects"));
-            storedDraftedProjects.unshift(action.payload.projectData);
+            storedDraftedProjects.push(action.payload.projectData);
             localStorage.setItem("draftedProjects", JSON.stringify(storedDraftedProjects));
             return {
                 ...state,
@@ -36,8 +36,9 @@ const projectsReducer = (state = initialProjectsState, action) => {
             };
         case actionTypes.SET_REVIEWPROJECT:
             var storedReviewProjects = JSON.parse(localStorage.getItem("reviewProjects"));
-            storedReviewProjects.unshift(action.payload.projectData);
+            storedReviewProjects.push(action.payload.projectData);
             localStorage.setItem("reviewProjects", JSON.stringify(storedReviewProjects));
+            console.log()
             return {
                 ...state,
                 reviewProjects: [action.payload.projectData, ...state.reviewProjects],
