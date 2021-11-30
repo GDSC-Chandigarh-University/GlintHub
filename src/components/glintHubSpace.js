@@ -81,6 +81,7 @@ class GlintHubSpace extends React.Component {
                                 </MenuItem>
                                 <MenuItem value="Web">Web</MenuItem>
                                 <MenuItem value="Android/IOS">Android/IOS</MenuItem>
+                                <MenuItem value="Other">Other</MenuItem>
                             </Select>
                         </FormControl>
                     </div>

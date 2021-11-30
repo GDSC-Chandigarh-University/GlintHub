@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import { getDocs, onSnapshot } from "@firebase/firestore";
 import { setPublishedProject, setDraftedProject, setReviewProject, projectsLoaded, projectsInit } from "../actions";
 import { getUserCollectionProjects } from "../../config/firebase";
-import Header from "../header/header";
+import Header from "../header";
 import GlintHubSidebar from "./glintHubDashboardSidebar";
 import GlintHubDashboard from "./glintHubDashboard";
 import GlintubDashboardAddApp from "./glintHubDashboardAddApp";
 import GlintHubDraftedApp from "./glintHubDashboardDraftedApp";
 import GlintHubPublishedApp from "./glintHub-dashboard-published-app";
 import GlintHubReviews from "./glintHub-dashboard-reviews";
+import Spinner from "../spinner/Spinner";
 
 
 class Dashboard extends React.Component {
@@ -121,10 +122,11 @@ class Dashboard extends React.Component {
     
     render() {
         let { path } = this.props.match
-        return (
+        return this.props.projects.isLoading ? <Spinner/> : (
             <div>
                 {this.props.disabler && <div id="disabler"></div>}
-                <Header></Header>
+                <Header user={this.props.user} activeLink="glintHub"></Header>
+                <div className="thinLine"></div>
                 <div id="root">
                     <GlintHubSidebar projects={this.props.projects}></GlintHubSidebar>
                     <div id="root-1">

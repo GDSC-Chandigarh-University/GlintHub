@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import Modal from "./Modal";
 import AddApp from "../../assets/images/plus.png";
 import noProject from "../../assets/images/no-project.png"; // Used when user have no projects
+import ProjectCard from "../projectCard"
 
 
 class GlintHubDashboard extends React.Component {
@@ -55,10 +56,12 @@ class GlintHubDashboard extends React.Component {
                         <Link to={`${url}/publishedApp`}><span id="vie">View All</span></Link>
                     </div>
 
-                    <div className="bx-2">
+                    <div className="projectDashboardGrid">
                         {publishedProjects.map((app) => {
                             return (
-                                <div key={app.id} onClick={() => { this.modalClick(app) }} className="img-icn"><img src={app.image} alt="Error" /></div>
+                                <div className="grid-column" key={app.id} onClick={() => { this.modalClick(app) }}>
+                                    <ProjectCard project={app} />
+                                    </div>
                             )
                         })}
                     </div>
@@ -70,13 +73,14 @@ class GlintHubDashboard extends React.Component {
                         <Link to={`${url}/draftedApp`}><span id="vie">View All</span></Link>
                     </div>
 
-                    <div className="bx-2">
+                    <div className="projectDashboardGrid">
                         {draftedProjects.map((app) => {
                             return (
-                                <div key={app.id} onClick={() => { this.modalClick(app) }} className="img-icn"><img src={app.image} alt="Error" /></div>
+                                <div className="grid-column" key={app.id} onClick={() => { this.modalClick(app) }}>
+                                <ProjectCard project={app} />
+                                </div>
                             )
                         })}
-                        <Link to={`${url}/addApp`} className="img-icn-plus" ><img src={AddApp} width="33px" height="31px" alt="Error" /></Link>
                     </div>
                 </div>}
                 {reviewProjects.length > 0 && <div className="dash-container-2">
@@ -86,13 +90,14 @@ class GlintHubDashboard extends React.Component {
                         <Link to={`${url}/reviewApp`}><span id="vie">View All</span></Link>
                     </div>
 
-                    <div className="bx-2">
+                    <div className="projectDashboardGrid">
                         {reviewProjects.map((app) => {
                             return (
-                                <div key={app.id} onClick={() => { this.modalClick(app) }} className="img-icn"><img src={app.image} alt="Error" /></div>
+                                <div className="grid-column" key={app.id} onClick={() => { this.modalClick(app) }}>
+                                <ProjectCard project={app} />
+                                </div>
                             )
                         })}
-                        <Link to={`${url}/addApp`} className="img-icn-plus" ><img src={AddApp} width="33px" height="31px" alt="Error" /></Link>
                     </div>
                 </div>}
                 {this.state.modalIsOpen && <Modal modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal} user={this.props.user} projects={this.props.projects} modalApp={this.state.modalApp} />}
