@@ -24,6 +24,7 @@ import UserProfile from "./components/userProfile"
 import { getCollectionUsers } from './config/firebase';
 import HorizontalLinearStepper from './components/userStepper';
 import AdminDashboard from "./components/glintHub-dashboard/admin/dashboard"
+import ProjectPage from "./components/projectCard"
 
 
 const store = createStore(rootReducer, composeWithDevTools())
@@ -79,7 +80,11 @@ class Root extends React.Component {
         return this.state.timeout ? <Spinner /> : this.props.userLoading ? <Spinner /> : this.props.user ? this.props.newUser ? <HorizontalLinearStepper/> : this.props.user.role == "Mentor" ? 
         (
         <Switch>
+            <Route path="/" exact={true} component={GlintHubLanding}></Route>
             <Route path="/glinthub" component={AdminDashboard}></Route>
+            <Route path="/glintHubSpace" exact={true} component={GlintHubSpace}></Route>
+            <Route path="/projectPage/:id" exact={true} component={ProjectPage}></Route>
+            <Route path="/liveSoon" exact={true}>This page will be live Soon</Route>
         </Switch>
         ) :
             (<Switch>
@@ -87,10 +92,14 @@ class Root extends React.Component {
                 <Route path="/" exact={true} component={GlintHubLanding}></Route>
                 <Route path="/glintHubSpace" exact={true} component={GlintHubSpace}></Route>
                 <Route path="/userProfile/:id" exact={true} component={UserProfile}></Route>
+                <Route path="/projectPage/:id" exact={true} component={ProjectPage}></Route>
+                <Route path="/liveSoon" exact={true}>This page will be live Soon</Route>
             </Switch>) :
             (<Switch>
                 <Route path="/" exact={true} component={GlintHubLanding}></Route>
                 <Route path="/glintHubSpace" exact={true} component={GlintHubSpace}></Route>
+                <Route path="/projectPage/:id" exact={true} component={ProjectPage}></Route>
+                <Route path="/liveSoon" exact={true}>This page will be live Soon</Route>
             </Switch>)
     }
 }

@@ -130,7 +130,7 @@ class Modal extends React.Component {
 
 
     render() {
-        let { title, description, githubURL, image, techUsed, adminRole, circularProgress, coreTech } = this.state;
+        let { title, description, githubURL, image, techUsed, adminRole, circularProgress, coreTech, modalApp } = this.state;
         return (
             <ReactModal
                 isOpen={this.props.modalIsOpen}
@@ -140,6 +140,10 @@ class Modal extends React.Component {
                 <div>
                     <div id="glinthubDashboardAddApp">
                         {circularProgress && <div className="circularProgress"><CircularProgress /></div>}
+                        {adminRole && <div>
+                            {modalApp.userDisplayName}
+                            {modalApp.userPhotoURL}
+                        </div>}
                         <div className="addAppForm">
                             <div className="addAppFormFields title">
                                 <input className="addAppFormField" maxLength="15" type="text" name="title" value={title} disabled={adminRole} placeholder="Project Title" onChange={this.handleChange} />
