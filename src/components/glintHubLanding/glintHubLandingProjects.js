@@ -46,7 +46,7 @@ export default class GlintHubLandingProjects extends React.Component {
         <div className="glintHubSpaceGrid">
           {this.state.featuredProjects.map((project) => {
             return (<div>
-              <ProjectCard project={project} />
+              <Link to={`/projectPage/${project.id}`}><ProjectCard project={project} /></Link>
             </div>
             )
           })}

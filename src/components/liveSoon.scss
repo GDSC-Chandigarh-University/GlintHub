@@ -1,0 +1,120 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700);
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.pivot {
+  position: relative;
+  top: -50px;
+  padding: 0;
+  border-radius: 700px;
+  background-color: black;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border: 5px solid grey;
+}
+
+.handle {
+  position: relative;
+  top: -70px;
+  width: 10px;
+  height: 130px;
+  margin: 0 auto;
+  background-color: black;
+  animation-name: handleAnim;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+.container {
+  font-family: 'Roboto';
+  font-size: 2rem;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.circle {
+  position: relative;
+  top: -70px;
+  background-color: black;
+  border-radius: 300px;
+  width: 200px;
+  height: 200px;
+  color: white;
+  text-transform: uppercase;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation-name: circleAnim;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+.wait {
+  color: black;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px;
+  margin: 0px;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-style: bold;
+  letter-spacing: 5px;
+}
+
+#pink {
+  color: hotPink;
+}
+
+.design {
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  border-bottom: 2px solid black;
+}
+.link:hover {
+   background-color: #D6D6D6;
+}
+p {
+  text-align: center;
+}
+/* Animations */
+
+@keyframes circleAnim {
+  0% {
+    transform: rotate(-20deg) translate(90px, -20px);
+  }
+  50% {
+    transform: rotate(20deg) translate(-90px, -20px);
+  }
+  100% {
+    transform: rotate(-20deg) translate(90px, -20px);
+  }
+}
+
+@keyframes handleAnim {
+  0% {
+    transform: rotate(-20deg) translate(30px, 3px);
+  }
+  50% {
+    transform: rotate(20deg) translate(-30px, -3px);
+  }
+  100% {
+    transform: rotate(-20deg) translate(30px, 3px);
+  }
+}
