@@ -140,9 +140,9 @@ class Modal extends React.Component {
                 <div>
                     <div id="glinthubDashboardAddApp">
                         {circularProgress && <div className="circularProgress"><CircularProgress /></div>}
-                        {adminRole && <div>
+                        {adminRole && <div className="mb-3 pr-3">
+                            <img className="pr-3" src={modalApp.userPhotoURL}/>
                             {modalApp.userDisplayName}
-                            {modalApp.userPhotoURL}
                         </div>}
                         <div className="addAppForm">
                             <div className="addAppFormFields title">

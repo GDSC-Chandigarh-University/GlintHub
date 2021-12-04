@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Spinner from "./spinner/Spinner";
 import { getDocs } from "@firebase/firestore";
+import { Link } from "react-router-dom";
 import { getAllPublishedCollectionProjects } from "../config/firebase";
 import { setGlintHubSpaceProject, glintHubSpaceProjectsLoaded, glintHubSpaceFilterText, glintHubSpaceFilterTech } from "./actions";
 import ProjectCard from "./projectCard";
@@ -91,11 +92,11 @@ class GlintHubSpace extends React.Component {
                             if (project.title.toLowerCase().includes(this.props.glintHubSpaceFilterReducer.text.toLowerCase())) {
                                 if (this.state.techFilter === "All" && true) {
                                     return (
-                                        <ProjectCard project={project} />
+                                        <Link to={`/projectPage/${project.id}`}><ProjectCard project={project} /></Link>
                                     )
                                 } else if (project.coreTech === this.props.glintHubSpaceFilterReducer.tech) {
                                     return (
-                                        <ProjectCard project={project} />
+                                        <Link to={`/projectPage/${project.id}`}><ProjectCard project={project} /></Link>
                                     )
                                 }
                             }
