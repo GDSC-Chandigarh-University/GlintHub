@@ -27,7 +27,7 @@ export default class ProjectCard extends React.Component {
                     <img src={project.image} onLoad={this.projectLoader} alt={project.title} />
                 </div>)}
                     {/* <img src={project.image} alt={project.title} /> */}
-                <div className="text-box">
+                <div className="text-box" style={{width:"100%"}}>
                     <div>
                         <h5>{project.title}</h5>
                         <h6>{project.description.length > 85 ? `${project.description.substr(0, 85)}... Read More` : project.description}</h6>
